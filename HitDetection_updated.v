@@ -1,6 +1,4 @@
 module HitDetection_updated (
-    input CLK,
-
     input [9:0] x1, // of top left corner 
     input [9:0] x2,
 
