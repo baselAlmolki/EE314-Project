@@ -1,4 +1,4 @@
-module GameplayControllerP1(
+module GameplayControllerP2(
     input clk_60Hz,
     input key_clk,
     input switch,
@@ -6,8 +6,8 @@ module GameplayControllerP1(
     input in_left,
     input in_right,
     input attack,
-    input [9:0] player2_pos_x,
-	 input [3:0] player2_state,
+    input [9:0] player1_pos_x,
+    input [3:0] player1_state,
     input [9:0] screen_left_bound,
     input [9:0] screen_right_bound,
 
@@ -15,34 +15,33 @@ module GameplayControllerP1(
     output reg [3:0] player_state,
     output is_directional_attack,
     output move_flag,
-    output attack_flag,
-	 output stun
+    output attack_flag
 );
+
 
 	wire predicted_attack_flag = (next_player_state == S_IAttack_active);
 	wire predicted_is_directional_attack = (player_state == S_DAttack_active);
-
-	wire player2_attack_flag, player2_is_directional_attack;
-	assign player2_attack_flag = player2_state == S_IAttack_active;
-	assign player2_is_directional_attack = player2_state == S_DAttack_active;
+	
+	wire player1_attack_flag, player1_is_directional_attack;
+	assign player1_attack_flag = player1_state == S_IAttack_active;
+	assign player1_is_directional_attack = player1_state == S_DAttack_active;
 	 wire [1:0] stunmode;
-	 wire [1:0] stunmode2;
-	 
+	 wire [1:0] stunmode1;
+
 HitDetection_updated hit_detec(
 	.clk(clk_60Hz),
-   .x1(player_pos_x),
-   .x2(player2_pos_x),
-   .p1_attack_flag(predicted_attack_flag),
-   .p2_attack_flag(player2_attack_flag),
-   .p1_dir_attack(predicted_is_directional_attack),
-   .p2_dir_attack(player2_is_directional_attack),
-   .state1(player_state),
-   .state2(player2_state),
-   .p1_stunmode(stunmode),
-   .p2_stunmode(stunmode2)
+	.x1(player1_pos_x),
+   .x2(player_pos_x),
+	.p1_attack_flag(player1_attack_flag),
+	.p2_attack_flag(predicted_attack_flag),
+	.p1_dir_attack(player1_is_directional_attack),
+   .p2_dir_attack(predicted_is_directional_attack),
+	.state1(player1_state),
+	.state2(player_state),
+	.p1_stunmode(stunmode1),
+	.p2_stunmode(stunmode)
 );
 
-assign stun = stunmode == 2'b10 | stunmode ==2'b01;
 
     parameter PLAYER_WIDTH = 10'd64;
     parameter [9:0] SPEED_FORWARD = 10'd3;
@@ -82,12 +81,12 @@ assign stun = stunmode == 2'b10 | stunmode ==2'b01;
         if (reset) begin
             player_state <= S_IDLE;
             frame_counter <= 5'd0;
-            player_pos_x <= 10'd10;
+            player_pos_x <= 10'd567;
         end 
-		  else begin
-				player_state <= next_player_state;
+        else begin
+            player_state <= next_player_state;
             player_pos_x <= tmp_result_x;
-				frame_counter <= (player_state != next_player_state) ? 0 : frame_counter + 1;
+            frame_counter <= (player_state != next_player_state) ? 0 : frame_counter + 1;
         end
     end
 
@@ -97,41 +96,41 @@ assign stun = stunmode == 2'b10 | stunmode ==2'b01;
 
         case (player_state)
             S_FORWARD: begin
-					 if (stunmode == 2'b01)
+                if (stunmode == 2'b01)
 						  next_player_state = S_HITSTUN;
 					 else if (stunmode == 2'b10)
 						  next_player_state = S_BLOCKSTUN;
 					 else if (attack && (in_left || in_right))
-						  next_player_state = S_DAttack_start;
-					 else if (attack && ~in_left && ~in_right)
-						  next_player_state = S_IAttack_start;
-					 else if (in_left)
-						  next_player_state = S_BACKWARD; // ← switch to backward if opposite input
-					 else if (in_right &&
-								 player_pos_x < screen_right_bound - PLAYER_WIDTH - SPEED_FORWARD &&
-								 player_pos_x < player2_pos_x - SPEED_BACKWARD - PLAYER_WIDTH)
-						  tmp_result_x = player_pos_x + SPEED_FORWARD;
-					 else
-						  next_player_state = S_IDLE;
-				end
+                    next_player_state = S_DAttack_start;
+                else if (attack && ~in_left && ~in_right)
+                    next_player_state = S_IAttack_start;
+                else if (in_right)
+                    next_player_state = S_BACKWARD;
+                else if (in_left &&
+                         player_pos_x > screen_left_bound + SPEED_FORWARD &&
+                         player_pos_x > player1_pos_x + PLAYER_WIDTH + SPEED_FORWARD)
+                    tmp_result_x = player_pos_x - SPEED_FORWARD;
+                else
+                    next_player_state = S_IDLE;
+            end
 
-				S_BACKWARD: begin
-					 if (stunmode == 2'b01)
+            S_BACKWARD: begin
+                if (stunmode == 2'b01)
 						  next_player_state = S_HITSTUN;
 					 else if (stunmode == 2'b10)
 						  next_player_state = S_BLOCKSTUN;
 					 else if (attack && (in_left || in_right))
-						  next_player_state = S_DAttack_start;
-					 else if (attack && ~in_left && ~in_right)
-						  next_player_state = S_IAttack_start;
-					 else if (in_right)
-						  next_player_state = S_FORWARD; // ← switch to forward if opposite input
-					 else if (in_left &&
-								 player_pos_x > screen_left_bound + SPEED_BACKWARD)
-						  tmp_result_x = player_pos_x - SPEED_BACKWARD;
-					 else
-						  next_player_state = S_IDLE;
-				end
+                    next_player_state = S_DAttack_start;
+                else if (attack && ~in_left && ~in_right)
+                    next_player_state = S_IAttack_start;
+                else if (in_left)
+                    next_player_state = S_FORWARD;
+                else if (in_right &&
+                         player_pos_x < screen_right_bound - PLAYER_WIDTH - SPEED_BACKWARD)
+                    tmp_result_x = player_pos_x + SPEED_BACKWARD;
+                else
+                    next_player_state = S_IDLE;
+            end
 
             S_IDLE: begin
                 if (stunmode == 2'b01)
@@ -142,11 +141,13 @@ assign stun = stunmode == 2'b10 | stunmode ==2'b01;
                     next_player_state = S_DAttack_start;
                 else if (attack && ~in_left && ~in_right)
                     next_player_state = S_IAttack_start;
-                else if (in_left && player_pos_x > screen_left_bound + SPEED_BACKWARD)
-                    {tmp_result_x, next_player_state} = {player_pos_x - SPEED_BACKWARD, S_BACKWARD};
-                else if (in_right && player_pos_x < screen_right_bound - PLAYER_WIDTH - SPEED_FORWARD &&
-                         player_pos_x < player2_pos_x - SPEED_BACKWARD - PLAYER_WIDTH)
-                    {tmp_result_x, next_player_state} = {player_pos_x + SPEED_FORWARD, S_FORWARD};
+                else if (in_right &&
+                         player_pos_x < screen_right_bound - PLAYER_WIDTH - SPEED_BACKWARD)
+                    {tmp_result_x, next_player_state} = {player_pos_x + SPEED_BACKWARD, S_BACKWARD};
+                else if (in_left &&
+                         player_pos_x > screen_left_bound + SPEED_FORWARD &&
+                         player_pos_x > player1_pos_x + PLAYER_WIDTH + SPEED_FORWARD)
+                    {tmp_result_x, next_player_state} = {player_pos_x - SPEED_FORWARD, S_FORWARD};
             end
 
             S_IAttack_start: begin
@@ -157,8 +158,7 @@ assign stun = stunmode == 2'b10 | stunmode ==2'b01;
             end
 
             S_IAttack_active: begin
-					 if (stunmode2 == 2'b01) next_player_state = S_IAttack_recovery;
-                else if (frame_counter >= I_ACTIVE_TIME - 1)
+                if (frame_counter >= I_ACTIVE_TIME - 1)
                     next_player_state = S_IAttack_recovery;
                 else
                     next_player_state = S_IAttack_active;
@@ -179,14 +179,17 @@ assign stun = stunmode == 2'b10 | stunmode ==2'b01;
             end
 
             S_IAttack_recovery: begin
-                if (frame_counter >= I_RECOVERY_TIME - 1)
+					 if (stunmode == 2'b01) next_player_state = S_HITSTUN;
+                else if (frame_counter >= I_RECOVERY_TIME - 1)
                     next_player_state = S_IDLE;
                 else
                     next_player_state = S_IAttack_recovery;
             end
 
             S_DAttack_recovery: begin
-                if (frame_counter >= D_RECOVERY_TIME - 1) begin
+                if (stunmode == 2'b01) next_player_state = S_HITSTUN;
+                else 
+					 if (frame_counter >= D_RECOVERY_TIME - 1) begin
                     if (attack && (in_left || in_right))
                         next_player_state = S_DAttack_start;
                     else
@@ -196,38 +199,37 @@ assign stun = stunmode == 2'b10 | stunmode ==2'b01;
             end
 
             S_HITSTUN: begin
-					case(player2_state) 
-						S_IAttack_recovery,S_IAttack_active: begin 
-							if (frame_counter >= I_RECOVERY_TIME-1) next_player_state = S_IDLE;
-							else next_player_state = S_HITSTUN;
-						end 
-						S_DAttack_recovery,S_DAttack_active: begin 
-							if (frame_counter >= D_RECOVERY_TIME-1) next_player_state = S_IDLE;
-							else next_player_state = S_HITSTUN;
-						end
-						default: next_player_state = S_IDLE;
-					endcase
+			case(player1_state) 
+				S_IAttack_recovery: begin 
+					if (frame_counter >= I_RECOVERY_TIME-2) next_player_state = S_IDLE;
+					else next_player_state = S_HITSTUN;
+				end 
+				S_DAttack_recovery: begin 
+					if (frame_counter >= D_RECOVERY_TIME-1) next_player_state = S_IDLE;
+					else next_player_state = S_HITSTUN;
+				end
+				default: next_player_state = S_IDLE;
+			endcase
             end
 
             S_BLOCKSTUN: begin
-					case(player2_state) 
-						S_IAttack_recovery,S_IAttack_active: begin 
-							if (frame_counter >= I_RECOVERY_TIME-3) next_player_state = S_IDLE;
-							else next_player_state = S_BLOCKSTUN;
-						end 
-						S_DAttack_recovery,S_DAttack_active: begin 
-							if (frame_counter >= D_RECOVERY_TIME-3) next_player_state = S_IDLE;
-							else next_player_state = S_BLOCKSTUN;
-						end 
-						default: next_player_state = S_IDLE;
-					endcase
+				case(player1_state) 
+					S_IAttack_recovery: begin 
+						if (frame_counter >= I_RECOVERY_TIME-3) next_player_state = S_IDLE;
+						else next_player_state = S_BLOCKSTUN;
+					end 
+					S_DAttack_recovery: begin 
+						if (frame_counter >= D_RECOVERY_TIME-3) next_player_state = S_IDLE;
+						else next_player_state = S_BLOCKSTUN;
+					end 
+					default: next_player_state = S_IDLE;
+				endcase
 				end
-				
-				default: begin
-						  next_player_state = S_IDLE;
-				end
+
+            default: begin
+                next_player_state = S_IDLE;
+            end
         endcase
     end
-
 
 endmodule
