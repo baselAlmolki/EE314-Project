@@ -14,7 +14,7 @@ module keypad_Decoder (
 //			C1	C2 C3 C4
 // R1		1	2	3	A    \		0	1	2	3
 // R2		4	5	6	B  ---\  	4	5	6	7	
-// R3		7	8	9	C  ---/	   8	9	10	11
+// R3		7	8	9	C  ---/	    8	9	10	11
 // R4		*	0	#	D    /		12	13	14	15
 
 	localparam 
