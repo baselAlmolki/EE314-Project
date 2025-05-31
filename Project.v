@@ -64,6 +64,8 @@ module Project(
     wire player1_dir_attack, player2_dir_attack;
     wire move_flag_p1, attack_flag_p1;
     wire move_flag_p2, attack_flag_p2;
+	 wire [1:0] stunmode1, stunmode2;
+	 wire [2:0] p1_health, p2_health, p1_shield, p2_shield;
 
     // === Gameplay Controllers ===
     GameplayControllerP1 player1 (
@@ -83,7 +85,7 @@ module Project(
         .is_directional_attack(player1_dir_attack),
         .move_flag(move_flag_p1),
         .attack_flag(attack_flag_p1),
-		  .stun(LEDR[9])
+		  .stunmode(stunmode1)
     );
 	 
     GameplayControllerP2 player2 (
@@ -103,7 +105,7 @@ module Project(
         .is_directional_attack(player2_dir_attack),
         .move_flag(move_flag_p2),
         .attack_flag(attack_flag_p2),
-
+		  .stunmode(stunmode2)
     );
 
 
@@ -134,14 +136,30 @@ hexto7seg hexz(
 	.hex(player2_state),
 	.hexn(HEX1)
 	);
+	
+	
+Statuses status_bars(
+	.clk(clk_60Hz),
+	.reset(reset_button),
+	.p1_stunmode(stunmode1),
+   .p2_stunmode(stunmode2),
+	.p1_loose_health(),
+	.p1_loose_block(),
+	.p2_loose_health(),
+	.p2_loose_block(),
+	.p1_current_health(p1_health),
+	.p1_current_block(p1_shield),
+	.p2_current_health(p2_health),
+	.p2_current_block(p2_shield)
+);
     // === Debug LEDs ===
-    assign LEDR[0] = move_flag_p1;
-    assign LEDR[1] = attack_flag_p1;
-    assign LEDR[2] = player1_dir_attack;
-    assign LEDR[3] = move_flag_p2;
-    assign LEDR[4] = attack_flag_p2;
-    assign LEDR[5] = player2_dir_attack;
-    assign LEDR[6] = player1_state == 4'd6;
-    assign LEDR[7] = player1_state == 4'd7;
+    assign LEDR[0] = p2_health[0];
+    assign LEDR[1] = p2_health[1];
+    assign LEDR[2] = p2_health[2];
+    assign LEDR[3] = 0;
+    assign LEDR[4] = 0;
+    assign LEDR[5] = p1_health[0];
+    assign LEDR[6] = p1_health[1];
+    assign LEDR[7] = p1_health[2];
 
 endmodule
