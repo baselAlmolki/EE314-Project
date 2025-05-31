@@ -28,13 +28,8 @@ module GameplayControllerP1(
 	wire [1:0] stunmode2;
 	 
 HitDetection_updated hit_detec(
-	.clk(clk_60Hz),
    .x1(player_pos_x),
    .x2(player2_pos_x),
-   .p1_attack_flag(predicted_attack_flag),
-   .p2_attack_flag(player2_attack_flag),
-   .p1_dir_attack(predicted_is_directional_attack),
-   .p2_dir_attack(player2_is_directional_attack),
    .state1(player_state),
    .state2(player2_state),
    .p1_stunmode(stunmode),
