@@ -37,19 +37,19 @@ module Vga_Display (
     localparam V_TOTAL        = 10'd525;
 
     // === VGA Counters ===
-    reg [9:0] h_count = 0;
-    reg [9:0] v_count = 0;
+    reg [9:0] h_count = 1'b0;
+    reg [9:0] v_count = 1'b0;
 
     always @(posedge clk_25mhz or posedge reset) begin
         if (reset) begin
-            h_count <= 0;
-            v_count <= 0;
+            h_count <= 1'b0;
+            v_count <= 1'b0;
         end else begin
-            if (h_count == H_TOTAL - 1) begin
-                h_count <= 0;
-                v_count <= (v_count == V_TOTAL - 1) ? 0 : v_count + 1;
+            if (h_count == H_TOTAL - 1'b1) begin
+                h_count <= 1'b0;
+                v_count <= (v_count == V_TOTAL - 1'b1) ? 1'b0 : v_count + 1'b1;
             end else begin
-                h_count <= h_count + 1;
+                h_count <= h_count + 1'b1;
             end
         end
     end
@@ -63,15 +63,15 @@ module Vga_Display (
     wire display_area = (h_count < H_VISIBLE_AREA) && (v_count < V_VISIBLE_AREA);
 
     // === Parameters ===
-    localparam BASE_WIDTH    = 64;
-    localparam PLAYER_HEIGHT = 240;
-    localparam PLAYER_Y      = 220;
+    localparam BASE_WIDTH    = 10'd64;
+    localparam PLAYER_HEIGHT = 10'd40;
+    localparam PLAYER_Y      = 10'd220;
 
-    localparam ATK_W         = 45;
-    localparam ATK_H         = 50;
+    localparam ATK_W         = 10'd45;
+    localparam ATK_H         = 10'd50;
     localparam NATK_W        = (ATK_W * 10) / 8;
     localparam NATK_H        = (ATK_H * 10) / 8;
-    localparam BORDER        = 3;
+    localparam BORDER        = 2'd3;
 
     // === Player 1 ===
     wire p1_base = (h_count >= player_x) && (h_count < player_x + BASE_WIDTH) &&
