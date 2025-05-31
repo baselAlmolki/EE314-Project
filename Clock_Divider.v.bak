@@ -1,0 +1,21 @@
+module Clock_Divider#(parameter DIV=4)
+        (
+	 input clk,
+	 output reg clk_out
+);
+
+reg [31:0] count;
+
+localparam half_div = DIV/2;
+
+always@(posedge clk) begin
+	
+	if (count == half_div -1) begin
+	clk_out <= ~clk_out;
+	count <= 0;
+	end 
+		
+	else count <= count + 1;
+end
+
+endmodule
