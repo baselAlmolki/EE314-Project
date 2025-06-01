@@ -58,7 +58,7 @@ module Statuses(
 
 	Shift_Register block_shift_p1(
 		.serial_in(1'b0),
-		.parallel_in(3'b100),
+		.parallel_in(3'b111),
 		.shift_control(p1_block), // 00 -> shift right, 11-> shift left, 01-> hold
 		.load_enable(le), 
 		.clk(clk),
@@ -79,7 +79,7 @@ module Statuses(
 
 	Shift_Register block_shift_p2(
 		.serial_in(1'b0),
-		.parallel_in(3'b100),
+		.parallel_in(3'b111),
 		.shift_control(p2_block), // 00 -> shift right, 11-> shift left, 01-> hold
 		.load_enable(le), 
 		.clk(clk),

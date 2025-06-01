@@ -1,7 +1,5 @@
 module GameplayControllerP1(
-    input clk_60Hz,
-    input key_clk,
-    input switch,
+    input logic_clk
     input reset,
     input in_left,
     input in_right,
@@ -51,7 +49,7 @@ assign stun = stunmode == 2'b10 | stunmode ==2'b01;
     parameter [9:0] SPEED_FORWARD = 10'd3;
     parameter [9:0] SPEED_BACKWARD = 10'd2;
 
-    wire logic_clk = (switch == 1'b0) ? clk_60Hz : key_clk;
+    // wire logic_clk = (switch == 1'b0) ? clk_60Hz : key_clk;
 
     localparam S_IDLE              = 4'd0,
                S_FORWARD           = 4'd1,

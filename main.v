@@ -88,23 +88,10 @@ module main(
 	assign p2_inleft  = ~col[3];//keypad_btns[3]; // btn A 
 	assign p2_inright = ~col[1];//keypad_btns[1]; // btn 2
 	assign p2_atk 		= ~col[2];//keypad_btns[2]; // btn 3
-	 
-//	 
-//	keypad_Decoder keypad_driver( 
-//		.clk(CLOCK_50),
-//		.R1(row),
-//		.keypresses(keypad_btns),
-//		.state(LEDR[9])); // debug LED can remove if not needed
-
-		// below are debug outputs to 7seg, commented to not clash with other outputs
-//	keypadto7seg instseg(.keypresses(keypad_input), .seg1(HEX3), .seg2(HEX2), .seg3(HEX1), .seg4(HEX0));
-
 
     // === Gameplay Controllers ===
     GameplayControllerP1 player1 (
-		.clk_60Hz(clk_60Hz),
-		.key_clk(~KEY[0]),
-		.switch(SW[1]),
+		.logic_clk(logic_clk),
 		.reset(reset_button),
 		.in_left(~KEY[3]),
 		.in_right(~KEY[1]),
@@ -125,9 +112,7 @@ module main(
     );
 	 
     GameplayControllerP2 player2 (
-		.clk_60Hz(clk_60Hz),
-		.key_clk(~KEY[0]),
-		.switch(SW[1]),
+		.logic_clk(logic_clk),
 		.reset(reset_button),
 		.in_left(p2_inleft), //was SW[5]
 		.in_right(p2_inright), // was SW[3]
@@ -174,14 +159,6 @@ module main(
 		.hexn(HEX1)
 		);
 	
-	shieldto7seg kjjghj(
-		.p1(p1_shield),
-		.p2(p2_shield),
-		.seg1(HEX3),
-		.seg2(HEX2)
-		);
-	
-	
 	Statuses status_bars(
 		.clk(logic_clk),
 		.reset(reset_button),
@@ -196,7 +173,7 @@ module main(
 		.p1wins(LEDR[9]),
 		.p2wins(LEDR[8])
 	);
-    // === Debug LEDs ===
+    // === Debug LEDs and OUTPUTS ===
     assign LEDR[0] = p2_health[0];
     assign LEDR[1] = p2_health[1];
     assign LEDR[2] = p2_health[2];
@@ -206,5 +183,11 @@ module main(
     assign LEDR[5] = p1_health[1];
     assign LEDR[6] = p1_health[2];
 
+	shieldto7seg kjjghj( 
+		.p1(p1_shield),
+		.p2(p2_shield),
+		.seg1(HEX3),
+		.seg2(HEX2)
+		);
 
 endmodule
