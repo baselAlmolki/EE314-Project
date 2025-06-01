@@ -1,5 +1,0 @@
-<<<<<<< HEAD
-FIT
-=======
-DONE
->>>>>>> f61acebfbb1de0fe47a192d5430c7cd98c59fce8
