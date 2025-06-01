@@ -15,7 +15,8 @@ module GameplayControllerP2(
     output reg [3:0] player_state,
     output is_directional_attack,
     output move_flag,
-    output attack_flag
+    output attack_flag,
+    output [1:0] stunmode
 );
 
 
@@ -25,12 +26,16 @@ module GameplayControllerP2(
 	wire player1_attack_flag, player1_is_directional_attack;
 	assign player1_attack_flag = player1_state == S_IAttack_active;
 	assign player1_is_directional_attack = player1_state == S_DAttack_active;
-	 wire [1:0] stunmode;
-	 wire [1:0] stunmode1;
+	wire [1:0] stunmode1;
 
 HitDetection_updated hit_detec(
+	.clk(clk_60Hz),
 	.x1(player1_pos_x),
-   	.x2(player_pos_x),
+   .x2(player_pos_x),
+	.p1_attack_flag(player1_attack_flag),
+	.p2_attack_flag(predicted_attack_flag),
+	.p1_dir_attack(player1_is_directional_attack),
+   .p2_dir_attack(predicted_is_directional_attack),
 	.state1(player1_state),
 	.state2(player_state),
 	.p1_stunmode(stunmode1),
@@ -70,7 +75,6 @@ HitDetection_updated hit_detec(
     assign move_flag = (player_state == S_FORWARD) | (player_state == S_BACKWARD);
     assign attack_flag = (player_state == S_IAttack_active);
     assign is_directional_attack = (player_state == S_DAttack_active);
-    assign is_blocking = (player_state == S_BACKWARD);
 
     always @(posedge logic_clk or posedge reset) begin
         if (reset) begin
@@ -194,31 +198,31 @@ HitDetection_updated hit_detec(
             end
 
             S_HITSTUN: begin
-				case(player1_state) 
-					S_IAttack_recovery: begin 
-						if (frame_counter >= I_RECOVERY_TIME-2) next_player_state = S_IDLE;
-						else next_player_state = S_HITSTUN;
-					end 
-					S_DAttack_recovery: begin 
-						if (frame_counter >= D_RECOVERY_TIME-1) next_player_state = S_IDLE;
-						else next_player_state = S_HITSTUN;
-					end
-					default: next_player_state = S_IDLE;
-				endcase
+					case(player1_state) 
+						S_IAttack_recovery: begin 
+							if (frame_counter >= I_RECOVERY_TIME-2) next_player_state = S_IDLE;
+							else next_player_state = S_HITSTUN;
+						end 
+						S_DAttack_recovery: begin 
+							if (frame_counter >= D_RECOVERY_TIME-1) next_player_state = S_IDLE;
+							else next_player_state = S_HITSTUN;
+						end
+						default: next_player_state = S_IDLE;
+					endcase
             end
 
             S_BLOCKSTUN: begin
-				case(player1_state) 
-					S_IAttack_recovery: begin 
-						if (frame_counter >= I_RECOVERY_TIME-3) next_player_state = S_IDLE;
-						else next_player_state = S_BLOCKSTUN;
-					end 
-					S_DAttack_recovery: begin 
-						if (frame_counter >= D_RECOVERY_TIME-3) next_player_state = S_IDLE;
-						else next_player_state = S_BLOCKSTUN;
-					end 
-					default: next_player_state = S_IDLE;
-				endcase
+					case(player1_state) 
+						S_IAttack_recovery: begin 
+							if (frame_counter >= I_RECOVERY_TIME-3) next_player_state = S_IDLE;
+							else next_player_state = S_BLOCKSTUN;
+						end 
+						S_DAttack_recovery: begin 
+							if (frame_counter >= D_RECOVERY_TIME-3) next_player_state = S_IDLE;
+							else next_player_state = S_BLOCKSTUN;
+						end 
+						default: next_player_state = S_IDLE;
+					endcase
 				end
 
             default: begin
