@@ -99,8 +99,9 @@ assign stun = stunmode == 2'b10 | stunmode ==2'b01;
 						  next_player_state = S_DAttack_start;
 					 else if (attack && ~in_left && ~in_right)
 						  next_player_state = S_IAttack_start;
-					 else if (in_left)
-						  next_player_state = S_BACKWARD; // ← switch to backward if opposite input
+					 else if (in_left &&
+								player_pos_x > screen_left_bound + SPEED_BACKWARD)
+								tmp_result_x = player_pos_x - SPEED_BACKWARD;
 					 else if (in_right &&
 								 player_pos_x < screen_right_bound - PLAYER_WIDTH - SPEED_FORWARD &&
 								 player_pos_x < player2_pos_x - SPEED_BACKWARD - PLAYER_WIDTH)
@@ -118,8 +119,10 @@ assign stun = stunmode == 2'b10 | stunmode ==2'b01;
 						  next_player_state = S_DAttack_start;
 					 else if (attack && ~in_left && ~in_right)
 						  next_player_state = S_IAttack_start;
-					 else if (in_right)
-						  next_player_state = S_FORWARD; // ← switch to forward if opposite input
+					 else if (in_right &&
+								 player_pos_x < screen_right_bound - PLAYER_WIDTH - SPEED_FORWARD &&
+								 player_pos_x < player2_pos_x - SPEED_BACKWARD - PLAYER_WIDTH)
+								 tmp_result_x = player_pos_x + SPEED_FORWARD;
 					 else if (in_left &&
 								 player_pos_x > screen_left_bound + SPEED_BACKWARD)
 						  tmp_result_x = player_pos_x - SPEED_BACKWARD;

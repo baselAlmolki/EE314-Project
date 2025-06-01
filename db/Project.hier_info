@@ -3,6 +3,7 @@ CLOCK2_50 => ~NO_FANOUT~
 CLOCK3_50 => ~NO_FANOUT~
 CLOCK4_50 => ~NO_FANOUT~
 CLOCK_50 => CLOCK_50.IN2
+<<<<<<< HEAD
 HEX0[0] <= hexto7seg:hexy.hexn
 HEX0[1] <= hexto7seg:hexy.hexn
 HEX0[2] <= hexto7seg:hexy.hexn
@@ -45,6 +46,50 @@ HEX5[3] <= <GND>
 HEX5[4] <= <GND>
 HEX5[5] <= <GND>
 HEX5[6] <= <GND>
+=======
+HEX0[0] << hexto7seg:hexy.hexn
+HEX0[1] << hexto7seg:hexy.hexn
+HEX0[2] << hexto7seg:hexy.hexn
+HEX0[3] << hexto7seg:hexy.hexn
+HEX0[4] << hexto7seg:hexy.hexn
+HEX0[5] << hexto7seg:hexy.hexn
+HEX0[6] << hexto7seg:hexy.hexn
+HEX1[0] << hexto7seg:hexz.hexn
+HEX1[1] << hexto7seg:hexz.hexn
+HEX1[2] << hexto7seg:hexz.hexn
+HEX1[3] << hexto7seg:hexz.hexn
+HEX1[4] << hexto7seg:hexz.hexn
+HEX1[5] << hexto7seg:hexz.hexn
+HEX1[6] << hexto7seg:hexz.hexn
+HEX2[0] << shieldto7seg:sfsdfew.seg2
+HEX2[1] << shieldto7seg:sfsdfew.seg2
+HEX2[2] << shieldto7seg:sfsdfew.seg2
+HEX2[3] << shieldto7seg:sfsdfew.seg2
+HEX2[4] << shieldto7seg:sfsdfew.seg2
+HEX2[5] << shieldto7seg:sfsdfew.seg2
+HEX2[6] << shieldto7seg:sfsdfew.seg2
+HEX3[0] << shieldto7seg:sfsdfew.seg1
+HEX3[1] << shieldto7seg:sfsdfew.seg1
+HEX3[2] << shieldto7seg:sfsdfew.seg1
+HEX3[3] << shieldto7seg:sfsdfew.seg1
+HEX3[4] << shieldto7seg:sfsdfew.seg1
+HEX3[5] << shieldto7seg:sfsdfew.seg1
+HEX3[6] << shieldto7seg:sfsdfew.seg1
+HEX4[0] << <GND>
+HEX4[1] << <GND>
+HEX4[2] << <GND>
+HEX4[3] << <GND>
+HEX4[4] << <GND>
+HEX4[5] << <GND>
+HEX4[6] << <GND>
+HEX5[0] << <GND>
+HEX5[1] << <GND>
+HEX5[2] << <GND>
+HEX5[3] << <GND>
+HEX5[4] << <GND>
+HEX5[5] << <GND>
+HEX5[6] << <GND>
+>>>>>>> f61acebfbb1de0fe47a192d5430c7cd98c59fce8
 KEY[0] => _.IN1
 KEY[0] => _.IN1
 KEY[1] => _.IN1
@@ -52,6 +97,7 @@ KEY[1] => _.IN1
 KEY[2] => _.IN1
 KEY[3] => _.IN1
 KEY[3] => _.IN1
+<<<<<<< HEAD
 LEDR[0] <= Statuses:status_bars.p2_current_health
 LEDR[1] <= Statuses:status_bars.p2_current_health
 LEDR[2] <= Statuses:status_bars.p2_current_health
@@ -62,6 +108,18 @@ LEDR[6] <= Statuses:status_bars.p1_current_health
 LEDR[7] <= Statuses:status_bars.p1_current_health
 LEDR[8] <= <GND>
 LEDR[9] <= <GND>
+=======
+LEDR[0] << Statuses:status_bars.p2_current_health
+LEDR[1] << Statuses:status_bars.p2_current_health
+LEDR[2] << Statuses:status_bars.p2_current_health
+LEDR[3] << <GND>
+LEDR[4] << <GND>
+LEDR[5] << Statuses:status_bars.p1_current_health
+LEDR[6] << Statuses:status_bars.p1_current_health
+LEDR[7] << Statuses:status_bars.p1_current_health
+LEDR[8] << <GND>
+LEDR[9] << <GND>
+>>>>>>> f61acebfbb1de0fe47a192d5430c7cd98c59fce8
 SW[0] => ~NO_FANOUT~
 SW[1] => SW[1].IN2
 SW[2] => ~NO_FANOUT~
@@ -72,6 +130,7 @@ SW[6] => ~NO_FANOUT~
 SW[7] => ~NO_FANOUT~
 SW[8] => ~NO_FANOUT~
 SW[9] => reset_button.IN3
+<<<<<<< HEAD
 VGA_BLANK_N <= <VCC>
 VGA_B[0] <= Vga_Display:vga_display_inst.b
 VGA_B[1] <= Vga_Display:vga_display_inst.b
@@ -101,6 +160,37 @@ VGA_R[6] <= Vga_Display:vga_display_inst.r
 VGA_R[7] <= Vga_Display:vga_display_inst.r
 VGA_SYNC_N <= <GND>
 VGA_VS <= Vga_Display:vga_display_inst.vsync
+=======
+VGA_BLANK_N << <VCC>
+VGA_B[0] << Vga_Display:vga_display_inst.b
+VGA_B[1] << Vga_Display:vga_display_inst.b
+VGA_B[2] << Vga_Display:vga_display_inst.b
+VGA_B[3] << Vga_Display:vga_display_inst.b
+VGA_B[4] << Vga_Display:vga_display_inst.b
+VGA_B[5] << Vga_Display:vga_display_inst.b
+VGA_B[6] << Vga_Display:vga_display_inst.b
+VGA_B[7] << Vga_Display:vga_display_inst.b
+VGA_CLK << CLOCK_50.DB_MAX_OUTPUT_PORT_TYPE
+VGA_G[0] << Vga_Display:vga_display_inst.g
+VGA_G[1] << Vga_Display:vga_display_inst.g
+VGA_G[2] << Vga_Display:vga_display_inst.g
+VGA_G[3] << Vga_Display:vga_display_inst.g
+VGA_G[4] << Vga_Display:vga_display_inst.g
+VGA_G[5] << Vga_Display:vga_display_inst.g
+VGA_G[6] << Vga_Display:vga_display_inst.g
+VGA_G[7] << Vga_Display:vga_display_inst.g
+VGA_HS << Vga_Display:vga_display_inst.hsync
+VGA_R[0] << Vga_Display:vga_display_inst.r
+VGA_R[1] << Vga_Display:vga_display_inst.r
+VGA_R[2] << Vga_Display:vga_display_inst.r
+VGA_R[3] << Vga_Display:vga_display_inst.r
+VGA_R[4] << Vga_Display:vga_display_inst.r
+VGA_R[5] << Vga_Display:vga_display_inst.r
+VGA_R[6] << Vga_Display:vga_display_inst.r
+VGA_R[7] << Vga_Display:vga_display_inst.r
+VGA_SYNC_N << <GND>
+VGA_VS << Vga_Display:vga_display_inst.vsync
+>>>>>>> f61acebfbb1de0fe47a192d5430c7cd98c59fce8
 
 
 |Project|Clock_Divider:clk_div_inst
@@ -163,6 +253,7 @@ reset => player_state[0]~reg0.ACLR
 reset => player_state[1]~reg0.ACLR
 reset => player_state[2]~reg0.ACLR
 reset => player_state[3]~reg0.ACLR
+<<<<<<< HEAD
 in_left => next_player_state.OUTPUTSELECT
 in_left => next_player_state.OUTPUTSELECT
 in_left => next_player_state.OUTPUTSELECT
@@ -177,11 +268,14 @@ in_left => tmp_result_x.OUTPUTSELECT
 in_left => tmp_result_x.OUTPUTSELECT
 in_left => tmp_result_x.OUTPUTSELECT
 in_left => tmp_result_x.OUTPUTSELECT
+=======
+>>>>>>> f61acebfbb1de0fe47a192d5430c7cd98c59fce8
 in_left => always1.IN0
 in_left => always1.IN1
 in_left => always1.IN0
 in_right => always1.IN1
 in_right => always1.IN1
+<<<<<<< HEAD
 in_right => next_player_state.OUTPUTSELECT
 in_right => next_player_state.OUTPUTSELECT
 in_right => next_player_state.OUTPUTSELECT
@@ -195,6 +289,8 @@ in_right => tmp_result_x.OUTPUTSELECT
 in_right => tmp_result_x.OUTPUTSELECT
 in_right => tmp_result_x.OUTPUTSELECT
 in_right => tmp_result_x.OUTPUTSELECT
+=======
+>>>>>>> f61acebfbb1de0fe47a192d5430c7cd98c59fce8
 in_right => always1.IN1
 attack => always1.IN1
 attack => always1.IN1
@@ -292,6 +388,7 @@ x2[9] => p2Hrtbox[9].DATAA
 x2[9] => Add2.IN11
 state1[0] => Equal0.IN3
 state1[0] => Equal1.IN2
+<<<<<<< HEAD
 state1[0] => Equal4.IN2
 state1[0] => Equal6.IN3
 state1[1] => Equal0.IN2
@@ -322,6 +419,62 @@ state2[3] => Equal2.IN0
 state2[3] => Equal3.IN0
 state2[3] => Equal5.IN0
 state2[3] => Equal7.IN0
+=======
+state1[0] => Equal4.IN3
+state1[0] => Equal5.IN1
+state1[0] => Equal8.IN2
+state1[0] => Equal10.IN2
+state1[0] => Equal11.IN3
+state1[1] => Equal0.IN2
+state1[1] => Equal1.IN1
+state1[1] => Equal4.IN1
+state1[1] => Equal5.IN3
+state1[1] => Equal8.IN3
+state1[1] => Equal10.IN1
+state1[1] => Equal11.IN1
+state1[2] => Equal0.IN1
+state1[2] => Equal1.IN3
+state1[2] => Equal4.IN0
+state1[2] => Equal5.IN0
+state1[2] => Equal8.IN1
+state1[2] => Equal10.IN0
+state1[2] => Equal11.IN2
+state1[3] => Equal0.IN0
+state1[3] => Equal1.IN0
+state1[3] => Equal4.IN2
+state1[3] => Equal5.IN2
+state1[3] => Equal8.IN0
+state1[3] => Equal10.IN3
+state1[3] => Equal11.IN0
+state2[0] => Equal2.IN3
+state2[0] => Equal3.IN2
+state2[0] => Equal6.IN3
+state2[0] => Equal7.IN1
+state2[0] => Equal9.IN2
+state2[0] => Equal12.IN2
+state2[0] => Equal13.IN3
+state2[1] => Equal2.IN2
+state2[1] => Equal3.IN1
+state2[1] => Equal6.IN1
+state2[1] => Equal7.IN3
+state2[1] => Equal9.IN3
+state2[1] => Equal12.IN1
+state2[1] => Equal13.IN1
+state2[2] => Equal2.IN1
+state2[2] => Equal3.IN3
+state2[2] => Equal6.IN0
+state2[2] => Equal7.IN0
+state2[2] => Equal9.IN1
+state2[2] => Equal12.IN0
+state2[2] => Equal13.IN2
+state2[3] => Equal2.IN0
+state2[3] => Equal3.IN0
+state2[3] => Equal6.IN2
+state2[3] => Equal7.IN2
+state2[3] => Equal9.IN0
+state2[3] => Equal12.IN3
+state2[3] => Equal13.IN0
+>>>>>>> f61acebfbb1de0fe47a192d5430c7cd98c59fce8
 p1_stunmode[0] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
 p1_stunmode[1] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
 p2_stunmode[0] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
@@ -437,6 +590,11 @@ player_state[3] <= player_state[3].DB_MAX_OUTPUT_PORT_TYPE
 is_directional_attack <= Equal3.DB_MAX_OUTPUT_PORT_TYPE
 move_flag <= move_flag.DB_MAX_OUTPUT_PORT_TYPE
 attack_flag <= Equal2.DB_MAX_OUTPUT_PORT_TYPE
+<<<<<<< HEAD
+=======
+stunmode[0] <= HitDetection_updated:hit_detec.p2_stunmode
+stunmode[1] <= HitDetection_updated:hit_detec.p2_stunmode
+>>>>>>> f61acebfbb1de0fe47a192d5430c7cd98c59fce8
 
 
 |Project|GameplayControllerP2:player2|HitDetection_updated:hit_detec
@@ -478,6 +636,7 @@ x2[9] => p2Hrtbox[9].DATAA
 x2[9] => Add2.IN11
 state1[0] => Equal0.IN3
 state1[0] => Equal1.IN2
+<<<<<<< HEAD
 state1[0] => Equal4.IN2
 state1[0] => Equal6.IN3
 state1[1] => Equal0.IN2
@@ -508,6 +667,62 @@ state2[3] => Equal2.IN0
 state2[3] => Equal3.IN0
 state2[3] => Equal5.IN0
 state2[3] => Equal7.IN0
+=======
+state1[0] => Equal4.IN3
+state1[0] => Equal5.IN1
+state1[0] => Equal8.IN2
+state1[0] => Equal10.IN2
+state1[0] => Equal11.IN3
+state1[1] => Equal0.IN2
+state1[1] => Equal1.IN1
+state1[1] => Equal4.IN1
+state1[1] => Equal5.IN3
+state1[1] => Equal8.IN3
+state1[1] => Equal10.IN1
+state1[1] => Equal11.IN1
+state1[2] => Equal0.IN1
+state1[2] => Equal1.IN3
+state1[2] => Equal4.IN0
+state1[2] => Equal5.IN0
+state1[2] => Equal8.IN1
+state1[2] => Equal10.IN0
+state1[2] => Equal11.IN2
+state1[3] => Equal0.IN0
+state1[3] => Equal1.IN0
+state1[3] => Equal4.IN2
+state1[3] => Equal5.IN2
+state1[3] => Equal8.IN0
+state1[3] => Equal10.IN3
+state1[3] => Equal11.IN0
+state2[0] => Equal2.IN3
+state2[0] => Equal3.IN2
+state2[0] => Equal6.IN3
+state2[0] => Equal7.IN1
+state2[0] => Equal9.IN2
+state2[0] => Equal12.IN2
+state2[0] => Equal13.IN3
+state2[1] => Equal2.IN2
+state2[1] => Equal3.IN1
+state2[1] => Equal6.IN1
+state2[1] => Equal7.IN3
+state2[1] => Equal9.IN3
+state2[1] => Equal12.IN1
+state2[1] => Equal13.IN1
+state2[2] => Equal2.IN1
+state2[2] => Equal3.IN3
+state2[2] => Equal6.IN0
+state2[2] => Equal7.IN0
+state2[2] => Equal9.IN1
+state2[2] => Equal12.IN0
+state2[2] => Equal13.IN2
+state2[3] => Equal2.IN0
+state2[3] => Equal3.IN0
+state2[3] => Equal6.IN2
+state2[3] => Equal7.IN2
+state2[3] => Equal9.IN0
+state2[3] => Equal12.IN3
+state2[3] => Equal13.IN0
+>>>>>>> f61acebfbb1de0fe47a192d5430c7cd98c59fce8
 p1_stunmode[0] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
 p1_stunmode[1] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
 p2_stunmode[0] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
@@ -823,6 +1038,36 @@ hex[2] => Decoder0.IN1
 hex[3] => Decoder0.IN0
 
 
+<<<<<<< HEAD
+=======
+|Project|shieldto7seg:sfsdfew
+p1[0] => Decoder1.IN2
+p1[1] => Decoder0.IN1
+p1[1] => Decoder1.IN1
+p1[2] => Decoder0.IN0
+p1[2] => Decoder1.IN0
+p2[0] => Decoder3.IN2
+p2[1] => Decoder2.IN1
+p2[1] => Decoder3.IN1
+p2[2] => Decoder2.IN0
+p2[2] => Decoder3.IN0
+seg1[0] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+seg1[1] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+seg1[2] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+seg1[3] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+seg1[4] <= seg1.DB_MAX_OUTPUT_PORT_TYPE
+seg1[5] <= Decoder1.DB_MAX_OUTPUT_PORT_TYPE
+seg1[6] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+seg2[0] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+seg2[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+seg2[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+seg2[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+seg2[4] <= seg2.DB_MAX_OUTPUT_PORT_TYPE
+seg2[5] <= Decoder3.DB_MAX_OUTPUT_PORT_TYPE
+seg2[6] <= Decoder2.DB_MAX_OUTPUT_PORT_TYPE
+
+
+>>>>>>> f61acebfbb1de0fe47a192d5430c7cd98c59fce8
 |Project|Statuses:status_bars
 clk => clk.IN4
 reset => le.PRESET
