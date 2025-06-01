@@ -137,6 +137,14 @@ hexto7seg hexz(
 	.hexn(HEX1)
 	);
 	
+	shieldto7seg sfsdfew(
+		.p1(p1_shield),
+		.p2(p2_shield),
+		.seg1(HEX3),
+		.seg2(HEX2)
+		);
+	
+	
 	
 Statuses status_bars(
 	.clk(clk_60Hz),

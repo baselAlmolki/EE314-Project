@@ -43,8 +43,7 @@ module HitDetection_updated (
 		S_DAttack_recovery   = 4'd8,
 		S_HITSTUN            = 4'd9,
 		S_BLOCKSTUN          = 4'd10,
-		S_BACKWARD           = 4'd2,
-		S_Attack_recovery    = 4'd5;
+		S_BACKWARD           = 4'd2;
 
 
 	// stunmode: 00 = neutral, 01 = hitstun, 10 = blockstun, 11 = whiff
@@ -52,6 +51,7 @@ module HitDetection_updated (
 	// i dont really need to indicate whiff mode but its there just in case we need it
 
 	wire p1_blocking, p2_blocking, p1_recov, p2_recov, p1_atkA, p2_atkA, p2_dir_attack, p1_dir_attack;
+	wire p1_instun, p2_instun;
 	wire [1:0] attack_case;
 	wire [9:0] attack_width, p1Hrtbox, p2Hrtbox;
 
@@ -61,14 +61,16 @@ module HitDetection_updated (
 	assign p2_dir_attack = state2 == S_DAttack_active;
 	assign p1_atkA = (state1 == S_DAttack_active) | (state1 == S_IAttack_active);
 	assign p2_atkA= (state2 == S_DAttack_active) | (state2 == S_IAttack_active);
+	assign p1_instun = state1 == S_HITSTUN | state1 == S_BLOCKSTUN;
+	assign p2_instun = state2 == S_HITSTUN | state2 == S_BLOCKSTUN;
 	
 //	assign attack_case  = {(p2_dir_attack | p2_attack_flag), (p1_dir_attack | p1_attack_flag)};
 	assign attack_case  = {p2_atkA, p1_atkA};
 	assign attack_width = (p2_dir_attack | p1_dir_attack) ? dir_HITBOX_WIDTH : neutral_HITBOX_WIDTH;
 	assign p1_blocking  = state1 == S_BACKWARD;
 	assign p2_blocking  = state2 == S_BACKWARD;
-	assign p1_recov     = (state1 == S_Attack_recovery) | (state1 == S_IAttack_recovery);
-	assign p2_recov     = (state2 == S_Attack_recovery) | (state2 == S_IAttack_recovery);
+	assign p1_recov     = (state1 == S_DAttack_recovery) | (state1 == S_IAttack_recovery);
+	assign p2_recov     = (state2 == S_DAttack_recovery) | (state2 == S_IAttack_recovery);
 	
 	assign p1Hrtbox     = p1_recov ? x1 + BASE_WIDTH + attack_width : x1 + BASE_WIDTH;
 	assign p2Hrtbox     = p2_recov ? x2 - attack_width : x2;
@@ -77,8 +79,8 @@ module HitDetection_updated (
 	initial begin
 		p1_stunmode          = 2'b00;
 		p2_stunmode          = 2'b00;
-		withinp1range 	  = 1'b0;
-		withinp2range 	  = 1'b0;
+		withinp1range 	      = 1'b0;
+		withinp2range 	      = 1'b0;
 	end
 
 	
@@ -90,7 +92,7 @@ module HitDetection_updated (
 				// check if p2 is within p1's attack hitbox
 				if (x1 + BASE_WIDTH + attack_width > p2Hrtbox) begin
 					withinp1range = 1'b1;
-					if (~p2_blocking) begin 
+					if (~p2_blocking & ~p2_instun) begin 
 						p1_stunmode = 2'b00; // p1's attack connnected
 						p2_stunmode = 2'b01; // p2 in hitstun
 						
@@ -105,7 +107,7 @@ module HitDetection_updated (
 			2'b10: begin //p2 attack
 				if (x2 - attack_width < p1Hrtbox) begin // attack connected
 					withinp2range = 1'b1;
-						if (~p1_blocking) begin 
+						if (~p1_blocking & ~p1_instun) begin 
 							p2_stunmode = 2'b00; // atk connected
 							p1_stunmode = 2'b01; // p1 in hitsun
 						end else begin
