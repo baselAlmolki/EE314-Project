@@ -8,6 +8,12 @@ module GameplayControllerP1(
     input attack,
     input [9:0] player2_pos_x,
 	 input [3:0] player2_state,
+	 
+	 input [2:0] shield1,
+	 input [2:0] shield2,
+	 input [2:0] health1,
+	 input [2:0] health2,
+
     input [9:0] screen_left_bound,
     input [9:0] screen_right_bound,
 
@@ -33,6 +39,8 @@ HitDetection_updated hit_detec(
    .x2(player2_pos_x),
    .state1(player_state),
    .state2(player2_state),
+	.shield1(shield1),
+	.shield2(shield2),
    .p1_stunmode(stunmode),
    .p2_stunmode(stunmode2)
 );

@@ -43,7 +43,8 @@ module main(
 );
 
 
-wire reset_button = SW[9];
+	wire reset_button = SW[9];
+	wire logic_clk = SW[1] ? ~KEY[0] : clk_60Hz;
 
     assign VGA_CLK     = CLOCK_50;
     assign VGA_BLANK_N = 1'b1;
@@ -69,6 +70,8 @@ wire reset_button = SW[9];
 	wire move_flag_p2, attack_flag_p2;
 	wire [1:0] stunmode1, stunmode2;
 	wire [2:0] p1_health, p2_health, p1_shield, p2_shield;
+	wire instun1 = player1_state == 4'd9 | player1_state == 4'd10;
+	wire instun2 = player2_state == 4'd9 | player2_state == 4'd10;
 
 	// === Keypad scanner for Player 2 inputs  === 
 			 
@@ -108,6 +111,8 @@ wire reset_button = SW[9];
 		.attack(~KEY[2]),
 		.player2_pos_x(player2_pos_x),
 		.player2_state(player2_state),
+		.shield1(p1_shield),
+		.shield2(p2_shield),
 		.screen_left_bound(0),
 		.screen_right_bound(640),
 		.player_pos_x(player1_pos_x),
@@ -169,7 +174,7 @@ wire reset_button = SW[9];
 		.hexn(HEX1)
 		);
 	
-	shieldto7seg(
+	shieldto7seg kjjghj(
 		.p1(p1_shield),
 		.p2(p2_shield),
 		.seg1(HEX3),
@@ -177,30 +182,29 @@ wire reset_button = SW[9];
 		);
 	
 	
-	
 	Statuses status_bars(
-		.clk(clk_60Hz),
+		.clk(logic_clk),
 		.reset(reset_button),
+		.instun1(instun1),
+		.instun2(instun2),
 		.p1_stunmode(stunmode1),
 		.p2_stunmode(stunmode2),
-		.p1_loose_health(),
-		.p1_loose_block(),
-		.p2_loose_health(),
-		.p2_loose_block(),
 		.p1_current_health(p1_health),
 		.p1_current_block(p1_shield),
 		.p2_current_health(p2_health),
-		.p2_current_block(p2_shield)
+		.p2_current_block(p2_shield),
+		.p1wins(LEDR[9]),
+		.p2wins(LEDR[8])
 	);
     // === Debug LEDs ===
     assign LEDR[0] = p2_health[0];
     assign LEDR[1] = p2_health[1];
     assign LEDR[2] = p2_health[2];
     assign LEDR[3] = 0;
-    assign LEDR[4] = 0;
-    assign LEDR[5] = p1_health[0];
-    assign LEDR[6] = p1_health[1];
-    assign LEDR[7] = p1_health[2];
+    assign LEDR[7] = 0;
+    assign LEDR[4] = p1_health[0];
+    assign LEDR[5] = p1_health[1];
+    assign LEDR[6] = p1_health[2];
 
 
 endmodule

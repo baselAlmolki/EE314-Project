@@ -1,5 +1,5 @@
 Analysis & Synthesis report for main
-Sun Jun  1 13:47:49 2025
+Sun Jun  1 18:28:07 2025
 Quartus Prime Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
 
 
@@ -13,29 +13,30 @@ Quartus Prime Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. Registers Removed During Synthesis
-  9. General Register Statistics
- 10. Inverted Register Statistics
- 11. Multiplexer Restructuring Statistics (Restructuring Performed)
- 12. Parameter Settings for User Entity Instance: Clock_Divider:clk_div_inst
- 13. Parameter Settings for User Entity Instance: GameplayControllerP1:player1
- 14. Parameter Settings for User Entity Instance: GameplayControllerP2:player2
- 15. Parameter Settings for User Entity Instance: Vga_Display:vga_display_inst|Clock_Divider:clkdiv
- 16. Parameter Settings for User Entity Instance: Statuses:status_bars|Shift_Register:health_shift_p1
- 17. Parameter Settings for User Entity Instance: Statuses:status_bars|Shift_Register:block_shift_p1
- 18. Parameter Settings for User Entity Instance: Statuses:status_bars|Shift_Register:health_shift_p2
- 19. Parameter Settings for User Entity Instance: Statuses:status_bars|Shift_Register:block_shift_p2
- 20. Port Connectivity Checks: "Statuses:status_bars|Shift_Register:block_shift_p2"
- 21. Port Connectivity Checks: "Statuses:status_bars|Shift_Register:health_shift_p2"
- 22. Port Connectivity Checks: "Statuses:status_bars|Shift_Register:block_shift_p1"
- 23. Port Connectivity Checks: "Statuses:status_bars|Shift_Register:health_shift_p1"
- 24. Port Connectivity Checks: "Statuses:status_bars"
- 25. Port Connectivity Checks: "Vga_Display:vga_display_inst"
- 26. Port Connectivity Checks: "GameplayControllerP2:player2"
- 27. Port Connectivity Checks: "GameplayControllerP1:player1"
- 28. Post-Synthesis Netlist Statistics for Top Partition
- 29. Elapsed Time Per Partition
- 30. Analysis & Synthesis Messages
+  8. User-Specified and Inferred Latches
+  9. Registers Removed During Synthesis
+ 10. General Register Statistics
+ 11. Inverted Register Statistics
+ 12. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 13. Parameter Settings for User Entity Instance: Clock_Divider:clk_div_inst
+ 14. Parameter Settings for User Entity Instance: GameplayControllerP1:player1
+ 15. Parameter Settings for User Entity Instance: GameplayControllerP2:player2
+ 16. Parameter Settings for User Entity Instance: Vga_Display:vga_display_inst|Clock_Divider:clkdiv
+ 17. Parameter Settings for User Entity Instance: Statuses:status_bars|Shift_Register:health_shift_p1
+ 18. Parameter Settings for User Entity Instance: Statuses:status_bars|Shift_Register:block_shift_p1
+ 19. Parameter Settings for User Entity Instance: Statuses:status_bars|Shift_Register:health_shift_p2
+ 20. Parameter Settings for User Entity Instance: Statuses:status_bars|Shift_Register:block_shift_p2
+ 21. Port Connectivity Checks: "Statuses:status_bars|Shift_Register:block_shift_p2"
+ 22. Port Connectivity Checks: "Statuses:status_bars|Shift_Register:health_shift_p2"
+ 23. Port Connectivity Checks: "Statuses:status_bars|Shift_Register:block_shift_p1"
+ 24. Port Connectivity Checks: "Statuses:status_bars|Shift_Register:health_shift_p1"
+ 25. Port Connectivity Checks: "Statuses:status_bars"
+ 26. Port Connectivity Checks: "Vga_Display:vga_display_inst"
+ 27. Port Connectivity Checks: "GameplayControllerP2:player2"
+ 28. Port Connectivity Checks: "GameplayControllerP1:player1"
+ 29. Post-Synthesis Netlist Statistics for Top Partition
+ 30. Elapsed Time Per Partition
+ 31. Analysis & Synthesis Messages
 
 
 
@@ -62,13 +63,13 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +---------------------------------+------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Sun Jun  1 13:47:49 2025          ;
+; Analysis & Synthesis Status     ; Successful - Sun Jun  1 18:28:07 2025          ;
 ; Quartus Prime Version           ; 23.1std.1 Build 993 05/14/2024 SC Lite Edition ;
 ; Revision Name                   ; main                                           ;
 ; Top-level Entity Name           ; main                                           ;
 ; Family                          ; Cyclone V                                      ;
 ; Logic utilization (in ALMs)     ; N/A                                            ;
-; Total registers                 ; 141                                            ;
+; Total registers                 ; 137                                            ;
 ; Total pins                      ; 135                                            ;
 ; Total virtual pins              ; 0                                              ;
 ; Total block memory bits         ; 0                                              ;
@@ -209,16 +210,16 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimate of Logic utilization (ALMs needed) ; 518            ;
+; Estimate of Logic utilization (ALMs needed) ; 491            ;
 ;                                             ;                ;
-; Combinational ALUT usage for logic          ; 787            ;
-;     -- 7 input functions                    ; 12             ;
-;     -- 6 input functions                    ; 235            ;
-;     -- 5 input functions                    ; 75             ;
-;     -- 4 input functions                    ; 100            ;
-;     -- <=3 input functions                  ; 365            ;
+; Combinational ALUT usage for logic          ; 755            ;
+;     -- 7 input functions                    ; 13             ;
+;     -- 6 input functions                    ; 213            ;
+;     -- 5 input functions                    ; 78             ;
+;     -- 4 input functions                    ; 123            ;
+;     -- <=3 input functions                  ; 328            ;
 ;                                             ;                ;
-; Dedicated logic registers                   ; 141            ;
+; Dedicated logic registers                   ; 137            ;
 ;                                             ;                ;
 ; I/O pins                                    ; 135            ;
 ;                                             ;                ;
@@ -226,8 +227,8 @@ https://fpgasoftware.intel.com/eula.
 ;                                             ;                ;
 ; Maximum fan-out node                        ; CLOCK_50~input ;
 ; Maximum fan-out                             ; 67             ;
-; Total fan-out                               ; 3762           ;
-; Average fan-out                             ; 3.05           ;
+; Total fan-out                               ; 3636           ;
+; Average fan-out                             ; 3.04           ;
 +---------------------------------------------+----------------+
 
 
@@ -236,23 +237,34 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------+----------------------+--------------+
 ; Compilation Hierarchy Node             ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                               ; Entity Name          ; Library Name ;
 +----------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------+----------------------+--------------+
-; |main                                  ; 787 (0)             ; 141 (0)                   ; 0                 ; 0          ; 135  ; 0            ; |main                                                             ; main                 ; work         ;
+; |main                                  ; 755 (5)             ; 137 (0)                   ; 0                 ; 0          ; 135  ; 0            ; |main                                                             ; main                 ; work         ;
 ;    |Clock_Divider:clk_div_inst|        ; 40 (40)             ; 33 (33)                   ; 0                 ; 0          ; 0    ; 0            ; |main|Clock_Divider:clk_div_inst                                  ; Clock_Divider        ; work         ;
-;    |GameplayControllerP1:player1|      ; 211 (104)           ; 19 (19)                   ; 0                 ; 0          ; 0    ; 0            ; |main|GameplayControllerP1:player1                                ; GameplayControllerP1 ; work         ;
-;       |HitDetection_updated:hit_detec| ; 107 (107)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|GameplayControllerP1:player1|HitDetection_updated:hit_detec ; HitDetection_updated ; work         ;
-;    |GameplayControllerP2:player2|      ; 110 (110)           ; 19 (19)                   ; 0                 ; 0          ; 0    ; 0            ; |main|GameplayControllerP2:player2                                ; GameplayControllerP2 ; work         ;
-;    |Statuses:status_bars|              ; 21 (4)              ; 17 (1)                    ; 0                 ; 0          ; 0    ; 0            ; |main|Statuses:status_bars                                        ; Statuses             ; work         ;
-;       |Shift_Register:block_shift_p1|  ; 4 (4)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Statuses:status_bars|Shift_Register:block_shift_p1          ; Shift_Register       ; work         ;
-;       |Shift_Register:block_shift_p2|  ; 4 (4)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Statuses:status_bars|Shift_Register:block_shift_p2          ; Shift_Register       ; work         ;
-;       |Shift_Register:health_shift_p1| ; 5 (5)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Statuses:status_bars|Shift_Register:health_shift_p1         ; Shift_Register       ; work         ;
+;    |GameplayControllerP1:player1|      ; 214 (110)           ; 19 (19)                   ; 0                 ; 0          ; 0    ; 0            ; |main|GameplayControllerP1:player1                                ; GameplayControllerP1 ; work         ;
+;       |HitDetection_updated:hit_detec| ; 104 (104)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|GameplayControllerP1:player1|HitDetection_updated:hit_detec ; HitDetection_updated ; work         ;
+;    |GameplayControllerP2:player2|      ; 111 (111)           ; 19 (19)                   ; 0                 ; 0          ; 0    ; 0            ; |main|GameplayControllerP2:player2                                ; GameplayControllerP2 ; work         ;
+;    |Statuses:status_bars|              ; 23 (13)             ; 13 (1)                    ; 0                 ; 0          ; 0    ; 0            ; |main|Statuses:status_bars                                        ; Statuses             ; work         ;
+;       |Shift_Register:block_shift_p1|  ; 1 (1)               ; 2 (2)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Statuses:status_bars|Shift_Register:block_shift_p1          ; Shift_Register       ; work         ;
+;       |Shift_Register:block_shift_p2|  ; 1 (1)               ; 2 (2)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Statuses:status_bars|Shift_Register:block_shift_p2          ; Shift_Register       ; work         ;
+;       |Shift_Register:health_shift_p1| ; 4 (4)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Statuses:status_bars|Shift_Register:health_shift_p1         ; Shift_Register       ; work         ;
 ;       |Shift_Register:health_shift_p2| ; 4 (4)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Statuses:status_bars|Shift_Register:health_shift_p2         ; Shift_Register       ; work         ;
-;    |Vga_Display:vga_display_inst|      ; 379 (339)           ; 53 (20)                   ; 0                 ; 0          ; 0    ; 0            ; |main|Vga_Display:vga_display_inst                                ; Vga_Display          ; work         ;
+;    |Vga_Display:vga_display_inst|      ; 348 (308)           ; 53 (20)                   ; 0                 ; 0          ; 0    ; 0            ; |main|Vga_Display:vga_display_inst                                ; Vga_Display          ; work         ;
 ;       |Clock_Divider:clkdiv|           ; 40 (40)             ; 33 (33)                   ; 0                 ; 0          ; 0    ; 0            ; |main|Vga_Display:vga_display_inst|Clock_Divider:clkdiv           ; Clock_Divider        ; work         ;
 ;    |hexto7seg:hexy|                    ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|hexto7seg:hexy                                              ; hexto7seg            ; work         ;
 ;    |hexto7seg:hexz|                    ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|hexto7seg:hexz                                              ; hexto7seg            ; work         ;
-;    |shieldto7seg:comb_42|              ; 12 (12)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|shieldto7seg:comb_42                                        ; shieldto7seg         ; work         ;
 +----------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------+----------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-----------------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                       ;
++----------------------------------------------------+-----------------------------+------------------------+
+; Latch Name                                         ; Latch Enable Signal         ; Free of Timing Hazards ;
++----------------------------------------------------+-----------------------------+------------------------+
+; Statuses:status_bars|p2wins                        ; GND                         ; yes                    ;
+; Statuses:status_bars|p1wins                        ; Statuses:status_bars|Equal4 ; yes                    ;
+; Number of user-specified and inferred latches = 2  ;                             ;                        ;
++----------------------------------------------------+-----------------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
 
 +--------------------------------------------------------------------------------------------------------------------+
@@ -264,7 +276,11 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Statuses:status_bars|Shift_Register:health_shift_p2|prev_shift_control[1] ; Stuck at VCC due to stuck port data_in ;
 ; Statuses:status_bars|Shift_Register:block_shift_p1|prev_shift_control[1]  ; Stuck at VCC due to stuck port data_in ;
 ; Statuses:status_bars|Shift_Register:health_shift_p1|prev_shift_control[1] ; Stuck at VCC due to stuck port data_in ;
-; Total Number of Removed Registers = 4                                     ;                                        ;
+; Statuses:status_bars|Shift_Register:block_shift_p2|OUT[0]                 ; Stuck at GND due to stuck port data_in ;
+; Statuses:status_bars|Shift_Register:block_shift_p1|OUT[0]                 ; Stuck at GND due to stuck port data_in ;
+; Statuses:status_bars|Shift_Register:block_shift_p2|OUT[1]                 ; Stuck at GND due to stuck port data_in ;
+; Statuses:status_bars|Shift_Register:block_shift_p1|OUT[1]                 ; Stuck at GND due to stuck port data_in ;
+; Total Number of Removed Registers = 8                                     ;                                        ;
 +---------------------------------------------------------------------------+----------------------------------------+
 
 
@@ -273,12 +289,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 141   ;
+; Total registers                              ; 137   ;
 ; Number of registers using Synchronous Clear  ; 84    ;
-; Number of registers using Synchronous Load   ; 4     ;
+; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 39    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 36    ;
+; Number of registers using Clock Enable       ; 23    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -288,15 +304,15 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+---------+
 ; Inverted Register                            ; Fan out ;
 +----------------------------------------------+---------+
-; GameplayControllerP2:player2|player_pos_x[5] ; 16      ;
-; GameplayControllerP2:player2|player_pos_x[4] ; 15      ;
+; GameplayControllerP1:player1|player_pos_x[3] ; 17      ;
+; GameplayControllerP1:player1|player_pos_x[1] ; 16      ;
 ; GameplayControllerP2:player2|player_pos_x[2] ; 14      ;
-; GameplayControllerP2:player2|player_pos_x[0] ; 11      ;
-; GameplayControllerP2:player2|player_pos_x[1] ; 13      ;
-; GameplayControllerP2:player2|player_pos_x[9] ; 18      ;
-; GameplayControllerP1:player1|player_pos_x[3] ; 16      ;
-; GameplayControllerP1:player1|player_pos_x[1] ; 13      ;
-; Statuses:status_bars|le                      ; 16      ;
+; GameplayControllerP2:player2|player_pos_x[0] ; 12      ;
+; GameplayControllerP2:player2|player_pos_x[1] ; 14      ;
+; GameplayControllerP2:player2|player_pos_x[5] ; 16      ;
+; GameplayControllerP2:player2|player_pos_x[4] ; 17      ;
+; GameplayControllerP2:player2|player_pos_x[9] ; 17      ;
+; Statuses:status_bars|le                      ; 10      ;
 ; Total number of inverted registers = 9       ;         ;
 +----------------------------------------------+---------+
 
@@ -306,16 +322,14 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                       ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------+
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |main|Statuses:status_bars|Shift_Register:block_shift_p2|OUT[1]  ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |main|Statuses:status_bars|Shift_Register:block_shift_p1|OUT[1]  ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |main|Statuses:status_bars|Shift_Register:health_shift_p2|OUT[1] ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |main|Statuses:status_bars|Shift_Register:health_shift_p1|OUT[1] ;
-; 20:1               ; 7 bits    ; 91 LEs        ; 7 LEs                ; 84 LEs                 ; Yes        ; |main|GameplayControllerP1:player1|player_pos_x[2]               ;
-; 20:1               ; 4 bits    ; 52 LEs        ; 4 LEs                ; 48 LEs                 ; Yes        ; |main|GameplayControllerP2:player2|player_pos_x[8]               ;
-; 20:1               ; 2 bits    ; 26 LEs        ; 2 LEs                ; 24 LEs                 ; Yes        ; |main|GameplayControllerP1:player1|player_pos_x[3]               ;
-; 20:1               ; 5 bits    ; 65 LEs        ; 5 LEs                ; 60 LEs                 ; Yes        ; |main|GameplayControllerP2:player2|player_pos_x[9]               ;
-; 4:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |main|Vga_Display:vga_display_inst|g[0]                          ;
-; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |main|Vga_Display:vga_display_inst|r_reg                         ;
+; 20:1               ; 4 bits    ; 52 LEs        ; 4 LEs                ; 48 LEs                 ; Yes        ; |main|GameplayControllerP2:player2|player_pos_x[3]               ;
+; 21:1               ; 7 bits    ; 98 LEs        ; 7 LEs                ; 91 LEs                 ; Yes        ; |main|GameplayControllerP1:player1|player_pos_x[4]               ;
+; 20:1               ; 5 bits    ; 65 LEs        ; 5 LEs                ; 60 LEs                 ; Yes        ; |main|GameplayControllerP2:player2|player_pos_x[2]               ;
+; 21:1               ; 2 bits    ; 28 LEs        ; 2 LEs                ; 26 LEs                 ; Yes        ; |main|GameplayControllerP1:player1|player_pos_x[3]               ;
+; 4:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |main|Vga_Display:vga_display_inst|g[2]                          ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |main|Vga_Display:vga_display_inst|b_reg                         ;
 ; 5:1                ; 13 bits   ; 39 LEs        ; 39 LEs               ; 0 LEs                  ; No         ; |main|Vga_Display:vga_display_inst|r[4]                          ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------+
 
@@ -406,13 +420,14 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 +--------------------------------------------------------------------------------+
 ; Port Connectivity Checks: "Statuses:status_bars|Shift_Register:block_shift_p2" ;
-+------------------+-------+----------+------------------------------------------+
-; Port             ; Type  ; Severity ; Details                                  ;
-+------------------+-------+----------+------------------------------------------+
-; serial_in        ; Input ; Info     ; Stuck at GND                             ;
-; parallel_in      ; Input ; Info     ; Stuck at VCC                             ;
-; shift_control[1] ; Input ; Info     ; Stuck at VCC                             ;
-+------------------+-------+----------+------------------------------------------+
++-------------------+-------+----------+-----------------------------------------+
+; Port              ; Type  ; Severity ; Details                                 ;
++-------------------+-------+----------+-----------------------------------------+
+; serial_in         ; Input ; Info     ; Stuck at GND                            ;
+; parallel_in[1..0] ; Input ; Info     ; Stuck at GND                            ;
+; parallel_in[2]    ; Input ; Info     ; Stuck at VCC                            ;
+; shift_control[1]  ; Input ; Info     ; Stuck at VCC                            ;
++-------------------+-------+----------+-----------------------------------------+
 
 
 +---------------------------------------------------------------------------------+
@@ -428,13 +443,14 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 +--------------------------------------------------------------------------------+
 ; Port Connectivity Checks: "Statuses:status_bars|Shift_Register:block_shift_p1" ;
-+------------------+-------+----------+------------------------------------------+
-; Port             ; Type  ; Severity ; Details                                  ;
-+------------------+-------+----------+------------------------------------------+
-; serial_in        ; Input ; Info     ; Stuck at GND                             ;
-; parallel_in      ; Input ; Info     ; Stuck at VCC                             ;
-; shift_control[1] ; Input ; Info     ; Stuck at VCC                             ;
-+------------------+-------+----------+------------------------------------------+
++-------------------+-------+----------+-----------------------------------------+
+; Port              ; Type  ; Severity ; Details                                 ;
++-------------------+-------+----------+-----------------------------------------+
+; serial_in         ; Input ; Info     ; Stuck at GND                            ;
+; parallel_in[1..0] ; Input ; Info     ; Stuck at GND                            ;
+; parallel_in[2]    ; Input ; Info     ; Stuck at VCC                            ;
+; shift_control[1]  ; Input ; Info     ; Stuck at VCC                            ;
++-------------------+-------+----------+-----------------------------------------+
 
 
 +---------------------------------------------------------------------------------+
@@ -448,16 +464,16 @@ Note: In order to hide this table in the UI and the text report file, please set
 +------------------+-------+----------+-------------------------------------------+
 
 
-+--------------------------------------------------------------+
-; Port Connectivity Checks: "Statuses:status_bars"             ;
-+-----------------+--------+----------+------------------------+
-; Port            ; Type   ; Severity ; Details                ;
-+-----------------+--------+----------+------------------------+
-; p1_loose_health ; Output ; Info     ; Explicitly unconnected ;
-; p1_loose_block  ; Output ; Info     ; Explicitly unconnected ;
-; p2_loose_health ; Output ; Info     ; Explicitly unconnected ;
-; p2_loose_block  ; Output ; Info     ; Explicitly unconnected ;
-+-----------------+--------+----------+------------------------+
++------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Statuses:status_bars"                                                                                               ;
++-----------------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port            ; Type   ; Severity ; Details                                                                                                  ;
++-----------------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; p1_loose_health ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
+; p1_loose_block  ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
+; p2_loose_health ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
+; p2_loose_block  ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++-----------------+--------+----------+----------------------------------------------------------------------------------------------------------+
 
 
 +-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -501,6 +517,8 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; screen_right_bound[7]    ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                        ;
 ; move_flag                ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                                 ;
 ; attack_flag              ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                                 ;
+; health1                  ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND.                                        ;
+; health2                  ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND.                                        ;
 +--------------------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
@@ -509,36 +527,35 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 141                         ;
-;     CLR               ; 21                          ;
-;     ENA               ; 8                           ;
-;     ENA CLR           ; 18                          ;
+; arriav_ff             ; 137                         ;
+;     CLR               ; 30                          ;
+;     ENA               ; 4                           ;
+;     ENA CLR           ; 9                           ;
 ;     ENA SCLR          ; 10                          ;
 ;     SCLR              ; 74                          ;
-;     SLD               ; 4                           ;
-;     plain             ; 6                           ;
+;     plain             ; 10                          ;
 ; arriav_io_obuf        ; 36                          ;
-; arriav_lcell_comb     ; 797                         ;
+; arriav_lcell_comb     ; 759                         ;
 ;     arith             ; 224                         ;
 ;         0 data inputs ; 2                           ;
 ;         1 data inputs ; 195                         ;
 ;         2 data inputs ; 8                           ;
 ;         3 data inputs ; 13                          ;
 ;         4 data inputs ; 6                           ;
-;     extend            ; 12                          ;
-;         7 data inputs ; 12                          ;
-;     normal            ; 561                         ;
+;     extend            ; 13                          ;
+;         7 data inputs ; 13                          ;
+;     normal            ; 522                         ;
 ;         0 data inputs ; 2                           ;
-;         1 data inputs ; 9                           ;
-;         2 data inputs ; 77                          ;
-;         3 data inputs ; 69                          ;
-;         4 data inputs ; 94                          ;
-;         5 data inputs ; 75                          ;
-;         6 data inputs ; 235                         ;
+;         1 data inputs ; 2                           ;
+;         2 data inputs ; 47                          ;
+;         3 data inputs ; 63                          ;
+;         4 data inputs ; 117                         ;
+;         5 data inputs ; 78                          ;
+;         6 data inputs ; 213                         ;
 ; boundary_port         ; 135                         ;
 ;                       ;                             ;
-; Max LUT depth         ; 10.50                       ;
-; Average LUT depth     ; 5.94                        ;
+; Max LUT depth         ; 10.20                       ;
+; Average LUT depth     ; 5.76                        ;
 +-----------------------+-----------------------------+
 
 
@@ -557,7 +574,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
-    Info: Processing started: Sun Jun  1 13:47:41 2025
+    Info: Processing started: Sun Jun  1 18:27:59 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off main -c main
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -589,43 +606,44 @@ Info (12021): Found 1 design units, including 1 entities, in source file main.v
     Info (12023): Found entity 1: main File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 6
 Info (12021): Found 1 design units, including 1 entities, in source file shieldto7seg.v
     Info (12023): Found entity 1: shieldto7seg File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/shieldto7seg.v Line: 1
-Warning (10236): Verilog HDL Implicit Net warning at GameplayControllerP2.v(75): created implicit net for "is_blocking" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP2.v Line: 75
-Warning (10236): Verilog HDL Implicit Net warning at GameplayControllerP1.v(40): created implicit net for "stun" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP1.v Line: 40
-Critical Warning (10846): Verilog HDL Instantiation warning at main.v(177): instance has no name File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 177
+Warning (10236): Verilog HDL Implicit Net warning at GameplayControllerP1.v(48): created implicit net for "stun" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP1.v Line: 48
 Info (12127): Elaborating entity "main" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at main.v(62): object "player1_pos_y" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 62
-Warning (10036): Verilog HDL or VHDL warning at main.v(63): object "player2_pos_y" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 63
+Warning (10036): Verilog HDL or VHDL warning at main.v(63): object "player1_pos_y" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 63
+Warning (10036): Verilog HDL or VHDL warning at main.v(64): object "player2_pos_y" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 64
 Warning (10034): Output port "HEX4" at main.v(19) has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 19
 Warning (10034): Output port "HEX5" at main.v(20) has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 20
-Warning (10034): Output port "LEDR[9..8]" at main.v(26) has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 26
-Info (12128): Elaborating entity "Clock_Divider" for hierarchy "Clock_Divider:clk_div_inst" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 57
-Info (12128): Elaborating entity "GameplayControllerP1" for hierarchy "GameplayControllerP1:player1" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 120
-Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(40): object "stun" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP1.v Line: 40
-Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(23): object "predicted_attack_flag" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP1.v Line: 23
-Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(24): object "predicted_is_directional_attack" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP1.v Line: 24
-Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(26): object "player2_attack_flag" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP1.v Line: 26
-Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(26): object "player2_is_directional_attack" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP1.v Line: 26
-Warning (10230): Verilog HDL assignment warning at GameplayControllerP1.v(84): truncated value with size 32 to match size of target (5) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP1.v Line: 84
-Info (12128): Elaborating entity "HitDetection_updated" for hierarchy "GameplayControllerP1:player1|HitDetection_updated:hit_detec" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP1.v Line: 38
-Warning (10036): Verilog HDL or VHDL warning at HitDetection_updated.v(58): object "withinp1range" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HitDetection_updated.v Line: 58
-Warning (10036): Verilog HDL or VHDL warning at HitDetection_updated.v(58): object "withinp2range" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HitDetection_updated.v Line: 58
-Info (12128): Elaborating entity "GameplayControllerP2" for hierarchy "GameplayControllerP2:player2" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 141
-Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP2.v(75): object "is_blocking" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP2.v Line: 75
+Info (12128): Elaborating entity "Clock_Divider" for hierarchy "Clock_Divider:clk_div_inst" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 58
+Info (12128): Elaborating entity "GameplayControllerP1" for hierarchy "GameplayControllerP1:player1" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 125
+Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(48): object "stun" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP1.v Line: 48
+Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(29): object "predicted_attack_flag" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP1.v Line: 29
+Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(30): object "predicted_is_directional_attack" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP1.v Line: 30
+Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(32): object "player2_attack_flag" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP1.v Line: 32
+Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(32): object "player2_is_directional_attack" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP1.v Line: 32
+Warning (10230): Verilog HDL assignment warning at GameplayControllerP1.v(92): truncated value with size 32 to match size of target (5) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP1.v Line: 92
+Info (12128): Elaborating entity "HitDetection_updated" for hierarchy "GameplayControllerP1:player1|HitDetection_updated:hit_detec" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP1.v Line: 46
+Warning (10036): Verilog HDL or VHDL warning at HitDetection_updated.v(53): object "withinp1range" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HitDetection_updated.v Line: 53
+Warning (10036): Verilog HDL or VHDL warning at HitDetection_updated.v(53): object "withinp2range" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HitDetection_updated.v Line: 53
+Info (12128): Elaborating entity "GameplayControllerP2" for hierarchy "GameplayControllerP2:player2" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 146
 Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP2.v(24): object "predicted_attack_flag" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP2.v Line: 24
 Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP2.v(25): object "predicted_is_directional_attack" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP2.v Line: 25
 Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP2.v(27): object "player1_attack_flag" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP2.v Line: 27
 Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP2.v(27): object "player1_is_directional_attack" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP2.v Line: 27
-Warning (10230): Verilog HDL assignment warning at GameplayControllerP2.v(86): truncated value with size 32 to match size of target (5) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP2.v Line: 86
-Info (12128): Elaborating entity "Vga_Display" for hierarchy "Vga_Display:vga_display_inst" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 161
+Warning (10230): Verilog HDL assignment warning at GameplayControllerP2.v(85): truncated value with size 32 to match size of target (5) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP2.v Line: 85
+Info (12128): Elaborating entity "Vga_Display" for hierarchy "Vga_Display:vga_display_inst" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 166
 Info (12128): Elaborating entity "Clock_Divider" for hierarchy "Vga_Display:vga_display_inst|Clock_Divider:clkdiv" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Vga_Display.v Line: 24
-Info (12128): Elaborating entity "hexto7seg" for hierarchy "hexto7seg:hexy" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 165
-Info (12128): Elaborating entity "shieldto7seg" for hierarchy "shieldto7seg:comb_42" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 177
-Info (12128): Elaborating entity "Statuses" for hierarchy "Statuses:status_bars" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 194
-Info (12128): Elaborating entity "Shift_Register" for hierarchy "Statuses:status_bars|Shift_Register:health_shift_p1" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Statuses.v Line: 42
+Info (12128): Elaborating entity "hexto7seg" for hierarchy "hexto7seg:hexy" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 170
+Info (12128): Elaborating entity "shieldto7seg" for hierarchy "shieldto7seg:kjjghj" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 182
+Info (12128): Elaborating entity "Statuses" for hierarchy "Statuses:status_bars" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 198
+Warning (10240): Verilog HDL Always Construct warning at Statuses.v(40): inferring latch(es) for variable "p2wins", which holds its previous value in one or more paths through the always construct File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Statuses.v Line: 40
+Warning (10240): Verilog HDL Always Construct warning at Statuses.v(40): inferring latch(es) for variable "p1wins", which holds its previous value in one or more paths through the always construct File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Statuses.v Line: 40
+Info (10041): Inferred latch for "p1wins" at Statuses.v(41) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Statuses.v Line: 41
+Info (10041): Inferred latch for "p2wins" at Statuses.v(41) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Statuses.v Line: 41
+Info (12128): Elaborating entity "Shift_Register" for hierarchy "Statuses:status_bars|Shift_Register:health_shift_p1" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Statuses.v Line: 57
 Warning (19016): Clock multiplexers are found and protected
+    Warning (19017): Found clock multiplexer logic_clk File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 47
     Warning (19017): Found clock multiplexer GameplayControllerP2:player2|logic_clk File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP2.v Line: 47
-    Warning (19017): Found clock multiplexer GameplayControllerP1:player1|logic_clk File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP1.v Line: 46
-Warning (12241): 3 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+    Warning (19017): Found clock multiplexer GameplayControllerP1:player1|logic_clk File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP1.v Line: 54
+Warning (12241): 4 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Warning (13039): The following bidirectional pins have no drivers
     Warning (13040): bidirectional pin "keypadGPIO[21]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 43
     Warning (13040): bidirectional pin "keypadGPIO[23]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 43
@@ -665,6 +683,12 @@ Warning (13039): The following bidirectional pins have no drivers
 Warning (13032): The following tri-state nodes are fed by constants
     Warning (13033): The pin "keypadGPIO[11]" is fed by GND File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 43
 Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "HEX2[1]" is stuck at GND File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 17
+    Warning (13410): Pin "HEX2[2]" is stuck at GND File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 17
+    Warning (13410): Pin "HEX2[6]" is stuck at VCC File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 17
+    Warning (13410): Pin "HEX3[1]" is stuck at GND File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 18
+    Warning (13410): Pin "HEX3[2]" is stuck at GND File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 18
+    Warning (13410): Pin "HEX3[6]" is stuck at VCC File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 18
     Warning (13410): Pin "HEX4[0]" is stuck at GND File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 19
     Warning (13410): Pin "HEX4[1]" is stuck at GND File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 19
     Warning (13410): Pin "HEX4[2]" is stuck at GND File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 19
@@ -680,9 +704,7 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "HEX5[5]" is stuck at GND File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 20
     Warning (13410): Pin "HEX5[6]" is stuck at GND File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 20
     Warning (13410): Pin "LEDR[3]" is stuck at GND File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 26
-    Warning (13410): Pin "LEDR[4]" is stuck at GND File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 26
-    Warning (13410): Pin "LEDR[8]" is stuck at GND File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 26
-    Warning (13410): Pin "LEDR[9]" is stuck at GND File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 26
+    Warning (13410): Pin "LEDR[7]" is stuck at GND File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 26
     Warning (13410): Pin "VGA_BLANK_N" is stuck at VCC File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 32
     Warning (13410): Pin "VGA_SYNC_N" is stuck at GND File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 38
 Info (286030): Timing-Driven Synthesis is running
@@ -700,14 +722,14 @@ Warning (21074): Design contains 11 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SW[6]" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 29
     Warning (15610): No output dependent on input pin "SW[7]" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 29
     Warning (15610): No output dependent on input pin "SW[8]" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 29
-Info (21057): Implemented 926 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 895 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 18 input pins
     Info (21059): Implemented 81 output pins
     Info (21060): Implemented 36 bidirectional pins
-    Info (21061): Implemented 791 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 98 warnings
-    Info: Peak virtual memory: 4837 megabytes
-    Info: Processing ended: Sun Jun  1 13:47:49 2025
+    Info (21061): Implemented 760 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 101 warnings
+    Info: Peak virtual memory: 4834 megabytes
+    Info: Processing ended: Sun Jun  1 18:28:07 2025
     Info: Elapsed time: 00:00:08
     Info: Total CPU time (on all processors): 00:00:05
 
