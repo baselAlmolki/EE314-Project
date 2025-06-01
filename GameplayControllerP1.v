@@ -8,6 +8,12 @@ module GameplayControllerP1(
     input attack,
     input [9:0] player2_pos_x,
 	 input [3:0] player2_state,
+	 
+	 input [2:0] shield1,
+	 input [2:0] shield2,
+	 input [2:0] health1,
+	 input [2:0] health2,
+
     input [9:0] screen_left_bound,
     input [9:0] screen_right_bound,
 
@@ -16,7 +22,8 @@ module GameplayControllerP1(
     output is_directional_attack,
     output move_flag,
     output attack_flag,
-	 output [1:0] stunmode
+	 output [1:0] stunmode,
+	 output [1:0] stunmode2
 );
 
 	wire predicted_attack_flag = (next_player_state == S_IAttack_active);
@@ -25,13 +32,15 @@ module GameplayControllerP1(
 	wire player2_attack_flag, player2_is_directional_attack;
 	assign player2_attack_flag = player2_state == S_IAttack_active;
 	assign player2_is_directional_attack = player2_state == S_DAttack_active;
-	wire [1:0] stunmode2;
+//	wire [1:0] stunmode2;
 	 
 HitDetection_updated hit_detec(
    .x1(player_pos_x),
    .x2(player2_pos_x),
    .state1(player_state),
    .state2(player2_state),
+	.shield1(shield1),
+	.shield2(shield2),
    .p1_stunmode(stunmode),
    .p2_stunmode(stunmode2)
 );
@@ -101,10 +110,12 @@ assign stun = stunmode == 2'b10 | stunmode ==2'b01;
 					 else if (in_left &&
 								player_pos_x > screen_left_bound + SPEED_BACKWARD)
 								tmp_result_x = player_pos_x - SPEED_BACKWARD;
+		    				next_player-state = S_BACKWARD;
 					 else if (in_right &&
 								 player_pos_x < screen_right_bound - PLAYER_WIDTH - SPEED_FORWARD &&
 								 player_pos_x < player2_pos_x - SPEED_BACKWARD - PLAYER_WIDTH)
 						  tmp_result_x = player_pos_x + SPEED_FORWARD;
+		    				next_player_state = S_FORWARD;
 					 else
 						  next_player_state = S_IDLE;
 				end
@@ -122,9 +133,11 @@ assign stun = stunmode == 2'b10 | stunmode ==2'b01;
 								 player_pos_x < screen_right_bound - PLAYER_WIDTH - SPEED_FORWARD &&
 								 player_pos_x < player2_pos_x - SPEED_BACKWARD - PLAYER_WIDTH)
 								 tmp_result_x = player_pos_x + SPEED_FORWARD;
+						next_player_state = S_FORWARD;
 					 else if (in_left &&
 								 player_pos_x > screen_left_bound + SPEED_BACKWARD)
 						  tmp_result_x = player_pos_x - SPEED_BACKWARD;
+						next_player-state = S_BACKWARD;
 					 else
 						  next_player_state = S_IDLE;
 				end
