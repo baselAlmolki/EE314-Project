@@ -1,25 +1,12 @@
 module HitDetection_updated (
-    input [9:0] x1, // of top left corner 
-    input [9:0] x2,
+		input [9:0] x1, // of top left corner 
+		input [9:0] x2,
 
-	
-//    input p1_attack_flag,
-//    input p2_attack_flag,
-//		 
-//    input p1_dir_attack,
-//    input p2_dir_attack,
-	 
-	 // must input state to check if player is blocking or under recovery
-	 // basel note the input changes, i am no longer taking in "blocked" but rather the player's state
-	 // if its easier to get the respective flags corresponding to these states then lemme know or you can
-	 // change the code appropriately I made it so it can be easily changed. Its very dynamically written so its super cool
-	 
-	 //combined input:
-	input [3:0] state1,
-	input [3:0] state2,
+		input [3:0] state1,
+		input [3:0] state2,
 
-    output reg [1:0] p1_stunmode,
-    output reg [1:0] p2_stunmode
+		output reg [1:0] p1_stunmode,
+		output reg [1:0] p2_stunmode
 
 );
 
@@ -62,13 +49,12 @@ module HitDetection_updated (
 	assign p1_atkA = (state1 == S_DAttack_active) | (state1 == S_IAttack_active);
 	assign p2_atkA= (state2 == S_DAttack_active) | (state2 == S_IAttack_active);
 	
-//	assign attack_case  = {(p2_dir_attack | p2_attack_flag), (p1_dir_attack | p1_attack_flag)};
 	assign attack_case  = {p2_atkA, p1_atkA};
 	assign attack_width = (p2_dir_attack | p1_dir_attack) ? dir_HITBOX_WIDTH : neutral_HITBOX_WIDTH;
 	assign p1_blocking  = state1 == S_BACKWARD;
 	assign p2_blocking  = state2 == S_BACKWARD;
-	assign p1_recov     = (state1 == S_Attack_recovery) | (state1 == S_IAttack_recovery);
-	assign p2_recov     = (state2 == S_Attack_recovery) | (state2 == S_IAttack_recovery);
+	assign p1_recov     = (state1 == S_DAttack_recovery) | (state1 == S_IAttack_recovery);
+	assign p2_recov     = (state2 == S_DAttack_recovery) | (state2 == S_IAttack_recovery);
 	
 	assign p1Hrtbox     = p1_recov ? x1 + BASE_WIDTH + attack_width : x1 + BASE_WIDTH;
 	assign p2Hrtbox     = p2_recov ? x2 - attack_width : x2;

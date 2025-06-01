@@ -10,12 +10,14 @@ module GameplayControllerP2(
     input [3:0] player1_state,
     input [9:0] screen_left_bound,
     input [9:0] screen_right_bound,
+	 input [1:0] stunmode, stunmode1,
 
     output reg [9:0] player_pos_x,
     output reg [3:0] player_state,
     output is_directional_attack,
     output move_flag,
     output attack_flag
+	 
 );
 
 
@@ -25,17 +27,17 @@ module GameplayControllerP2(
 	wire player1_attack_flag, player1_is_directional_attack;
 	assign player1_attack_flag = player1_state == S_IAttack_active;
 	assign player1_is_directional_attack = player1_state == S_DAttack_active;
-	 wire [1:0] stunmode;
-	 wire [1:0] stunmode1;
+//	 wire [1:0] stunmode;
+//	 wire [1:0] stunmode1;
 
-HitDetection_updated hit_detec(
-	.x1(player1_pos_x),
-   	.x2(player_pos_x),
-	.state1(player1_state),
-	.state2(player_state),
-	.p1_stunmode(stunmode1),
-	.p2_stunmode(stunmode)
-);
+//HitDetection_updated hit_detec(
+//	.x1(player1_pos_x),
+//   .x2(player_pos_x),
+//	.state1(player1_state),
+//	.state2(player_state),
+//	.p1_stunmode(stunmode1),
+//	.p2_stunmode(stunmode)
+//);
 
 
     parameter PLAYER_WIDTH = 10'd64;

@@ -75,23 +75,23 @@ wire reset_button = SW[9];
 	wire [3:0] col, keypad_btns;
 	wire row, p2_inleft, p2_atk, p2_inright;
 
-	assign keypadGPIO[11] = row;
+	assign keypadGPIO[11] = 1'b0; //row;
 
 	assign col[0] = keypadGPIO[19];
 	assign col[1] = keypadGPIO[21];
 	assign col[2] = keypadGPIO[23];
 	assign col[3] = keypadGPIO[25];
 	
-	assign p2_inleft  = keypad_btns[3]; // btn A 
-	assign p2_inright = keypad_btns[1]; // btn 2
-	assign p2_atk 		= keypad_btns[2]; // btn 3
+	assign p2_inleft  = ~col[3];//keypad_btns[3]; // btn A 
+	assign p2_inright = ~col[1];//keypad_btns[1]; // btn 2
+	assign p2_atk 		= ~col[2];//keypad_btns[2]; // btn 3
 	 
-	 
-	keypad_Decoder keypad_driver( 
-		.clk(CLOCK_50),
-		.R1(row),
-		.keypresses(kepad_btns),
-		.state(LEDR[9])); // debug LED can remove if not needed
+//	 
+//	keypad_Decoder keypad_driver( 
+//		.clk(CLOCK_50),
+//		.R1(row),
+//		.keypresses(keypad_btns),
+//		.state(LEDR[9])); // debug LED can remove if not needed
 
 		// below are debug outputs to 7seg, commented to not clash with other outputs
 //	keypadto7seg instseg(.keypresses(keypad_input), .seg1(HEX3), .seg2(HEX2), .seg3(HEX1), .seg4(HEX0));
@@ -99,89 +99,99 @@ wire reset_button = SW[9];
 
     // === Gameplay Controllers ===
     GameplayControllerP1 player1 (
-        .clk_60Hz(clk_60Hz),
-        .key_clk(~KEY[0]),
-        .switch(SW[1]),
-        .reset(reset_button),
-        .in_left(~KEY[3]),
-        .in_right(~KEY[1]),
-        .attack(~KEY[2]),
-        .player2_pos_x(player2_pos_x),
-		  .player2_state(player2_state),
-        .screen_left_bound(0),
-        .screen_right_bound(640),
-        .player_pos_x(player1_pos_x),
-        .player_state(player1_state),
-        .is_directional_attack(player1_dir_attack),
-        .move_flag(move_flag_p1),
-        .attack_flag(attack_flag_p1),
-		  .stunmode(stunmode1)
+		.clk_60Hz(clk_60Hz),
+		.key_clk(~KEY[0]),
+		.switch(SW[1]),
+		.reset(reset_button),
+		.in_left(~KEY[3]),
+		.in_right(~KEY[1]),
+		.attack(~KEY[2]),
+		.player2_pos_x(player2_pos_x),
+		.player2_state(player2_state),
+		.screen_left_bound(0),
+		.screen_right_bound(640),
+		.player_pos_x(player1_pos_x),
+		.player_state(player1_state),
+		.is_directional_attack(player1_dir_attack),
+		.move_flag(move_flag_p1),
+		.attack_flag(attack_flag_p1),
+		.stunmode(stunmode1),
+		.stunmode2(stunmode2)
     );
 	 
     GameplayControllerP2 player2 (
-        .clk_60Hz(clk_60Hz),
-        .key_clk(~KEY[0]),
-        .switch(SW[1]),
-        .reset(reset_button),
-        .in_left(p2_inleft), //was SW[5]
-        .in_right(p2_inright), // was SW[3]
-        .attack(p2_atk), // was SW[4]
-        .player1_pos_x(player1_pos_x),
-		  .player1_state(player1_state),
-        .screen_left_bound(0),
-        .screen_right_bound(640),
-        .player_pos_x(player2_pos_x),
-        .player_state(player2_state),
-        .is_directional_attack(player2_dir_attack),
-        .move_flag(move_flag_p2),
-        .attack_flag(attack_flag_p2)
-//		  .stunmode(stunmode2)
-    );
-
-
+		.clk_60Hz(clk_60Hz),
+		.key_clk(~KEY[0]),
+		.switch(SW[1]),
+		.reset(reset_button),
+		.in_left(p2_inleft), //was SW[5]
+		.in_right(p2_inright), // was SW[3]
+		.attack(p2_atk), // was SW[4]
+		.player1_pos_x(player1_pos_x),
+		.player1_state(player1_state),
+		.screen_left_bound(0),
+		.screen_right_bound(640),
+		.player_pos_x(player2_pos_x),
+		.player_state(player2_state),
+		.is_directional_attack(player2_dir_attack),
+		.move_flag(move_flag_p2),
+		.attack_flag(attack_flag_p2),
+		.stunmode(stunmode2),
+		.stunmode1(stunmode1)
+    );   
+              
+              
     // === VGA Display (connect your VGA module here) ===
-    Vga_Display vga_display_inst (
-        .clk(CLOCK_50),
-        .reset(0),
-        .key_left(~KEY[3]),
-        .key_right(~KEY[1]),
-        .r(VGA_R),
-        .g(VGA_G),
-        .b(VGA_B),
-        .hsync(VGA_HS),
-        .vsync(VGA_VS),
-        .player_x(player1_pos_x),
-        .player_state(player1_state),
-        .is_directional_attack(player1_dir_attack),
-        .player2_x(player2_pos_x),
-        .player2_state(player2_state),
-        .is_directional_attack_p2(player2_dir_attack)
-    );
-hexto7seg hexy(
-	.hex(player1_state),
-	.hexn(HEX0)
-	);
+	Vga_Display vga_display_inst (
+		.clk(CLOCK_50),
+		.reset(0),
+		.key_left(~KEY[3]),
+		.key_right(~KEY[1]),
+		.r(VGA_R),
+		.g(VGA_G),
+		.b(VGA_B),
+		.hsync(VGA_HS),
+		.vsync(VGA_VS),
+		.player_x(player1_pos_x),
+		.player_state(player1_state),
+		.is_directional_attack(player1_dir_attack),
+		.player2_x(player2_pos_x),
+		.player2_state(player2_state),
+		.is_directional_attack_p2(player2_dir_attack)
+		);
+	hexto7seg hexy(
+		.hex(player1_state),
+		.hexn(HEX0)
+		);
 
-hexto7seg hexz(
-	.hex(player2_state),
-	.hexn(HEX1)
+	hexto7seg hexz(
+		.hex(player2_state),
+		.hexn(HEX1)
+		);
+	
+	shieldto7seg(
+		.p1(p1_shield),
+		.p2(p2_shield),
+		.seg1(HEX3),
+		.seg2(HEX2)
+		);
+	
+	
+	
+	Statuses status_bars(
+		.clk(clk_60Hz),
+		.reset(reset_button),
+		.p1_stunmode(stunmode1),
+		.p2_stunmode(stunmode2),
+		.p1_loose_health(),
+		.p1_loose_block(),
+		.p2_loose_health(),
+		.p2_loose_block(),
+		.p1_current_health(p1_health),
+		.p1_current_block(p1_shield),
+		.p2_current_health(p2_health),
+		.p2_current_block(p2_shield)
 	);
-	
-	
-Statuses status_bars(
-	.clk(clk_60Hz),
-	.reset(reset_button),
-	.p1_stunmode(stunmode1),
-   .p2_stunmode(stunmode2),
-	.p1_loose_health(),
-	.p1_loose_block(),
-	.p2_loose_health(),
-	.p2_loose_block(),
-	.p1_current_health(p1_health),
-	.p1_current_block(p1_shield),
-	.p2_current_health(p2_health),
-	.p2_current_block(p2_shield)
-);
     // === Debug LEDs ===
     assign LEDR[0] = p2_health[0];
     assign LEDR[1] = p2_health[1];

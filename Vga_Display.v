@@ -64,7 +64,7 @@ module Vga_Display (
 
     // === Parameters ===
     localparam BASE_WIDTH    = 10'd64;
-    localparam PLAYER_HEIGHT = 10'd40;
+    localparam PLAYER_HEIGHT = 10'd240;
     localparam PLAYER_Y      = 10'd220;
 
     localparam ATK_W         = 10'd45;

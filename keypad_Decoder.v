@@ -1,3 +1,6 @@
+// THIS CODE IS TOTAL BULLSHIT
+
+
 module keypad_Decoder (
 	input clk,
 	input [3:0] col, // gpio pins connected to cols are read as input

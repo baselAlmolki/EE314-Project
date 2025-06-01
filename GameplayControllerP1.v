@@ -16,7 +16,8 @@ module GameplayControllerP1(
     output is_directional_attack,
     output move_flag,
     output attack_flag,
-	 output [1:0] stunmode
+	 output [1:0] stunmode,
+	 output [1:0] stunmode2
 );
 
 	wire predicted_attack_flag = (next_player_state == S_IAttack_active);
@@ -25,7 +26,7 @@ module GameplayControllerP1(
 	wire player2_attack_flag, player2_is_directional_attack;
 	assign player2_attack_flag = player2_state == S_IAttack_active;
 	assign player2_is_directional_attack = player2_state == S_DAttack_active;
-	wire [1:0] stunmode2;
+//	wire [1:0] stunmode2;
 	 
 HitDetection_updated hit_detec(
    .x1(player_pos_x),
