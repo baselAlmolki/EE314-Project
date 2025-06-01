@@ -29,6 +29,7 @@ module GameplayControllerP2(
 	wire [1:0] stunmode1;
 
 HitDetection_updated hit_detec(
+	.clk(clk_60Hz),
 	.x1(player1_pos_x),
    .x2(player_pos_x),
 	.state1(player1_state),
@@ -70,7 +71,6 @@ HitDetection_updated hit_detec(
     assign move_flag = (player_state == S_FORWARD) | (player_state == S_BACKWARD);
     assign attack_flag = (player_state == S_IAttack_active);
     assign is_directional_attack = (player_state == S_DAttack_active);
-    assign is_blocking = (player_state == S_BACKWARD);
 
     always @(posedge logic_clk or posedge reset) begin
         if (reset) begin
@@ -194,31 +194,31 @@ HitDetection_updated hit_detec(
             end
 
             S_HITSTUN: begin
-				case(player1_state) 
-					S_IAttack_recovery: begin 
-						if (frame_counter >= I_RECOVERY_TIME-2) next_player_state = S_IDLE;
-						else next_player_state = S_HITSTUN;
-					end 
-					S_DAttack_recovery: begin 
-						if (frame_counter >= D_RECOVERY_TIME-1) next_player_state = S_IDLE;
-						else next_player_state = S_HITSTUN;
-					end
-					default: next_player_state = S_IDLE;
-				endcase
+					case(player1_state) 
+						S_IAttack_recovery: begin 
+							if (frame_counter >= I_RECOVERY_TIME-2) next_player_state = S_IDLE;
+							else next_player_state = S_HITSTUN;
+						end 
+						S_DAttack_recovery: begin 
+							if (frame_counter >= D_RECOVERY_TIME-1) next_player_state = S_IDLE;
+							else next_player_state = S_HITSTUN;
+						end
+						default: next_player_state = S_IDLE;
+					endcase
             end
 
             S_BLOCKSTUN: begin
-				case(player1_state) 
-					S_IAttack_recovery: begin 
-						if (frame_counter >= I_RECOVERY_TIME-3) next_player_state = S_IDLE;
-						else next_player_state = S_BLOCKSTUN;
-					end 
-					S_DAttack_recovery: begin 
-						if (frame_counter >= D_RECOVERY_TIME-3) next_player_state = S_IDLE;
-						else next_player_state = S_BLOCKSTUN;
-					end 
-					default: next_player_state = S_IDLE;
-				endcase
+					case(player1_state) 
+						S_IAttack_recovery: begin 
+							if (frame_counter >= I_RECOVERY_TIME-3) next_player_state = S_IDLE;
+							else next_player_state = S_BLOCKSTUN;
+						end 
+						S_DAttack_recovery: begin 
+							if (frame_counter >= D_RECOVERY_TIME-3) next_player_state = S_IDLE;
+							else next_player_state = S_BLOCKSTUN;
+						end 
+						default: next_player_state = S_IDLE;
+					endcase
 				end
 
             default: begin
