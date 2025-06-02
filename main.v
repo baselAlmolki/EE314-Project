@@ -42,20 +42,24 @@ module main(
 	inout 		    [35:0]		keypadGPIO
 );
 
-
+	wire game_mode = SW[8]; // 0 for 1P, 1 for 2P
 	wire reset_button = SW[9];
 	wire logic_clk = SW[1] ? ~KEY[0] : clk_60Hz;
+	wire ai_clk;
 
     assign VGA_CLK     = CLOCK_50;
     assign VGA_BLANK_N = 1'b1;
     assign VGA_SYNC_N  = 1'b0;
-
-    // === Clock Divider for 60Hz ===
+    // === Clock Divider for 60Hz and AI ===
     wire clk_60Hz;
     Clock_Divider #(.DIV(833_333)) clk_div_inst (
         .clk(CLOCK_50),
         .clk_out(clk_60Hz)
     );
+	  Clock_Divider #(20) CLK_DIVA ( // 3Hz clock for AI to make 2 decisions per second
+	  .clk(clk_60Hz),
+	  .clk_out(ai_clk)
+ );
 
 	 // === Player Positions (add your Y coordinate logic or constants here) ===
 	wire [9:0] player1_pos_x;
@@ -74,8 +78,9 @@ module main(
 	wire instun2 = player2_state == 4'd9 | player2_state == 4'd10;
 
 	// === Keypad scanner for Player 2 inputs  === 
-			 
+			
 	wire [3:0] col, keypad_btns;
+	wire [2:0] ai_action;
 	wire row, p2_inleft, p2_atk, p2_inright;
 
 	assign keypadGPIO[11] = 1'b0; //row;
@@ -85,9 +90,23 @@ module main(
 	assign col[2] = keypadGPIO[23];
 	assign col[3] = keypadGPIO[25];
 	
-	assign p2_inleft  = ~col[3];//keypad_btns[3]; // btn A 
-	assign p2_inright = ~col[1];//keypad_btns[1]; // btn 2
-	assign p2_atk 		= ~col[2];//keypad_btns[2]; // btn 3
+	// game_mode = 0 for 1P, 1 for 2P 
+	assign p2_inleft    = game_mode? ~col[3]: ai_action[2]; // btn A 
+	assign p2_inright   = game_mode? ~col[1]: ai_action[1]; // btn 2
+	assign p2_atk 		  = game_mode? ~col[2]: ai_action[0]; // btn 3
+
+	p2ai p2ai_inst (
+		.clk(ai_clk),
+		.seed(3'b110), // Seed value for LFSR
+		.reset(reset_button),
+		.le(~KEY[0]),
+		.p2_action(ai_action)
+	);
+	
+		hexto7seg ai_lfsr(
+		.hex({1'b0,ai_action}),
+		.hexn(HEX4)
+		);
 
     // === Gameplay Controllers ===
     GameplayControllerP1 player1 (

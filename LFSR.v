@@ -1,22 +1,23 @@
 module LFSR(
-	 input [15:0] seed,
-	 input load_enable, 
 	 input clk,
-	 output [15:0] OUT
+	 input [2:0] seed,
+	 input le, 
+	 output [2:0] OUT
 );
 
-wire taps;
+	parameter W = 3; // for 3 inputs
+	wire taps;
 
-assign taps = OUT[0] ^ OUT[2] ^ OUT[3] ^ OUT[5];
+	assign taps = OUT[0] ^ OUT[2];
 
-Shift_Register shift_reg(
-	.serial_in(taps),
-	.parallel_in(seed),
-	.shift_control(1),
-	.load_enable(load_enable), 
-	.clk(clk),
-	.OUT(OUT)
-);
+	Shift_Register #(W) shift_reg(
+		.serial_in(taps),
+		.parallel_in(seed),
+		.shift_control(2'b11), // shift left cuz why not
+		.load_enable(le), 
+		.clk(clk),
+		.OUT(OUT)
+	);
 
 
 endmodule

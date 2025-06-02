@@ -1,5 +1,5 @@
 module GameplayControllerP2(
-    input logic_clk
+    input logic_clk,
     input reset,
     input in_left,
     input in_right,
@@ -8,7 +8,7 @@ module GameplayControllerP2(
     input [3:0] player1_state,
     input [9:0] screen_left_bound,
     input [9:0] screen_right_bound,
-	 input [1:0] stunmode, stunmode1,
+	input [1:0] stunmode, stunmode1,
 
     output reg [9:0] player_pos_x,
     output reg [3:0] player_state,
@@ -18,25 +18,12 @@ module GameplayControllerP2(
 	 
 );
 
-
 	wire predicted_attack_flag = (next_player_state == S_IAttack_active);
 	wire predicted_is_directional_attack = (player_state == S_DAttack_active);
 	
 	wire player1_attack_flag, player1_is_directional_attack;
 	assign player1_attack_flag = player1_state == S_IAttack_active;
 	assign player1_is_directional_attack = player1_state == S_DAttack_active;
-//	 wire [1:0] stunmode;
-//	 wire [1:0] stunmode1;
-
-//HitDetection_updated hit_detec(
-//	.x1(player1_pos_x),
-//   .x2(player_pos_x),
-//	.state1(player1_state),
-//	.state2(player_state),
-//	.p1_stunmode(stunmode1),
-//	.p2_stunmode(stunmode)
-//);
-
 
     parameter PLAYER_WIDTH = 10'd64;
     parameter [9:0] SPEED_FORWARD = 10'd3;
@@ -99,10 +86,10 @@ module GameplayControllerP2(
                 else if (attack && ~in_left && ~in_right)
                     next_player_state = S_IAttack_start;
                 else if (in_right &&
-                         player_pos_x < screen_right_bound - PLAYER_WIDTH - SPEED_BACKWARD)
+                         player_pos_x < screen_right_bound - PLAYER_WIDTH - SPEED_BACKWARD) begin
                     tmp_result_x = player_pos_x + SPEED_BACKWARD;
                     next_player_state = S_BACKWARD;
-                else if (in_left &&
+                end else if (in_left &&
 			 player_pos_x > screen_left_bound + SPEED_FORWARD &&
 			 player_pos_x > player1_pos_x + PLAYER_WIDTH + SPEED_FORWARD)
                     	 tmp_result_x = player_pos_x - SPEED_FORWARD;
@@ -121,10 +108,11 @@ module GameplayControllerP2(
                     next_player_state = S_IAttack_start;
                 else if (in_left &&
                          player_pos_x > screen_left_bound + SPEED_FORWARD &&
-                         player_pos_x > player1_pos_x + PLAYER_WIDTH + SPEED_FORWARD)
-                   	 tmp_result_x = player_pos_x - SPEED_FORWARD;
+                         player_pos_x > player1_pos_x + PLAYER_WIDTH + SPEED_FORWARD) begin
+                   	 
+							 tmp_result_x = player_pos_x - SPEED_FORWARD;
                     	 next_player_state = S_FORWARD;
-                else if (in_right &&
+                end else if (in_right &&
                          player_pos_x < screen_right_bound - PLAYER_WIDTH - SPEED_BACKWARD)
                          tmp_result_x = player_pos_x + SPEED_BACKWARD;
                 else
