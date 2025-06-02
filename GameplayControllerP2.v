@@ -1,5 +1,5 @@
 module GameplayControllerP2(
-    input logic_clk
+    input logic_clk,
     input reset,
     input in_left,
     input in_right,
@@ -99,9 +99,10 @@ module GameplayControllerP2(
                 else if (attack && ~in_left && ~in_right)
                     next_player_state = S_IAttack_start;
                 else if (in_right &&
-                         player_pos_x < screen_right_bound - PLAYER_WIDTH - SPEED_BACKWARD)
+                         player_pos_x < screen_right_bound - PLAYER_WIDTH - SPEED_BACKWARD) begin
                     tmp_result_x = player_pos_x + SPEED_BACKWARD;
                     next_player_state = S_BACKWARD;
+					 end
                 else if (in_left &&
 			 player_pos_x > screen_left_bound + SPEED_FORWARD &&
 			 player_pos_x > player1_pos_x + PLAYER_WIDTH + SPEED_FORWARD)
@@ -121,9 +122,10 @@ module GameplayControllerP2(
                     next_player_state = S_IAttack_start;
                 else if (in_left &&
                          player_pos_x > screen_left_bound + SPEED_FORWARD &&
-                         player_pos_x > player1_pos_x + PLAYER_WIDTH + SPEED_FORWARD)
+                         player_pos_x > player1_pos_x + PLAYER_WIDTH + SPEED_FORWARD) begin
                    	 tmp_result_x = player_pos_x - SPEED_FORWARD;
                     	 next_player_state = S_FORWARD;
+					 end
                 else if (in_right &&
                          player_pos_x < screen_right_bound - PLAYER_WIDTH - SPEED_BACKWARD)
                          tmp_result_x = player_pos_x + SPEED_BACKWARD;
