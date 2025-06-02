@@ -1,5 +1,5 @@
 module GameplayControllerP1(
-    input logic_clk
+    input logic_clk,
     input reset,
     input in_left,
     input in_right,
@@ -106,14 +106,16 @@ assign stun = stunmode == 2'b10 | stunmode ==2'b01;
 					 else if (attack && ~in_left && ~in_right)
 						  next_player_state = S_IAttack_start;
 					 else if (in_left &&
-								player_pos_x > screen_left_bound + SPEED_BACKWARD)
-								tmp_result_x = player_pos_x - SPEED_BACKWARD;
-		    				next_player-state = S_BACKWARD;
+								player_pos_x > screen_left_bound + SPEED_BACKWARD) begin
+							tmp_result_x = player_pos_x - SPEED_BACKWARD;
+		    				next_player_state = S_BACKWARD;
+					 end
 					 else if (in_right &&
 								 player_pos_x < screen_right_bound - PLAYER_WIDTH - SPEED_FORWARD &&
-								 player_pos_x < player2_pos_x - SPEED_BACKWARD - PLAYER_WIDTH)
-						  tmp_result_x = player_pos_x + SPEED_FORWARD;
-		    				next_player_state = S_FORWARD;
+								 player_pos_x < player2_pos_x - SPEED_BACKWARD - PLAYER_WIDTH) begin
+						   tmp_result_x = player_pos_x + SPEED_FORWARD;
+		    			   next_player_state = S_FORWARD;
+					 end
 					 else
 						  next_player_state = S_IDLE;
 				end
@@ -129,13 +131,15 @@ assign stun = stunmode == 2'b10 | stunmode ==2'b01;
 						  next_player_state = S_IAttack_start;
 					 else if (in_right &&
 								 player_pos_x < screen_right_bound - PLAYER_WIDTH - SPEED_FORWARD &&
-								 player_pos_x < player2_pos_x - SPEED_BACKWARD - PLAYER_WIDTH)
-								 tmp_result_x = player_pos_x + SPEED_FORWARD;
+								 player_pos_x < player2_pos_x - SPEED_BACKWARD - PLAYER_WIDTH)  begin
+						tmp_result_x = player_pos_x + SPEED_FORWARD;
 						next_player_state = S_FORWARD;
+					 end
 					 else if (in_left &&
-								 player_pos_x > screen_left_bound + SPEED_BACKWARD)
+								 player_pos_x > screen_left_bound + SPEED_BACKWARD) begin
 						  tmp_result_x = player_pos_x - SPEED_BACKWARD;
-						next_player-state = S_BACKWARD;
+						  next_player_state = S_BACKWARD;
+					 end
 					 else
 						  next_player_state = S_IDLE;
 				end
