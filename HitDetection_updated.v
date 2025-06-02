@@ -17,8 +17,8 @@ module HitDetection_updated (
 		SCREEN_WIDTH 			= 10'd640,
 		SCREEN_HEIGHT        = 10'd480,
 
-		neutral_HITBOX_WIDTH = 10'd30,
-    	dir_HITBOX_WIDTH     = 10'd48,
+		neutral_HITBOX_WIDTH = 10'd56,
+    	dir_HITBOX_WIDTH     = 10'd45,
 		HITBOX_HEIGHT        = 10'd80,
 		
 		BASE_WIDTH           = 10'd64, 
