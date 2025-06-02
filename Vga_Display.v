@@ -69,8 +69,8 @@ module Vga_Display (
 
     localparam ATK_W         = 10'd45;
     localparam ATK_H         = 10'd50;
-    localparam NATK_W        = (ATK_W * 10) / 8;
-    localparam NATK_H        = (ATK_H * 10) / 8;
+    localparam NATK_W        = 10'd56;
+    localparam NATK_H        = 10'd62;
     localparam BORDER        = 2'd3;
 
     // === Player 1 ===
