@@ -107,6 +107,7 @@ module GameplayControllerP2(
 			 player_pos_x > screen_left_bound + SPEED_FORWARD &&
 			 player_pos_x > player1_pos_x + PLAYER_WIDTH + SPEED_FORWARD)
                     	 tmp_result_x = player_pos_x - SPEED_FORWARD;
+		    	 next_player_state = S_FORWARD;
                 else
                     next_player_state = S_IDLE;
             end
@@ -129,6 +130,7 @@ module GameplayControllerP2(
                 else if (in_right &&
                          player_pos_x < screen_right_bound - PLAYER_WIDTH - SPEED_BACKWARD)
                          tmp_result_x = player_pos_x + SPEED_BACKWARD;
+		    	 next_player_state = S_BACKWARD;
                 else
                     next_player_state = S_IDLE;
             end
