@@ -1,4 +1,4 @@
-module Clock_Divider#(parameter DIV=2)
+module Clock_Divider#(parameter DIVsfdgdgdfgdf=2)
         (
 	 input clk,
 	 output reg clk_out
