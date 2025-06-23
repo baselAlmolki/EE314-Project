@@ -127,10 +127,6 @@ module main(
 		.action(ai_action)
 	);
 	
-	hexto7seg ai_lfsr(
-	.hex({1'b0,ai_action}),
-	.hexn(HEX4)
-	);
 
     // === Gameplay Controllers ===
     GameplayControllerP1 player1 (
@@ -192,17 +188,7 @@ module main(
 		.player2_state(player2_state),
 		.is_directional_attack_p2(player2_dir_attack)
 		);
-		
-	hexto7seg hexy(
-		.hex(player1_state),
-		.hexn(HEX0)
-		);
 
-	hexto7seg hexz(
-		.hex(player2_state),
-		.hexn(HEX1)
-		);
-	
 	Statuses status_bars(
 		.clk(logic_clk),
 		.reset(reset_button),
@@ -238,8 +224,22 @@ module main(
 		.gametime(gametimer),
 		.seg0(HEX2),
 		.seg1(HEX3),
-//		.seg2(HEX4),
+		.seg2(HEX4),
 		.seg3(HEX5)
+		);
+
+	hexto7seg ai_lfsr(
+	.hex({1'b0,ai_action}),
+	.hexn(HEX4)
+	);
+	hexto7seg hexy(
+		.hex(player1_state),
+		.hexn(HEX0)
+		);
+
+	hexto7seg hexz(
+		.hex(player2_state),
+		.hexn(HEX1)
 		);
 
 
