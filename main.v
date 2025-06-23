@@ -46,23 +46,24 @@ module main(
 
 	localparam
 		// defining the 3 game states for each context manager
-		MAINMENU_GS = 2'b00,
+		MAINMENU_P1 = 3'b0,
+		MAINMENU_P2 = 3'b0,
 		FIGHT_GS    = 2'b01,
 		GAMEOVER_GS = 2'b10;
 	
 
 	wire game_mode = SW[8]; // 0 for 1P, 1 for 2P
 	wire reset_button = SW[9];
-	wire logic_clk = SW[1] ? ~KEY[0] : clk_60Hz;
-	wire ai_clk, fightFlag, clk_oneHertz;
-	wire [1:0] GameState;
+	wire logic_clk, ai_clk, fightFlag, clk_oneHertz;
 	wire [11:0] gametimer;
+	wire [1:0] timer_control;
 	
 	assign VGA_CLK     = CLOCK_50;
 	assign VGA_BLANK_N = 1'b1;
 	assign VGA_SYNC_N  = 1'b0;
- 
+	assign logic_clk   = SW[1] ? ~KEY[0] : clk_60Hz;
 	assign fightFlag = 1'b1; //GameState == FIGHT_GS;
+	assign timer_control = {1'b0, fightFlag};
 	 
     // === Clock Divider for 60Hz and AI ===
     wire clk_60Hz;
@@ -71,19 +72,15 @@ module main(
         .clk_out(clk_60Hz)
     );
 	  Clock_Divider #(40) CLK_DIVA ( // 1.5Hz clock for AI to make 3 decisions in 2 seconds
-	  .clk(clk_60Hz),
+	  .clk(logic_clk),
 	  .clk_out(ai_clk)
 	 );
 	  Clock_Divider #(60) OneSEC(
-	  .clk(clk_60Hz),
+	  .clk(logic_clk),
 	  .clk_out(clk_oneHertz)
     );
 
 	 // === intiate game timer ===
-	 // outputs total time in seconds
-	 // idea: can use two timers a mod 60 counter for the seconds that is triggered by the 60hz clk
-	 // and a normal counter triggered by a 1/60 hz clk, we dont even need to restart it cuz the game wont go on for an hour.
-	 // its a cheap hack obviously the better way is to mod your way to success so that it's future (haha do you get it?) proof.
 	 Counter #(12) GameSecondsElapsed(.control(2'b01),.clk(clk_oneHertz), .count(gametimer));
  
 	 // === Player Positions (add your Y coordinate logic or constants here) ===
@@ -224,13 +221,12 @@ module main(
 		.gametime(gametimer),
 		.seg0(HEX2),
 		.seg1(HEX3),
-		.seg2(HEX4),
-		.seg3(HEX5)
+		.seg2(HEX4)
 		);
 
 	hexto7seg ai_lfsr(
 	.hex({1'b0,ai_action}),
-	.hexn(HEX4)
+	.hexn(HEX5)
 	);
 	hexto7seg hexy(
 		.hex(player1_state),

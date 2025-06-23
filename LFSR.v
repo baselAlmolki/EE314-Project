@@ -4,9 +4,6 @@ module LFSR(
 	 input le,
 	 output reg [15:0] OUT
 );
-	initial begin
-		OUT = seed;
-	end
 
 	wire taps = OUT[15] ^ OUT[13] ^ OUT[12] ^ OUT[10];
 	
