@@ -55,6 +55,7 @@ module main(
 	wire game_mode = SW[8]; // 0 for 1P, 1 for 2P
 	wire reset_button = SW[9];
 	wire logic_clk, ai_clk, fightFlag, clk_oneHertz;
+	wire CLOCK_25;
 	wire [11:0] gametimer;
 	wire [1:0] timer_control;
 	
@@ -64,6 +65,7 @@ module main(
 	assign logic_clk   = SW[1] ? ~KEY[0] : clk_60Hz;
 	assign fightFlag = 1'b1; //GameState == FIGHT_GS;
 	assign timer_control = {1'b0, fightFlag};
+	
 	 
     // === Clock Divider for 60Hz and AI ===
     wire clk_60Hz;
@@ -78,6 +80,10 @@ module main(
 	  Clock_Divider #(60) OneSEC(
 	  .clk(logic_clk),
 	  .clk_out(clk_oneHertz)
+    );
+	  Clock_Divider #(2) VGA_refresh(
+	  .clk(CLOCK_50),
+	  .clk_out(CLOCK_25)
     );
 
 	 // === intiate game timer ===
@@ -113,8 +119,8 @@ module main(
 	assign col[3] = keypadGPIO[25];
 	
 	// game_mode = 0 for 1P, 1 for 2P 
-	assign p2_inleft    = game_mode? ~col[3]: ai_action[2]; // btn A 
-	assign p2_inright   = game_mode? ~col[1]: ai_action[1]; // btn 2
+	assign p2_inleft      = game_mode? ~col[3]: ai_action[2]; // btn A 
+	assign p2_inright     = game_mode? ~col[1]: ai_action[1]; // btn 2
 	assign p2_atk 		  = game_mode? ~col[2]: ai_action[0]; // btn 3
 
 
@@ -140,7 +146,6 @@ module main(
 		.screen_right_bound(640),
 		.player_pos_x(player1_pos_x),
 		.player_state(player1_state),
-		.is_directional_attack(player1_dir_attack),
 		.move_flag(move_flag_p1),
 		.attack_flag(attack_flag_p1),
 		.stunmode(stunmode1),
@@ -159,32 +164,25 @@ module main(
 		.screen_right_bound(640),
 		.player_pos_x(player2_pos_x),
 		.player_state(player2_state),
-		.is_directional_attack(player2_dir_attack),
 		.move_flag(move_flag_p2),
 		.attack_flag(attack_flag_p2),
 		.stunmode(stunmode2),
 		.stunmode1(stunmode1)
     );   
               
-              
-    // === VGA Display (connect your VGA module here) ===
-	Vga_Display vga_display_inst (
-		.clk(CLOCK_50),
-		.reset(0),
-		.key_left(~KEY[3]),
-		.key_right(~KEY[1]),
+	Picasso Game_Artist(
+		.clk(CLOCK_25),
+		.reset(),
+		.player_x(player1_pos_x),
+		.player_state(player1_state),
+		.player2_x(player2_pos_x),
+		.player2_state(player2_state),
 		.r(VGA_R),
 		.g(VGA_G),
 		.b(VGA_B),
 		.hsync(VGA_HS),
-		.vsync(VGA_VS),
-		.player_x(player1_pos_x),
-		.player_state(player1_state),
-		.is_directional_attack(player1_dir_attack),
-		.player2_x(player2_pos_x),
-		.player2_state(player2_state),
-		.is_directional_attack_p2(player2_dir_attack)
-		);
+		.vsync(VGA_VS)
+	);
 
 	Statuses status_bars(
 		.clk(logic_clk),

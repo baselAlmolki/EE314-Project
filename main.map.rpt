@@ -1,5 +1,5 @@
 Analysis & Synthesis report for main
-Mon Jun 23 22:01:10 2025
+Tue Jun 24 01:59:11 2025
 Quartus Prime Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
 
 
@@ -21,11 +21,11 @@ Quartus Prime Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
  13. Parameter Settings for User Entity Instance: Clock_Divider:clk_div_inst
  14. Parameter Settings for User Entity Instance: Clock_Divider:CLK_DIVA
  15. Parameter Settings for User Entity Instance: Clock_Divider:OneSEC
- 16. Parameter Settings for User Entity Instance: Counter:GameSecondsElapsed
- 17. Parameter Settings for User Entity Instance: p2ai:p2ai_inst
- 18. Parameter Settings for User Entity Instance: GameplayControllerP1:player1
- 19. Parameter Settings for User Entity Instance: GameplayControllerP2:player2
- 20. Parameter Settings for User Entity Instance: Vga_Display:vga_display_inst|Clock_Divider:clkdiv
+ 16. Parameter Settings for User Entity Instance: Clock_Divider:VGA_refresh
+ 17. Parameter Settings for User Entity Instance: Counter:GameSecondsElapsed
+ 18. Parameter Settings for User Entity Instance: p2ai:p2ai_inst
+ 19. Parameter Settings for User Entity Instance: GameplayControllerP1:player1
+ 20. Parameter Settings for User Entity Instance: GameplayControllerP2:player2
  21. Parameter Settings for User Entity Instance: Statuses:status_bars|Shift_Register:health_shift_p1
  22. Parameter Settings for User Entity Instance: Statuses:status_bars|Shift_Register:block_shift_p1
  23. Parameter Settings for User Entity Instance: Statuses:status_bars|Shift_Register:health_shift_p2
@@ -40,14 +40,16 @@ Quartus Prime Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
  32. Port Connectivity Checks: "Statuses:status_bars|Shift_Register:block_shift_p1"
  33. Port Connectivity Checks: "Statuses:status_bars|Shift_Register:health_shift_p1"
  34. Port Connectivity Checks: "Statuses:status_bars"
- 35. Port Connectivity Checks: "Vga_Display:vga_display_inst"
- 36. Port Connectivity Checks: "GameplayControllerP2:player2"
- 37. Port Connectivity Checks: "GameplayControllerP1:player1"
- 38. Port Connectivity Checks: "p2ai:p2ai_inst|LFSR:p2_action"
- 39. Port Connectivity Checks: "Counter:GameSecondsElapsed"
- 40. Post-Synthesis Netlist Statistics for Top Partition
- 41. Elapsed Time Per Partition
- 42. Analysis & Synthesis Messages
+ 35. Port Connectivity Checks: "Picaso:Game_Artist|Player_Renderer:game_renderer"
+ 36. Port Connectivity Checks: "Picaso:Game_Artist|Vga_Driver:driver"
+ 37. Port Connectivity Checks: "Picaso:Game_Artist"
+ 38. Port Connectivity Checks: "GameplayControllerP2:player2"
+ 39. Port Connectivity Checks: "GameplayControllerP1:player1"
+ 40. Port Connectivity Checks: "p2ai:p2ai_inst|LFSR:p2_action"
+ 41. Port Connectivity Checks: "Counter:GameSecondsElapsed"
+ 42. Post-Synthesis Netlist Statistics for Top Partition
+ 43. Elapsed Time Per Partition
+ 44. Analysis & Synthesis Messages
 
 
 
@@ -74,7 +76,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +---------------------------------+------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Mon Jun 23 22:01:10 2025          ;
+; Analysis & Synthesis Status     ; Successful - Tue Jun 24 01:59:11 2025          ;
 ; Quartus Prime Version           ; 23.1std.1 Build 993 05/14/2024 SC Lite Edition ;
 ; Revision Name                   ; main                                           ;
 ; Top-level Entity Name           ; main                                           ;
@@ -200,35 +202,37 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                            ;
-+----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                        ; Library ;
-+----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------+---------+
-; Vga_Display.v                    ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Vga_Display.v              ;         ;
-; Statuses.v                       ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Statuses.v                 ;         ;
-; Shift_Register.v                 ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Shift_Register.v           ;         ;
-; LFSR.v                           ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/LFSR.v                     ;         ;
-; HitDetection_updated.v           ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HitDetection_updated.v     ;         ;
-; hexto7seg.v                      ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/hexto7seg.v                ;         ;
-; GameplayControllerP2.v           ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP2.v     ;         ;
-; GameplayControllerP1.v           ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP1.v     ;         ;
-; Counter.v                        ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Counter.v                  ;         ;
-; Clock_Divider.v                  ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Clock_Divider.v            ;         ;
-; main.v                           ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v                     ;         ;
-; timeTo7seg.v                     ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/timeTo7seg.v               ;         ;
-; p2ai.v                           ; yes             ; Auto-Found Verilog HDL File  ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/p2ai.v                     ;         ;
-; lpm_divide.tdf                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/23.1std/quartus/libraries/megafunctions/lpm_divide.tdf            ;         ;
-; abs_divider.inc                  ; yes             ; Megafunction                 ; c:/intelfpga_lite/23.1std/quartus/libraries/megafunctions/abs_divider.inc           ;         ;
-; sign_div_unsign.inc              ; yes             ; Megafunction                 ; c:/intelfpga_lite/23.1std/quartus/libraries/megafunctions/sign_div_unsign.inc       ;         ;
-; aglobal231.inc                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/23.1std/quartus/libraries/megafunctions/aglobal231.inc            ;         ;
-; db/lpm_divide_3am.tdf            ; yes             ; Auto-Generated Megafunction  ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/lpm_divide_3am.tdf      ;         ;
-; db/sign_div_unsign_9kh.tdf       ; yes             ; Auto-Generated Megafunction  ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/sign_div_unsign_9kh.tdf ;         ;
-; db/alt_u_div_ose.tdf             ; yes             ; Auto-Generated Megafunction  ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/alt_u_div_ose.tdf       ;         ;
-; db/lpm_divide_ibm.tdf            ; yes             ; Auto-Generated Megafunction  ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/lpm_divide_ibm.tdf      ;         ;
-; db/sign_div_unsign_olh.tdf       ; yes             ; Auto-Generated Megafunction  ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/sign_div_unsign_olh.tdf ;         ;
-; db/alt_u_div_mve.tdf             ; yes             ; Auto-Generated Megafunction  ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/alt_u_div_mve.tdf       ;         ;
-+----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------+---------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                      ;
++------------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path   ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                                ; Library ;
++------------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------------------------+---------+
+; Player_Renderer.v                  ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Player_Renderer.v                  ;         ;
+; Picaso.v                           ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Picaso.v                           ;         ;
+; vga_driver.v                       ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/vga_driver.v                       ;         ;
+; controllers/GameplayControllerP2.v ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/controllers/GameplayControllerP2.v ;         ;
+; controllers/GameplayControllerP1.v ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/controllers/GameplayControllerP1.v ;         ;
+; Statuses.v                         ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Statuses.v                         ;         ;
+; Shift_Register.v                   ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Shift_Register.v                   ;         ;
+; LFSR.v                             ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/LFSR.v                             ;         ;
+; HitDetection_updated.v             ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HitDetection_updated.v             ;         ;
+; hexto7seg.v                        ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/hexto7seg.v                        ;         ;
+; Counter.v                          ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Counter.v                          ;         ;
+; Clock_Divider.v                    ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Clock_Divider.v                    ;         ;
+; main.v                             ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v                             ;         ;
+; timeTo7seg.v                       ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/timeTo7seg.v                       ;         ;
+; p2ai.v                             ; yes             ; Auto-Found Verilog HDL File  ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/p2ai.v                             ;         ;
+; lpm_divide.tdf                     ; yes             ; Megafunction                 ; c:/intelfpga_lite/23.1std/quartus/libraries/megafunctions/lpm_divide.tdf                    ;         ;
+; abs_divider.inc                    ; yes             ; Megafunction                 ; c:/intelfpga_lite/23.1std/quartus/libraries/megafunctions/abs_divider.inc                   ;         ;
+; sign_div_unsign.inc                ; yes             ; Megafunction                 ; c:/intelfpga_lite/23.1std/quartus/libraries/megafunctions/sign_div_unsign.inc               ;         ;
+; aglobal231.inc                     ; yes             ; Megafunction                 ; c:/intelfpga_lite/23.1std/quartus/libraries/megafunctions/aglobal231.inc                    ;         ;
+; db/lpm_divide_3am.tdf              ; yes             ; Auto-Generated Megafunction  ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/lpm_divide_3am.tdf              ;         ;
+; db/sign_div_unsign_9kh.tdf         ; yes             ; Auto-Generated Megafunction  ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/sign_div_unsign_9kh.tdf         ;         ;
+; db/alt_u_div_ose.tdf               ; yes             ; Auto-Generated Megafunction  ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/alt_u_div_ose.tdf               ;         ;
+; db/lpm_divide_ibm.tdf              ; yes             ; Auto-Generated Megafunction  ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/lpm_divide_ibm.tdf              ;         ;
+; db/sign_div_unsign_olh.tdf         ; yes             ; Auto-Generated Megafunction  ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/sign_div_unsign_olh.tdf         ;         ;
+; db/alt_u_div_mve.tdf               ; yes             ; Auto-Generated Megafunction  ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/alt_u_div_mve.tdf               ;         ;
++------------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------------------------+---------+
 
 
 +---------------------------------------------------------+
@@ -236,11 +240,11 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimate of Logic utilization (ALMs needed) ; 647       ;
+; Estimate of Logic utilization (ALMs needed) ; 649       ;
 ;                                             ;           ;
-; Combinational ALUT usage for logic          ; 1063      ;
+; Combinational ALUT usage for logic          ; 1065      ;
 ;     -- 7 input functions                    ; 6         ;
-;     -- 6 input functions                    ; 223       ;
+;     -- 6 input functions                    ; 225       ;
 ;     -- 5 input functions                    ; 81        ;
 ;     -- 4 input functions                    ; 121       ;
 ;     -- <=3 input functions                  ; 632       ;
@@ -253,7 +257,7 @@ https://fpgasoftware.intel.com/eula.
 ;                                             ;           ;
 ; Maximum fan-out node                        ; logic_clk ;
 ; Maximum fan-out                             ; 121       ;
-; Total fan-out                               ; 4649      ;
+; Total fan-out                               ; 4662      ;
 ; Average fan-out                             ; 2.90      ;
 +---------------------------------------------+-----------+
 
@@ -263,21 +267,23 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------+----------------------+--------------+
 ; Compilation Hierarchy Node                ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                           ; Entity Name          ; Library Name ;
 +-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------+----------------------+--------------+
-; |main                                     ; 1063 (10)           ; 236 (0)                   ; 0                 ; 0          ; 135  ; 0            ; |main                                                                                                                         ; main                 ; work         ;
+; |main                                     ; 1065 (10)           ; 236 (0)                   ; 0                 ; 0          ; 135  ; 0            ; |main                                                                                                                         ; main                 ; work         ;
 ;    |Clock_Divider:CLK_DIVA|               ; 40 (40)             ; 33 (33)                   ; 0                 ; 0          ; 0    ; 0            ; |main|Clock_Divider:CLK_DIVA                                                                                                  ; Clock_Divider        ; work         ;
 ;    |Clock_Divider:OneSEC|                 ; 40 (40)             ; 33 (33)                   ; 0                 ; 0          ; 0    ; 0            ; |main|Clock_Divider:OneSEC                                                                                                    ; Clock_Divider        ; work         ;
+;    |Clock_Divider:VGA_refresh|            ; 40 (40)             ; 33 (33)                   ; 0                 ; 0          ; 0    ; 0            ; |main|Clock_Divider:VGA_refresh                                                                                               ; Clock_Divider        ; work         ;
 ;    |Clock_Divider:clk_div_inst|           ; 40 (40)             ; 33 (33)                   ; 0                 ; 0          ; 0    ; 0            ; |main|Clock_Divider:clk_div_inst                                                                                              ; Clock_Divider        ; work         ;
 ;    |Counter:GameSecondsElapsed|           ; 12 (12)             ; 12 (12)                   ; 0                 ; 0          ; 0    ; 0            ; |main|Counter:GameSecondsElapsed                                                                                              ; Counter              ; work         ;
 ;    |GameplayControllerP1:player1|         ; 222 (105)           ; 19 (19)                   ; 0                 ; 0          ; 0    ; 0            ; |main|GameplayControllerP1:player1                                                                                            ; GameplayControllerP1 ; work         ;
 ;       |HitDetection_updated:hit_detec|    ; 117 (117)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|GameplayControllerP1:player1|HitDetection_updated:hit_detec                                                             ; HitDetection_updated ; work         ;
 ;    |GameplayControllerP2:player2|         ; 122 (122)           ; 19 (19)                   ; 0                 ; 0          ; 0    ; 0            ; |main|GameplayControllerP2:player2                                                                                            ; GameplayControllerP2 ; work         ;
+;    |Picaso:Game_Artist|                   ; 293 (0)             ; 20 (0)                    ; 0                 ; 0          ; 0    ; 0            ; |main|Picaso:Game_Artist                                                                                                      ; Picaso               ; work         ;
+;       |Player_Renderer:game_renderer|     ; 261 (261)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Picaso:Game_Artist|Player_Renderer:game_renderer                                                                        ; Player_Renderer      ; work         ;
+;       |Vga_Driver:driver|                 ; 32 (32)             ; 20 (20)                   ; 0                 ; 0          ; 0    ; 0            ; |main|Picaso:Game_Artist|Vga_Driver:driver                                                                                    ; Vga_Driver           ; work         ;
 ;    |Statuses:status_bars|                 ; 29 (13)             ; 17 (1)                    ; 0                 ; 0          ; 0    ; 0            ; |main|Statuses:status_bars                                                                                                    ; Statuses             ; work         ;
 ;       |Shift_Register:block_shift_p1|     ; 4 (4)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Statuses:status_bars|Shift_Register:block_shift_p1                                                                      ; Shift_Register       ; work         ;
 ;       |Shift_Register:block_shift_p2|     ; 4 (4)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Statuses:status_bars|Shift_Register:block_shift_p2                                                                      ; Shift_Register       ; work         ;
 ;       |Shift_Register:health_shift_p1|    ; 4 (4)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Statuses:status_bars|Shift_Register:health_shift_p1                                                                     ; Shift_Register       ; work         ;
 ;       |Shift_Register:health_shift_p2|    ; 4 (4)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Statuses:status_bars|Shift_Register:health_shift_p2                                                                     ; Shift_Register       ; work         ;
-;    |Vga_Display:vga_display_inst|         ; 331 (291)           ; 53 (20)                   ; 0                 ; 0          ; 0    ; 0            ; |main|Vga_Display:vga_display_inst                                                                                            ; Vga_Display          ; work         ;
-;       |Clock_Divider:clkdiv|              ; 40 (40)             ; 33 (33)                   ; 0                 ; 0          ; 0    ; 0            ; |main|Vga_Display:vga_display_inst|Clock_Divider:clkdiv                                                                       ; Clock_Divider        ; work         ;
 ;    |hexto7seg:ai_lfsr|                    ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|hexto7seg:ai_lfsr                                                                                                       ; hexto7seg            ; work         ;
 ;    |hexto7seg:hexy|                       ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|hexto7seg:hexy                                                                                                          ; hexto7seg            ; work         ;
 ;    |hexto7seg:hexz|                       ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|hexto7seg:hexz                                                                                                          ; hexto7seg            ; work         ;
@@ -373,11 +379,11 @@ Note: All latches listed above may not be present at the end of synthesis due to
 ; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |main|Statuses:status_bars|Shift_Register:block_shift_p2|OUT[2]  ;
 ; 21:1               ; 7 bits    ; 98 LEs        ; 7 LEs                ; 91 LEs                 ; Yes        ; |main|GameplayControllerP1:player1|player_pos_x[6]               ;
 ; 21:1               ; 4 bits    ; 56 LEs        ; 4 LEs                ; 52 LEs                 ; Yes        ; |main|GameplayControllerP2:player2|player_pos_x[8]               ;
-; 21:1               ; 2 bits    ; 28 LEs        ; 2 LEs                ; 26 LEs                 ; Yes        ; |main|GameplayControllerP1:player1|player_pos_x[3]               ;
-; 21:1               ; 5 bits    ; 70 LEs        ; 5 LEs                ; 65 LEs                 ; Yes        ; |main|GameplayControllerP2:player2|player_pos_x[4]               ;
-; 4:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |main|Vga_Display:vga_display_inst|r[2]                          ;
-; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |main|Vga_Display:vga_display_inst|b_reg                         ;
-; 5:1                ; 13 bits   ; 39 LEs        ; 39 LEs               ; 0 LEs                  ; No         ; |main|Vga_Display:vga_display_inst|r[3]                          ;
+; 21:1               ; 2 bits    ; 28 LEs        ; 2 LEs                ; 26 LEs                 ; Yes        ; |main|GameplayControllerP1:player1|player_pos_x[1]               ;
+; 21:1               ; 5 bits    ; 70 LEs        ; 5 LEs                ; 65 LEs                 ; Yes        ; |main|GameplayControllerP2:player2|player_pos_x[1]               ;
+; 4:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |main|Picaso:Game_Artist|Player_Renderer:game_renderer|r[0]      ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |main|Picaso:Game_Artist|Player_Renderer:game_renderer|r_reg     ;
+; 5:1                ; 13 bits   ; 39 LEs        ; 39 LEs               ; 0 LEs                  ; No         ; |main|Picaso:Game_Artist|Player_Renderer:game_renderer|g[1]      ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------+
 
 
@@ -408,6 +414,16 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+-------+------------------------------------------+
 ; DIV            ; 60    ; Signed Integer                           ;
 +----------------+-------+------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Clock_Divider:VGA_refresh ;
++----------------+-------+-----------------------------------------------+
+; Parameter Name ; Value ; Type                                          ;
++----------------+-------+-----------------------------------------------+
+; DIV            ; 2     ; Signed Integer                                ;
++----------------+-------+-----------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -452,16 +468,6 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; SPEED_FORWARD  ; 0000000011 ; Unsigned Binary                             ;
 ; SPEED_BACKWARD ; 0000000010 ; Unsigned Binary                             ;
 +----------------+------------+---------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+------------------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: Vga_Display:vga_display_inst|Clock_Divider:clkdiv ;
-+----------------+-------+-----------------------------------------------------------------------+
-; Parameter Name ; Value ; Type                                                                  ;
-+----------------+-------+-----------------------------------------------------------------------+
-; DIV            ; 2     ; Signed Integer                                                        ;
-+----------------+-------+-----------------------------------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -648,14 +654,34 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------+--------+----------+----------------------------------------------------------------------------------------------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "Vga_Display:vga_display_inst"                                                                                                                                                          ;
-+-----------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port      ; Type  ; Severity ; Details                                                                                                                                                                            ;
-+-----------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; reset     ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (1 bits) it drives.  The 31 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
-; reset[-1] ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
-+-----------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Picaso:Game_Artist|Player_Renderer:game_renderer"                                                                                              ;
++---------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                                                                                      ;
++---------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; vga_clk ; Input ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
++---------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Picaso:Game_Artist|Vga_Driver:driver"                                                                    ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                                                  ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; r    ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
+; g    ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
+; b    ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Picaso:Game_Artist"                                                                                                                                   ;
++----------------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port           ; Type  ; Severity ; Details                                                                                                                                      ;
++----------------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; reset          ; Input ; Info     ; Explicitly unconnected                                                                                                                       ;
+; time_remaining ; Input ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
++----------------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -672,6 +698,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; screen_right_bound[7]    ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                        ;
 ; move_flag                ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                                 ;
 ; attack_flag              ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                                 ;
+; is_directional_attack    ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                                                            ;
 +--------------------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
@@ -691,6 +718,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; attack_flag              ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                                 ;
 ; health1                  ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND.                                        ;
 ; health2                  ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND.                                        ;
+; is_directional_attack    ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                                                            ;
 +--------------------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
@@ -737,7 +765,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     SLD               ; 4                           ;
 ;     plain             ; 28                          ;
 ; arriav_io_obuf        ; 36                          ;
-; arriav_lcell_comb     ; 1070                        ;
+; arriav_lcell_comb     ; 1072                        ;
 ;     arith             ; 383                         ;
 ;         0 data inputs ; 21                          ;
 ;         1 data inputs ; 280                         ;
@@ -746,14 +774,14 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;         4 data inputs ; 17                          ;
 ;     extend            ; 6                           ;
 ;         7 data inputs ; 6                           ;
-;     normal            ; 664                         ;
+;     normal            ; 666                         ;
 ;         0 data inputs ; 2                           ;
 ;         1 data inputs ; 6                           ;
-;         2 data inputs ; 133                         ;
-;         3 data inputs ; 115                         ;
+;         2 data inputs ; 132                         ;
+;         3 data inputs ; 116                         ;
 ;         4 data inputs ; 104                         ;
 ;         5 data inputs ; 81                          ;
-;         6 data inputs ; 223                         ;
+;         6 data inputs ; 225                         ;
 ;     shared            ; 17                          ;
 ;         0 data inputs ; 3                           ;
 ;         1 data inputs ; 14                          ;
@@ -779,10 +807,20 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
-    Info: Processing started: Mon Jun 23 22:01:00 2025
+    Info: Processing started: Tue Jun 24 01:59:02 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off main -c main
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file player_renderer.v
+    Info (12023): Found entity 1: Player_Renderer File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Player_Renderer.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file picaso.v
+    Info (12023): Found entity 1: Picaso File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Picaso.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file vga_driver.v
+    Info (12023): Found entity 1: Vga_Driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/vga_driver.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file controllers/gameplaycontrollerp2.v
+    Info (12023): Found entity 1: GameplayControllerP2 File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/controllers/GameplayControllerP2.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file controllers/gameplaycontrollerp1.v
+    Info (12023): Found entity 1: GameplayControllerP1 File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/controllers/GameplayControllerP1.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file vga_display.v
     Info (12023): Found entity 1: Vga_Display File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Vga_Display.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file statuses.v
@@ -799,10 +837,6 @@ Info (12021): Found 1 design units, including 1 entities, in source file hitdete
     Info (12023): Found entity 1: HitDetection_updated File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HitDetection_updated.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file hexto7seg.v
     Info (12023): Found entity 1: hexto7seg File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/hexto7seg.v Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file gameplaycontrollerp2.v
-    Info (12023): Found entity 1: GameplayControllerP2 File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP2.v Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file gameplaycontrollerp1.v
-    Info (12023): Found entity 1: GameplayControllerP1 File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP1.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file counter.v
     Info (12023): Found entity 1: Counter File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Counter.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file clock_divider.v
@@ -813,43 +847,49 @@ Info (12021): Found 1 design units, including 1 entities, in source file shieldt
     Info (12023): Found entity 1: shieldto7seg File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/shieldto7seg.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file timeto7seg.v
     Info (12023): Found entity 1: timeTo7seg File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/timeTo7seg.v Line: 1
-Warning (10236): Verilog HDL Implicit Net warning at GameplayControllerP1.v(46): created implicit net for "stun" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP1.v Line: 46
+Warning (10236): Verilog HDL Implicit Net warning at GameplayControllerP1.v(46): created implicit net for "stun" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/controllers/GameplayControllerP1.v Line: 46
 Info (12127): Elaborating entity "main" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at main.v(59): object "timer_control" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 59
-Warning (10036): Verilog HDL or VHDL warning at main.v(89): object "player1_pos_y" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 89
-Warning (10036): Verilog HDL or VHDL warning at main.v(90): object "player2_pos_y" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 90
-Info (12128): Elaborating entity "Clock_Divider" for hierarchy "Clock_Divider:clk_div_inst" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 73
-Info (12128): Elaborating entity "Clock_Divider" for hierarchy "Clock_Divider:CLK_DIVA" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 77
-Info (12128): Elaborating entity "Clock_Divider" for hierarchy "Clock_Divider:OneSEC" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 81
-Info (12128): Elaborating entity "Counter" for hierarchy "Counter:GameSecondsElapsed" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 84
+Warning (10036): Verilog HDL or VHDL warning at main.v(60): object "timer_control" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 60
+Warning (10036): Verilog HDL or VHDL warning at main.v(95): object "player1_pos_y" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 95
+Warning (10036): Verilog HDL or VHDL warning at main.v(96): object "player2_pos_y" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 96
+Info (12128): Elaborating entity "Clock_Divider" for hierarchy "Clock_Divider:clk_div_inst" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 75
+Info (12128): Elaborating entity "Clock_Divider" for hierarchy "Clock_Divider:CLK_DIVA" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 79
+Info (12128): Elaborating entity "Clock_Divider" for hierarchy "Clock_Divider:OneSEC" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 83
+Info (12128): Elaborating entity "Clock_Divider" for hierarchy "Clock_Divider:VGA_refresh" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 87
+Info (12128): Elaborating entity "Counter" for hierarchy "Counter:GameSecondsElapsed" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 90
 Warning (12125): Using design file p2ai.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info (12023): Found entity 1: p2ai File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/p2ai.v Line: 1
-Info (12128): Elaborating entity "p2ai" for hierarchy "p2ai:p2ai_inst" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 125
+Info (12128): Elaborating entity "p2ai" for hierarchy "p2ai:p2ai_inst" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 131
 Info (12128): Elaborating entity "LFSR" for hierarchy "p2ai:p2ai_inst|LFSR:p2_action" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/p2ai.v Line: 27
-Info (12128): Elaborating entity "GameplayControllerP1" for hierarchy "GameplayControllerP1:player1" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 148
-Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(46): object "stun" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP1.v Line: 46
-Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(27): object "predicted_attack_flag" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP1.v Line: 27
-Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(28): object "predicted_is_directional_attack" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP1.v Line: 28
-Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(30): object "player2_attack_flag" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP1.v Line: 30
-Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(30): object "player2_is_directional_attack" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP1.v Line: 30
-Warning (10230): Verilog HDL assignment warning at GameplayControllerP1.v(90): truncated value with size 32 to match size of target (5) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP1.v Line: 90
-Info (12128): Elaborating entity "HitDetection_updated" for hierarchy "GameplayControllerP1:player1|HitDetection_updated:hit_detec" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP1.v Line: 44
+Info (12128): Elaborating entity "GameplayControllerP1" for hierarchy "GameplayControllerP1:player1" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 153
+Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(46): object "stun" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/controllers/GameplayControllerP1.v Line: 46
+Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(27): object "predicted_attack_flag" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/controllers/GameplayControllerP1.v Line: 27
+Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(28): object "predicted_is_directional_attack" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/controllers/GameplayControllerP1.v Line: 28
+Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(30): object "player2_attack_flag" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/controllers/GameplayControllerP1.v Line: 30
+Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(30): object "player2_is_directional_attack" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/controllers/GameplayControllerP1.v Line: 30
+Warning (10230): Verilog HDL assignment warning at GameplayControllerP1.v(90): truncated value with size 32 to match size of target (5) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/controllers/GameplayControllerP1.v Line: 90
+Info (12128): Elaborating entity "HitDetection_updated" for hierarchy "GameplayControllerP1:player1|HitDetection_updated:hit_detec" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/controllers/GameplayControllerP1.v Line: 44
 Warning (10036): Verilog HDL or VHDL warning at HitDetection_updated.v(53): object "withinp1range" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HitDetection_updated.v Line: 53
 Warning (10036): Verilog HDL or VHDL warning at HitDetection_updated.v(53): object "withinp2range" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HitDetection_updated.v Line: 53
-Info (12128): Elaborating entity "GameplayControllerP2" for hierarchy "GameplayControllerP2:player2" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 167
-Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP2.v(21): object "predicted_attack_flag" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP2.v Line: 21
-Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP2.v(22): object "predicted_is_directional_attack" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP2.v Line: 22
-Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP2.v(24): object "player1_attack_flag" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP2.v Line: 24
-Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP2.v(24): object "player1_is_directional_attack" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameplayControllerP2.v Line: 24
-Info (12128): Elaborating entity "Vga_Display" for hierarchy "Vga_Display:vga_display_inst" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 187
-Info (12128): Elaborating entity "Clock_Divider" for hierarchy "Vga_Display:vga_display_inst|Clock_Divider:clkdiv" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Vga_Display.v Line: 24
-Info (12128): Elaborating entity "Statuses" for hierarchy "Statuses:status_bars" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 202
+Info (12128): Elaborating entity "GameplayControllerP2" for hierarchy "GameplayControllerP2:player2" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 171
+Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP2.v(21): object "predicted_attack_flag" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/controllers/GameplayControllerP2.v Line: 21
+Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP2.v(22): object "predicted_is_directional_attack" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/controllers/GameplayControllerP2.v Line: 22
+Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP2.v(24): object "player1_attack_flag" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/controllers/GameplayControllerP2.v Line: 24
+Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP2.v(24): object "player1_is_directional_attack" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/controllers/GameplayControllerP2.v Line: 24
+Info (12128): Elaborating entity "Picaso" for hierarchy "Picaso:Game_Artist" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 185
+Warning (10036): Verilog HDL or VHDL warning at Picaso.v(25): object "draw_timer" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Picaso.v Line: 25
+Info (12128): Elaborating entity "Vga_Driver" for hierarchy "Picaso:Game_Artist|Vga_Driver:driver" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Picaso.v Line: 34
+Warning (10034): Output port "r" at vga_driver.v(5) has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/vga_driver.v Line: 5
+Warning (10034): Output port "g" at vga_driver.v(6) has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/vga_driver.v Line: 6
+Warning (10034): Output port "b" at vga_driver.v(7) has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/vga_driver.v Line: 7
+Info (12128): Elaborating entity "Player_Renderer" for hierarchy "Picaso:Game_Artist|Player_Renderer:game_renderer" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Picaso.v Line: 42
+Info (12128): Elaborating entity "Statuses" for hierarchy "Statuses:status_bars" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 214
 Warning (10240): Verilog HDL Always Construct warning at Statuses.v(40): inferring latch(es) for variable "p2wins", which holds its previous value in one or more paths through the always construct File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Statuses.v Line: 40
 Warning (10240): Verilog HDL Always Construct warning at Statuses.v(40): inferring latch(es) for variable "p1wins", which holds its previous value in one or more paths through the always construct File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Statuses.v Line: 40
 Info (10041): Inferred latch for "p1wins" at Statuses.v(41) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Statuses.v Line: 41
 Info (10041): Inferred latch for "p2wins" at Statuses.v(41) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Statuses.v Line: 41
 Info (12128): Elaborating entity "Shift_Register" for hierarchy "Statuses:status_bars|Shift_Register:health_shift_p1" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/Statuses.v Line: 57
-Info (12128): Elaborating entity "timeTo7seg" for hierarchy "timeTo7seg:timerDisplay" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 225
+Info (12128): Elaborating entity "timeTo7seg" for hierarchy "timeTo7seg:timerDisplay" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 237
 Warning (10230): Verilog HDL assignment warning at timeTo7seg.v(16): truncated value with size 12 to match size of target (6) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/timeTo7seg.v Line: 16
 Warning (10230): Verilog HDL assignment warning at timeTo7seg.v(17): truncated value with size 12 to match size of target (6) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/timeTo7seg.v Line: 17
 Warning (10230): Verilog HDL assignment warning at timeTo7seg.v(20): truncated value with size 6 to match size of target (4) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/timeTo7seg.v Line: 20
@@ -893,7 +933,7 @@ Info (12133): Instantiated megafunction "timeTo7seg:timerDisplay|lpm_divide:Div2
     Info (12134): Parameter "LPM_WIDTHD" = "4"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
     Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
-Warning (12241): 6 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (12241): 8 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Warning (13039): The following bidirectional pins have no drivers
     Warning (13040): bidirectional pin "keypadGPIO[21]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
     Warning (13040): bidirectional pin "keypadGPIO[23]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
@@ -951,15 +991,15 @@ Warning (21074): Design contains 10 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SW[5]" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 29
     Warning (15610): No output dependent on input pin "SW[6]" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 29
     Warning (15610): No output dependent on input pin "SW[7]" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 29
-Info (21057): Implemented 1209 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 1211 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 18 input pins
     Info (21059): Implemented 81 output pins
     Info (21060): Implemented 36 bidirectional pins
-    Info (21061): Implemented 1074 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 83 warnings
-    Info: Peak virtual memory: 4841 megabytes
-    Info: Processing ended: Mon Jun 23 22:01:10 2025
-    Info: Elapsed time: 00:00:10
+    Info (21061): Implemented 1076 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 87 warnings
+    Info: Peak virtual memory: 4852 megabytes
+    Info: Processing ended: Tue Jun 24 01:59:11 2025
+    Info: Elapsed time: 00:00:09
     Info: Total CPU time (on all processors): 00:00:06
 
 
