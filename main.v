@@ -40,27 +40,52 @@ module main(
 
 	//////////// GPIO_0, GPIO_0 connect to GPIO Default //////////
 	inout 		    [35:0]		keypadGPIO
+	
 );
+
+
+	localparam
+		// defining the 3 game states for each context manager
+		MAINMENU_GS = 2'b00,
+		FIGHT_GS    = 2'b01,
+		GAMEOVER_GS = 2'b10;
+	
 
 	wire game_mode = SW[8]; // 0 for 1P, 1 for 2P
 	wire reset_button = SW[9];
 	wire logic_clk = SW[1] ? ~KEY[0] : clk_60Hz;
-	wire ai_clk;
-
-    assign VGA_CLK     = CLOCK_50;
-    assign VGA_BLANK_N = 1'b1;
-    assign VGA_SYNC_N  = 1'b0;
+	wire ai_clk, fightFlag, clk_oneHertz;
+	wire [1:0] GameState;
+	wire [11:0] gametimer;
+	
+	assign VGA_CLK     = CLOCK_50;
+	assign VGA_BLANK_N = 1'b1;
+	assign VGA_SYNC_N  = 1'b0;
+ 
+	assign fightFlag = 1'b1; //GameState == FIGHT_GS;
+	 
     // === Clock Divider for 60Hz and AI ===
     wire clk_60Hz;
     Clock_Divider #(.DIV(833_333)) clk_div_inst (
         .clk(CLOCK_50),
         .clk_out(clk_60Hz)
     );
-	  Clock_Divider #(20) CLK_DIVA ( // 3Hz clock for AI to make 2 decisions per second
+	  Clock_Divider #(40) CLK_DIVA ( // 1.5Hz clock for AI to make 3 decisions in 2 seconds
 	  .clk(clk_60Hz),
 	  .clk_out(ai_clk)
- );
+	 );
+	  Clock_Divider #(60) OneSEC(
+	  .clk(clk_60Hz),
+	  .clk_out(clk_oneHertz)
+    );
 
+	 // === intiate game timer ===
+	 // outputs total time in seconds
+	 // idea: can use two timers a mod 60 counter for the seconds that is triggered by the 60hz clk
+	 // and a normal counter triggered by a 1/60 hz clk, we dont even need to restart it cuz the game wont go on for an hour.
+	 // its a cheap hack obviously the better way is to mod your way to success so that it's future (haha do you get it?) proof.
+	 Counter #(12) GameSecondsElapsed(.control(2'b01),.clk(clk_oneHertz), .count(gametimer));
+ 
 	 // === Player Positions (add your Y coordinate logic or constants here) ===
 	wire [9:0] player1_pos_x;
 	wire [9:0] player2_pos_x;
@@ -95,18 +120,17 @@ module main(
 	assign p2_inright   = game_mode? ~col[1]: ai_action[1]; // btn 2
 	assign p2_atk 		  = game_mode? ~col[2]: ai_action[0]; // btn 3
 
-	p2ai p2ai_inst (
+
+	p2ai #(29242) p2ai_inst ( //seed: any num b/w 1-65535
 		.clk(ai_clk),
-		.seed(3'b110), // Seed value for LFSR
 		.reset(reset_button),
-		.le(~KEY[0]),
-		.p2_action(ai_action)
+		.action(ai_action)
 	);
 	
-		hexto7seg ai_lfsr(
-		.hex({1'b0,ai_action}),
-		.hexn(HEX4)
-		);
+	hexto7seg ai_lfsr(
+	.hex({1'b0,ai_action}),
+	.hexn(HEX4)
+	);
 
     // === Gameplay Controllers ===
     GameplayControllerP1 player1 (
@@ -168,6 +192,7 @@ module main(
 		.player2_state(player2_state),
 		.is_directional_attack_p2(player2_dir_attack)
 		);
+		
 	hexto7seg hexy(
 		.hex(player1_state),
 		.hexn(HEX0)
@@ -202,11 +227,20 @@ module main(
     assign LEDR[5] = p1_health[1];
     assign LEDR[6] = p1_health[2];
 
-	shieldto7seg kjjghj( 
-		.p1(p1_shield),
-		.p2(p2_shield),
+//	shieldto7seg kjjghj( 
+//		.p1(p1_shield),
+//		.p2(p2_shield),
+//		.seg1(HEX3),
+//		.seg2(HEX2)
+//		);
+
+	timeTo7seg timerDisplay(
+		.gametime(gametimer),
+		.seg0(HEX2),
 		.seg1(HEX3),
-		.seg2(HEX2)
+//		.seg2(HEX4),
+		.seg3(HEX5)
 		);
+
 
 endmodule

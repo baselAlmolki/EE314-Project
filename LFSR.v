@@ -1,23 +1,22 @@
 module LFSR(
 	 input clk,
-	 input [2:0] seed,
-	 input le, 
-	 output [2:0] OUT
+	 input [15:0] seed,
+	 input le,
+	 output reg [15:0] OUT
 );
+	initial begin
+		OUT = seed;
+	end
 
-	parameter W = 3; // for 3 inputs
-	wire taps;
-
-	assign taps = OUT[0] ^ OUT[2];
-
-	Shift_Register #(W) shift_reg(
-		.serial_in(taps),
-		.parallel_in(seed),
-		.shift_control(2'b11), // shift left cuz why not
-		.load_enable(le), 
-		.clk(clk),
-		.OUT(OUT)
-	);
+	wire taps = OUT[15] ^ OUT[13] ^ OUT[12] ^ OUT[10];
+	
+	always @(posedge clk) begin
+		if (le) begin
+			OUT <= seed; // load the seed value
+		end else begin
+			OUT <= {OUT[14:0], taps}; // shift left and insert taps
+		end
+	end
 
 
 endmodule

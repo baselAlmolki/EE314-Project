@@ -1,29 +1,22 @@
-module p2ai (
-    input clk,
-    input [W-1:0] seed,
-    input reset,
-	 input le,
-    output [W-1:0] p2_action
+module p2ai #(parameter SEED = 5)(
+	input clk,
+	input reset,
+	output [2:0] action
 );
-    // in case we add inputs in the future, I am keeping this part parameterized
-    // so for 3 inputs we need a 3bit LFSR
-		parameter W = 3; 
-//		reg le;
 
-//		initial begin
-//			le = 1'b1;
-//		end
-//	
-//	always @(posedge clk or posedge reset) begin
-//		if (reset) le<=1'b1;
-//		else if (le) le <= 1'b0;
-//	end
-	
-	 	LFSR #(W) Player2_AI (
-			.clk(clk),
-			.seed(seed),
-			.le(le),
-			.OUT(p2_action)
-	);
+wire [15:0] lfsr_out;
+
+
+assign action = lfsr_out[10:8]; // middle 3 bit slice
+
+// seed: any number between 1 - 65535
+// for more randomness stay away from powers of two
+
+LFSR p2_action (
+	.clk(clk),
+	.seed(SEED),
+	.le(reset),
+	.OUT(action)
+);
 
 endmodule
