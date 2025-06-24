@@ -217,19 +217,19 @@ module main(
     assign LEDR[5] = p1_health[1];
     assign LEDR[6] = p1_health[2];
 
-//	shieldto7seg kjjghj( 
-//		.p1(p1_shield),
-//		.p2(p2_shield),
-//		.seg1(HEX3),
-//		.seg2(HEX2)
-//		);
+	shieldto7seg kjjghj( 
+		.p1(p1_shield),
+		.p2(p2_shield),
+		.seg1(HEX3),
+		.seg2(HEX2)
+		);
 
 	timeTo7seg timerDisplay(
 		.gametime(gametimer),
-		.seg0(HEX2),
-		.seg1(HEX3),
-		.seg2(HEX4),
-		.seg3(HEX5)
+//		.seg0(HEX2),
+//		.seg1(HEX3),
+		.seg0(HEX4),
+		.seg1(HEX5)
 		);
 
 	hexto7seg ai_lfsr(

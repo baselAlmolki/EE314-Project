@@ -147,36 +147,36 @@ module GameplayControllerP2(
             end
 
             S_IAttack_start: begin
-                if (frame_counter >= I_STARTUP_TIME - 1'b1)
+                if (frame_counter >= I_STARTUP_TIME - 2'd2)
                     next_player_state = S_IAttack_active;
                 else
                     next_player_state = S_IAttack_start;
             end
 
             S_IAttack_active: begin
-                if (frame_counter >= I_ACTIVE_TIME - 1'b1)
+                if (frame_counter >= I_ACTIVE_TIME - 2'd2)
                     next_player_state = S_IAttack_recovery;
                 else
                     next_player_state = S_IAttack_active;
             end
 
             S_DAttack_start: begin
-                if (frame_counter >= D_STARTUP_TIME - 1'b1)
+                if (frame_counter >= D_STARTUP_TIME - 2'd2)
                     next_player_state = S_DAttack_active;
                 else
                     next_player_state = S_DAttack_start;
             end
 
             S_DAttack_active: begin
-                if (frame_counter >= D_ACTIVE_TIME - 1'b1)
+                if (frame_counter >= D_ACTIVE_TIME - 2'd2)
                     next_player_state = S_DAttack_recovery;
                 else
                     next_player_state = S_DAttack_active;
             end
 
             S_IAttack_recovery: begin
-					 if (stunmode == 2'b01) next_player_state = S_HITSTUN;
-                else if (frame_counter >= I_RECOVERY_TIME - 1'b1)
+				if (stunmode == 2'b01) next_player_state = S_HITSTUN;
+                else if (frame_counter >= I_RECOVERY_TIME - 2'd2)
                     next_player_state = S_IDLE;
                 else
                     next_player_state = S_IAttack_recovery;
@@ -185,7 +185,7 @@ module GameplayControllerP2(
             S_DAttack_recovery: begin
                 if (stunmode == 2'b01) next_player_state = S_HITSTUN;
                 else 
-					 if (frame_counter >= D_RECOVERY_TIME - 1'b1) begin
+					if (frame_counter >= D_RECOVERY_TIME - 2'd2) begin
                     if (attack && (in_left || in_right))
                         next_player_state = S_DAttack_start;
                     else

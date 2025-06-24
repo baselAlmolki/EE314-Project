@@ -52,14 +52,14 @@ module Picasso (
         .r(r_timer), .g(g_timer), .b(b_timer), .draw(draw_timer)
     );
 
-    // Status_renderer status_renderer(
-    //     .h_count(h_count), .v_count(v_count),
-    //     .display_area(display_area),
-    //     .p1_health(p1_health), .p2_health(p2_health),
-    //     .p1_shield(p1_shield), .p2_shield(p2_shield),
-    //     .r(r_stats), .g(g_stats), .b(b_stats),
-    //     .draw(draw_stats)
-    // );
+     Status_renderer status_renderer(
+         .h_count(h_count), .v_count(v_count),
+         .display_area(display_area),
+         .p1_health(p1_health), .p2_health(p2_health),
+         .p1_shield(p1_shield), .p2_shield(p2_shield),
+         .r(r_stats), .g(g_stats), .b(b_stats),
+         .draw(draw_stats)
+     );
 
     // Composite renderers with priority
     always @(*) begin
