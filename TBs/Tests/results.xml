@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1750796076" />
+    <testcase name="test_coded_converter" classname="hit_tb" file="C:\Users\quant\OneDrive\Desktop\EE314\Testbenches\hitdetectionTB\Tests\hit_tb.py" lineno="76" time="0.1275632381439209" sim_time_ns="106000" ratio_time="830960.4047555412" />
+  </testsuite>
+</testsuites>
