@@ -57,6 +57,7 @@ module main(
 	wire logic_clk, ai_clk, fightFlag, clk_oneHertz;
 	wire CLOCK_25;
 	wire [11:0] gametimer;
+	wire [7:0] time_elapsed;
 	wire [1:0] timer_control;
 	
 	assign VGA_CLK     = CLOCK_50;
@@ -64,8 +65,8 @@ module main(
 	assign VGA_SYNC_N  = 1'b0;
 	assign logic_clk   = SW[1] ? ~KEY[0] : clk_60Hz;
 	assign fightFlag = 1'b1; //GameState == FIGHT_GS;
-	assign timer_control = {1'b0, fightFlag};
-	
+	assign timer_control = reset_button ? 2'b11: {1'b0, fightFlag};
+	assign time_elapsed = gametimer[7:0];
 	 
     // === Clock Divider for 60Hz and AI ===
     wire clk_60Hz;
@@ -87,7 +88,7 @@ module main(
     );
 
 	 // === intiate game timer ===
-	 Counter #(12) GameSecondsElapsed(.control(2'b01),.clk(clk_oneHertz), .count(gametimer));
+	 Counter #(12) GameSecondsElapsed(.control(timer_control),.clk(clk_oneHertz), .count(gametimer));
  
 	 // === Player Positions (add your Y coordinate logic or constants here) ===
 	wire [9:0] player1_pos_x;
@@ -169,21 +170,7 @@ module main(
 		.stunmode(stunmode2),
 		.stunmode1(stunmode1)
     );   
-              
-	Picasso Game_Artist(
-		.clk(CLOCK_25),
-		.reset(),
-		.player_x(player1_pos_x),
-		.player_state(player1_state),
-		.player2_x(player2_pos_x),
-		.player2_state(player2_state),
-		.r(VGA_R),
-		.g(VGA_G),
-		.b(VGA_B),
-		.hsync(VGA_HS),
-		.vsync(VGA_VS)
-	);
-
+  
 	Statuses status_bars(
 		.clk(logic_clk),
 		.reset(reset_button),
@@ -198,6 +185,28 @@ module main(
 		.p1wins(LEDR[9]),
 		.p2wins(LEDR[8])
 	);
+	
+	// ======= - Leonardio Le Picasso - ================
+	           
+	Picasso Game_Artist(
+		.clk(CLOCK_25),
+		.reset(),
+		.player_x(player1_pos_x),
+		.player_state(player1_state),
+		.player2_x(player2_pos_x),
+		.player2_state(player2_state),
+		.time_elapsed(time_elapsed),
+		.p1_health(p1_health),
+		.p2_health(p2_health),
+		.p1_shield(p1_shield),
+		.p2_shield(p2_shield),
+		.r(VGA_R),
+		.g(VGA_G),
+		.b(VGA_B),
+		.hsync(VGA_HS),
+		.vsync(VGA_VS)
+	);
+	
     // === Debug LEDs and OUTPUTS ===
     assign LEDR[0] = p2_health[0];
     assign LEDR[1] = p2_health[1];
@@ -219,12 +228,13 @@ module main(
 		.gametime(gametimer),
 		.seg0(HEX2),
 		.seg1(HEX3),
-		.seg2(HEX4)
+		.seg2(HEX4),
+		.seg3(HEX5)
 		);
 
 	hexto7seg ai_lfsr(
-	.hex({1'b0,ai_action}),
-	.hexn(HEX5)
+	.hex({1'b0,ai_action})
+//	.hexn(HEX5)
 	);
 	hexto7seg hexy(
 		.hex(player1_state),
