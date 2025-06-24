@@ -1,4 +1,5 @@
 module HitDetection_updated (
+		input clk,
 		input [9:0] x1, // of top left corner 
 		input [9:0] x2,
 
@@ -35,7 +36,7 @@ module HitDetection_updated (
 		S_BLOCKSTUN          = 4'd10,
 		S_BACKWARD           = 4'd2,
 		
-		HITSTUN 				   = 2'b01,
+		HITSTUN 			    = 2'b01,
 		BLOCKSTUN   			= 2'b10,
 		WHIFF  					= 2'b11,
 		NEUTRAL   				= 2'b00;
@@ -81,7 +82,7 @@ module HitDetection_updated (
 	end
 
 	
-	always @(*) begin	
+	always @(posedge clk) begin	
 		case(attack_case)
 			
 			2'b01: begin // p1 attack
@@ -93,10 +94,14 @@ module HitDetection_updated (
 						p1_stunmode = NEUTRAL; // p1's attack connnected
 						p2_stunmode = HITSTUN; // p2 in hitstun						
 				
-					end else begin
+					end else if (p2_blocking & ~p2_instun & ~ noshield2) begin
 						p1_stunmode = NEUTRAL; // p1's attack connnected
 						p2_stunmode = BLOCKSTUN;
+					end else begin
+						p1_stunmode = NEUTRAL; //p1's attack connected
+						// leave p2 stunmode as-is
 					end
+					
 				end else begin p1_stunmode = WHIFF; p2_stunmode = NEUTRAL; withinp1range = 1'b0;// p1 players whiffed
 				end
 			end
@@ -107,9 +112,12 @@ module HitDetection_updated (
 						if ((~p1_blocking & ~p1_instun) | noshield1) begin 
 							p2_stunmode = NEUTRAL; // atk connected
 							p1_stunmode = HITSTUN; // p1 in hitsun
-						end else begin
+						end else if (p1_blocking & ~p1_instun & ~noshield1) begin
 							p2_stunmode = NEUTRAL; // p2's atk connnected
 							p1_stunmode = BLOCKSTUN; // 10 blockstun
+						end else begin
+							p2_stunmode = NEUTRAL; // p2's attack connected
+							// leave p1_stunmode as-is
 						end
 				end else begin p1_stunmode = NEUTRAL; p2_stunmode = WHIFF; withinp2range = 1'b0;// p2 player whiffed
 				end

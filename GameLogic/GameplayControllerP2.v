@@ -79,8 +79,6 @@ module GameplayControllerP2(
             S_FORWARD: begin
                 if (stunmode == 2'b01)
 			        next_player_state = S_HITSTUN;
-		        else if (stunmode == 2'b10)
-			        next_player_state = S_BLOCKSTUN;
 		        else if (attack && (in_left || in_right))
                     next_player_state = S_DAttack_start;
                 else if (attack && ~in_left && ~in_right)
@@ -147,36 +145,38 @@ module GameplayControllerP2(
             end
 
             S_IAttack_start: begin
-                if (frame_counter >= I_STARTUP_TIME - 2'd2)
+                if (frame_counter >= I_STARTUP_TIME - 1'b1)
                     next_player_state = S_IAttack_active;
                 else
                     next_player_state = S_IAttack_start;
             end
 
             S_IAttack_active: begin
-                if (frame_counter >= I_ACTIVE_TIME - 2'd2)
+                if (stunmode == 2'b01) next_player_state = S_HITSTUN;
+                else if (frame_counter >= I_ACTIVE_TIME - 1'b1)
                     next_player_state = S_IAttack_recovery;
                 else
                     next_player_state = S_IAttack_active;
             end
 
             S_DAttack_start: begin
-                if (frame_counter >= D_STARTUP_TIME - 2'd2)
+                if (frame_counter >= D_STARTUP_TIME - 1'b1)
                     next_player_state = S_DAttack_active;
                 else
                     next_player_state = S_DAttack_start;
             end
 
             S_DAttack_active: begin
-                if (frame_counter >= D_ACTIVE_TIME - 2'd2)
+                if (stunmode == 2'b01) next_player_state = S_HITSTUN;
+                else if (frame_counter >= D_ACTIVE_TIME - 1'b1)
                     next_player_state = S_DAttack_recovery;
                 else
                     next_player_state = S_DAttack_active;
             end
 
             S_IAttack_recovery: begin
-				if (stunmode == 2'b01) next_player_state = S_HITSTUN;
-                else if (frame_counter >= I_RECOVERY_TIME - 2'd2)
+					 if (stunmode == 2'b01) next_player_state = S_HITSTUN;
+                else if (frame_counter >= I_RECOVERY_TIME - 1'b1)
                     next_player_state = S_IDLE;
                 else
                     next_player_state = S_IAttack_recovery;
@@ -184,8 +184,7 @@ module GameplayControllerP2(
 
             S_DAttack_recovery: begin
                 if (stunmode == 2'b01) next_player_state = S_HITSTUN;
-                else 
-					if (frame_counter >= D_RECOVERY_TIME - 2'd2) begin
+                else if (frame_counter >= D_RECOVERY_TIME - 1'b1) begin
                     if (attack && (in_left || in_right))
                         next_player_state = S_DAttack_start;
                     else
@@ -196,11 +195,11 @@ module GameplayControllerP2(
 
             S_HITSTUN: begin
 					case(player1_state) 
-						S_IAttack_recovery: begin 
+						S_IAttack_recovery, S_IAttack_active: begin 
 							if (frame_counter >= I_RECOVERY_TIME-2'd2) next_player_state = S_IDLE;
 							else next_player_state = S_HITSTUN;
 						end 
-						S_DAttack_recovery: begin 
+						S_DAttack_recovery, S_DAttack_active: begin 
 							if (frame_counter >= D_RECOVERY_TIME-1'b1) next_player_state = S_IDLE;
 							else next_player_state = S_HITSTUN;
 						end
@@ -210,11 +209,11 @@ module GameplayControllerP2(
 
             S_BLOCKSTUN: begin
 					case(player1_state) 
-						S_IAttack_recovery: begin 
+						S_IAttack_recovery,S_IAttack_active: begin 
 							if (frame_counter >= I_RECOVERY_TIME-2'd3) next_player_state = S_IDLE;
 							else next_player_state = S_BLOCKSTUN;
 						end 
-						S_DAttack_recovery: begin 
+						S_DAttack_recovery,S_DAttack_active: begin 
 							if (frame_counter >= D_RECOVERY_TIME-2'd3) next_player_state = S_IDLE;
 							else next_player_state = S_BLOCKSTUN;
 						end 

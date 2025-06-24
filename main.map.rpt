@@ -1,5 +1,5 @@
 Analysis & Synthesis report for main
-Tue Jun 24 17:08:02 2025
+Tue Jun 24 22:45:14 2025
 Quartus Prime Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
 
 
@@ -77,13 +77,13 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +---------------------------------+------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Tue Jun 24 17:08:02 2025          ;
+; Analysis & Synthesis Status     ; Successful - Tue Jun 24 22:45:14 2025          ;
 ; Quartus Prime Version           ; 23.1std.1 Build 993 05/14/2024 SC Lite Edition ;
 ; Revision Name                   ; main                                           ;
 ; Top-level Entity Name           ; main                                           ;
 ; Family                          ; Cyclone V                                      ;
 ; Logic utilization (in ALMs)     ; N/A                                            ;
-; Total registers                 ; 236                                            ;
+; Total registers                 ; 240                                            ;
 ; Total pins                      ; 135                                            ;
 ; Total virtual pins              ; 0                                              ;
 ; Total block memory bits         ; 0                                              ;
@@ -248,25 +248,25 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+--------------------------------------------------+
 ; Resource                                    ; Usage                                            ;
 +---------------------------------------------+--------------------------------------------------+
-; Estimate of Logic utilization (ALMs needed) ; 1051                                             ;
+; Estimate of Logic utilization (ALMs needed) ; 1009                                             ;
 ;                                             ;                                                  ;
-; Combinational ALUT usage for logic          ; 1643                                             ;
-;     -- 7 input functions                    ; 20                                               ;
-;     -- 6 input functions                    ; 437                                              ;
-;     -- 5 input functions                    ; 184                                              ;
-;     -- 4 input functions                    ; 235                                              ;
-;     -- <=3 input functions                  ; 767                                              ;
+; Combinational ALUT usage for logic          ; 1597                                             ;
+;     -- 7 input functions                    ; 17                                               ;
+;     -- 6 input functions                    ; 403                                              ;
+;     -- 5 input functions                    ; 188                                              ;
+;     -- 4 input functions                    ; 227                                              ;
+;     -- <=3 input functions                  ; 762                                              ;
 ;                                             ;                                                  ;
-; Dedicated logic registers                   ; 236                                              ;
+; Dedicated logic registers                   ; 240                                              ;
 ;                                             ;                                                  ;
 ; I/O pins                                    ; 135                                              ;
 ;                                             ;                                                  ;
 ; Total DSP Blocks                            ; 0                                                ;
 ;                                             ;                                                  ;
 ; Maximum fan-out node                        ; Picasso:Game_Artist|Vga_Driver:driver|h_count[3] ;
-; Maximum fan-out                             ; 217                                              ;
-; Total fan-out                               ; 7346                                             ;
-; Average fan-out                             ; 3.36                                             ;
+; Maximum fan-out                             ; 218                                              ;
+; Total fan-out                               ; 7108                                             ;
+; Average fan-out                             ; 3.32                                             ;
 +---------------------------------------------+--------------------------------------------------+
 
 
@@ -275,17 +275,17 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+--------------+
 ; Compilation Hierarchy Node                   ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                     ; Entity Name          ; Library Name ;
 +----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+--------------+
-; |main                                        ; 1643 (9)            ; 236 (0)                   ; 0                 ; 0          ; 135  ; 0            ; |main                                                                                                                                                   ; main                 ; work         ;
+; |main                                        ; 1597 (10)           ; 240 (0)                   ; 0                 ; 0          ; 135  ; 0            ; |main                                                                                                                                                   ; main                 ; work         ;
 ;    |Clock_Divider:CLK_DIVA|                  ; 40 (40)             ; 33 (33)                   ; 0                 ; 0          ; 0    ; 0            ; |main|Clock_Divider:CLK_DIVA                                                                                                                            ; Clock_Divider        ; work         ;
 ;    |Clock_Divider:OneSEC|                    ; 40 (40)             ; 33 (33)                   ; 0                 ; 0          ; 0    ; 0            ; |main|Clock_Divider:OneSEC                                                                                                                              ; Clock_Divider        ; work         ;
 ;    |Clock_Divider:VGA_refresh|               ; 40 (40)             ; 33 (33)                   ; 0                 ; 0          ; 0    ; 0            ; |main|Clock_Divider:VGA_refresh                                                                                                                         ; Clock_Divider        ; work         ;
 ;    |Clock_Divider:clk_div_inst|              ; 40 (40)             ; 33 (33)                   ; 0                 ; 0          ; 0    ; 0            ; |main|Clock_Divider:clk_div_inst                                                                                                                        ; Clock_Divider        ; work         ;
 ;    |Counter:GameSecondsElapsed|              ; 12 (12)             ; 12 (12)                   ; 0                 ; 0          ; 0    ; 0            ; |main|Counter:GameSecondsElapsed                                                                                                                        ; Counter              ; work         ;
-;    |GameplayControllerP1:player1|            ; 222 (105)           ; 19 (19)                   ; 0                 ; 0          ; 0    ; 0            ; |main|GameplayControllerP1:player1                                                                                                                      ; GameplayControllerP1 ; work         ;
-;       |HitDetection_updated:hit_detec|       ; 117 (117)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|GameplayControllerP1:player1|HitDetection_updated:hit_detec                                                                                       ; HitDetection_updated ; work         ;
-;    |GameplayControllerP2:player2|            ; 123 (123)           ; 19 (19)                   ; 0                 ; 0          ; 0    ; 0            ; |main|GameplayControllerP2:player2                                                                                                                      ; GameplayControllerP2 ; work         ;
-;    |Picasso:Game_Artist|                     ; 903 (49)            ; 20 (0)                    ; 0                 ; 0          ; 0    ; 0            ; |main|Picasso:Game_Artist                                                                                                                               ; Picasso              ; work         ;
-;       |Player_Renderer:game_renderer|        ; 263 (263)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Picasso:Game_Artist|Player_Renderer:game_renderer                                                                                                 ; Player_Renderer      ; work         ;
+;    |GameplayControllerP1:player1|            ; 178 (102)           ; 23 (19)                   ; 0                 ; 0          ; 0    ; 0            ; |main|GameplayControllerP1:player1                                                                                                                      ; GameplayControllerP1 ; work         ;
+;       |HitDetection_updated:hit_detec|       ; 76 (76)             ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |main|GameplayControllerP1:player1|HitDetection_updated:hit_detec                                                                                       ; HitDetection_updated ; work         ;
+;    |GameplayControllerP2:player2|            ; 117 (117)           ; 19 (19)                   ; 0                 ; 0          ; 0    ; 0            ; |main|GameplayControllerP2:player2                                                                                                                      ; GameplayControllerP2 ; work         ;
+;    |Picasso:Game_Artist|                     ; 908 (49)            ; 20 (0)                    ; 0                 ; 0          ; 0    ; 0            ; |main|Picasso:Game_Artist                                                                                                                               ; Picasso              ; work         ;
+;       |Player_Renderer:game_renderer|        ; 268 (268)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Picasso:Game_Artist|Player_Renderer:game_renderer                                                                                                 ; Player_Renderer      ; work         ;
 ;       |Status_renderer:status_renderer|      ; 350 (350)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Picasso:Game_Artist|Status_renderer:status_renderer                                                                                               ; Status_renderer      ; work         ;
 ;       |Timer_Renderer:timer_renderer|        ; 209 (111)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Picasso:Game_Artist|Timer_Renderer:timer_renderer                                                                                                 ; Timer_Renderer       ; work         ;
 ;          |lpm_divide:Div0|                   ; 49 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Picasso:Game_Artist|Timer_Renderer:timer_renderer|lpm_divide:Div0                                                                                 ; lpm_divide           ; work         ;
@@ -306,7 +306,7 @@ https://fpgasoftware.intel.com/eula.
 ;    |hexto7seg:hexz|                          ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|hexto7seg:hexz                                                                                                                                    ; hexto7seg            ; work         ;
 ;    |p2ai:p2ai_inst|                          ; 9 (0)               ; 17 (1)                    ; 0                 ; 0          ; 0    ; 0            ; |main|p2ai:p2ai_inst                                                                                                                                    ; p2ai                 ; work         ;
 ;       |LFSR:p2_action|                       ; 9 (9)               ; 16 (16)                   ; 0                 ; 0          ; 0    ; 0            ; |main|p2ai:p2ai_inst|LFSR:p2_action                                                                                                                     ; LFSR                 ; work         ;
-;    |shieldto7seg:kjjghj|                     ; 14 (14)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|shieldto7seg:kjjghj                                                                                                                               ; shieldto7seg         ; work         ;
+;    |shieldto7seg:kjjghj|                     ; 12 (12)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|shieldto7seg:kjjghj                                                                                                                               ; shieldto7seg         ; work         ;
 ;    |timeTo7seg:timerDisplay|                 ; 150 (7)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|timeTo7seg:timerDisplay                                                                                                                           ; timeTo7seg           ; work         ;
 ;       |hexto7seg:timeconv1|                  ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|timeTo7seg:timerDisplay|hexto7seg:timeconv1                                                                                                       ; hexto7seg            ; work         ;
 ;       |hexto7seg:timeconv2|                  ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|timeTo7seg:timerDisplay|hexto7seg:timeconv2                                                                                                       ; hexto7seg            ; work         ;
@@ -352,12 +352,12 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 236   ;
+; Total registers                              ; 240   ;
 ; Number of registers using Synchronous Clear  ; 168   ;
 ; Number of registers using Synchronous Load   ; 4     ;
 ; Number of registers using Asynchronous Clear ; 40    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 27    ;
+; Number of registers using Clock Enable       ; 36    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -367,14 +367,14 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------------+---------+
 ; Inverted Register                            ; Fan out ;
 +----------------------------------------------+---------+
-; GameplayControllerP1:player1|player_pos_x[3] ; 17      ;
+; GameplayControllerP1:player1|player_pos_x[3] ; 14      ;
 ; GameplayControllerP1:player1|player_pos_x[1] ; 11      ;
 ; GameplayControllerP2:player2|player_pos_x[9] ; 21      ;
-; GameplayControllerP2:player2|player_pos_x[5] ; 18      ;
-; GameplayControllerP2:player2|player_pos_x[4] ; 17      ;
-; GameplayControllerP2:player2|player_pos_x[2] ; 14      ;
-; GameplayControllerP2:player2|player_pos_x[0] ; 13      ;
-; GameplayControllerP2:player2|player_pos_x[1] ; 15      ;
+; GameplayControllerP2:player2|player_pos_x[5] ; 16      ;
+; GameplayControllerP2:player2|player_pos_x[4] ; 15      ;
+; GameplayControllerP2:player2|player_pos_x[2] ; 13      ;
+; GameplayControllerP2:player2|player_pos_x[0] ; 12      ;
+; GameplayControllerP2:player2|player_pos_x[1] ; 13      ;
 ; Statuses:status_bars|le                      ; 16      ;
 ; p2ai:p2ai_inst|le                            ; 16      ;
 ; Total number of inverted registers = 10      ;         ;
@@ -386,21 +386,21 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                       ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------+
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |main|Statuses:status_bars|Shift_Register:block_shift_p2|OUT[1]  ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |main|Statuses:status_bars|Shift_Register:block_shift_p1|OUT[1]  ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |main|Statuses:status_bars|Shift_Register:block_shift_p2|OUT[2]  ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |main|Statuses:status_bars|Shift_Register:block_shift_p1|OUT[2]  ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |main|Statuses:status_bars|Shift_Register:health_shift_p1|OUT[1] ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |main|Statuses:status_bars|Shift_Register:health_shift_p2|OUT[1] ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |main|Statuses:status_bars|Shift_Register:health_shift_p1|OUT[2] ;
-; 21:1               ; 4 bits    ; 56 LEs        ; 4 LEs                ; 52 LEs                 ; Yes        ; |main|GameplayControllerP2:player2|player_pos_x[3]               ;
-; 23:1               ; 7 bits    ; 105 LEs       ; 7 LEs                ; 98 LEs                 ; Yes        ; |main|GameplayControllerP1:player1|player_pos_x[2]               ;
-; 21:1               ; 5 bits    ; 70 LEs        ; 5 LEs                ; 65 LEs                 ; Yes        ; |main|GameplayControllerP2:player2|player_pos_x[4]               ;
-; 23:1               ; 2 bits    ; 30 LEs        ; 2 LEs                ; 28 LEs                 ; Yes        ; |main|GameplayControllerP1:player1|player_pos_x[1]               ;
+; 21:1               ; 7 bits    ; 98 LEs        ; 7 LEs                ; 91 LEs                 ; Yes        ; |main|GameplayControllerP1:player1|player_pos_x[9]               ;
+; 23:1               ; 4 bits    ; 60 LEs        ; 4 LEs                ; 56 LEs                 ; Yes        ; |main|GameplayControllerP2:player2|player_pos_x[8]               ;
+; 21:1               ; 2 bits    ; 28 LEs        ; 2 LEs                ; 26 LEs                 ; Yes        ; |main|GameplayControllerP1:player1|player_pos_x[1]               ;
+; 23:1               ; 5 bits    ; 75 LEs        ; 5 LEs                ; 70 LEs                 ; Yes        ; |main|GameplayControllerP2:player2|player_pos_x[9]               ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |main|Picasso:Game_Artist|r[4]                                   ;
-; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |main|Picasso:Game_Artist|Player_Renderer:game_renderer|g_reg    ;
-; 5:1                ; 3 bits    ; 9 LEs         ; 9 LEs                ; 0 LEs                  ; No         ; |main|Picasso:Game_Artist|Player_Renderer:game_renderer|g[4]     ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |main|Picasso:Game_Artist|Player_Renderer:game_renderer|r_reg    ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 9 LEs                ; 0 LEs                  ; No         ; |main|Picasso:Game_Artist|Player_Renderer:game_renderer|r[4]     ;
 ; 6:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main|Picasso:Game_Artist|g[2]                                   ;
 ; 6:1                ; 3 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |main|Picasso:Game_Artist|r[2]                                   ;
 ; 7:1                ; 6 bits    ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |main|Picasso:Game_Artist|g[3]                                   ;
-; 7:1                ; 4 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |main|Picasso:Game_Artist|b[7]                                   ;
+; 7:1                ; 4 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |main|Picasso:Game_Artist|b[3]                                   ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------+
 
 
@@ -713,16 +713,22 @@ Note: In order to hide this table in the UI and the text report file, please set
 +------------------+-------+----------+-------------------------------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "Statuses:status_bars"                                                                                               ;
-+-----------------+--------+----------+----------------------------------------------------------------------------------------------------------+
-; Port            ; Type   ; Severity ; Details                                                                                                  ;
-+-----------------+--------+----------+----------------------------------------------------------------------------------------------------------+
-; p1_loose_health ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; p1_loose_block  ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; p2_loose_health ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-; p2_loose_block  ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
-+-----------------+--------+----------+----------------------------------------------------------------------------------------------------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Statuses:status_bars"                                                                                                                                   ;
++-----------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port            ; Type   ; Severity ; Details                                                                                                                                      ;
++-----------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; p1CS            ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; p2CS            ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; p1_hurt         ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; p2_hurt         ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; p1_block        ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; p2_block        ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; p1_loose_health ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; p1_loose_block  ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; p2_loose_health ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; p2_loose_block  ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
++-----------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -797,39 +803,39 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 236                         ;
-;     CLR               ; 31                          ;
+; arriav_ff             ; 240                         ;
+;     CLR               ; 22                          ;
 ;     ENA               ; 8                           ;
-;     ENA CLR           ; 9                           ;
+;     ENA CLR           ; 18                          ;
 ;     ENA SCLR          ; 10                          ;
 ;     SCLR              ; 158                         ;
 ;     SLD               ; 4                           ;
-;     plain             ; 16                          ;
+;     plain             ; 20                          ;
 ; arriav_io_obuf        ; 36                          ;
-; arriav_lcell_comb     ; 1657                        ;
+; arriav_lcell_comb     ; 1611                        ;
 ;     arith             ; 426                         ;
 ;         0 data inputs ; 33                          ;
 ;         1 data inputs ; 288                         ;
 ;         2 data inputs ; 22                          ;
 ;         3 data inputs ; 61                          ;
 ;         4 data inputs ; 22                          ;
-;     extend            ; 20                          ;
-;         7 data inputs ; 20                          ;
-;     normal            ; 1189                        ;
+;     extend            ; 17                          ;
+;         7 data inputs ; 17                          ;
+;     normal            ; 1146                        ;
 ;         0 data inputs ; 2                           ;
 ;         1 data inputs ; 12                          ;
-;         2 data inputs ; 194                         ;
-;         3 data inputs ; 147                         ;
-;         4 data inputs ; 213                         ;
-;         5 data inputs ; 184                         ;
-;         6 data inputs ; 437                         ;
+;         2 data inputs ; 195                         ;
+;         3 data inputs ; 141                         ;
+;         4 data inputs ; 205                         ;
+;         5 data inputs ; 188                         ;
+;         6 data inputs ; 403                         ;
 ;     shared            ; 22                          ;
 ;         0 data inputs ; 4                           ;
 ;         1 data inputs ; 18                          ;
 ; boundary_port         ; 135                         ;
 ;                       ;                             ;
 ; Max LUT depth         ; 21.20                       ;
-; Average LUT depth     ; 8.76                        ;
+; Average LUT depth     ; 8.29                        ;
 +-----------------------+-----------------------------+
 
 
@@ -838,7 +844,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:03     ;
+; Top            ; 00:00:04     ;
 +----------------+--------------+
 
 
@@ -848,7 +854,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
-    Info: Processing started: Tue Jun 24 17:07:51 2025
+    Info: Processing started: Tue Jun 24 22:45:02 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off main -c main
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -873,7 +879,7 @@ Info (12021): Found 1 design units, including 1 entities, in source file helperf
 Info (12021): Found 1 design units, including 1 entities, in source file main.v
     Info (12023): Found entity 1: main File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 6
 Info (12021): Found 1 design units, including 1 entities, in source file gamelogic/statuses.v
-    Info (12023): Found entity 1: Statuses File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/Statuses.v Line: 1
+    Info (12023): Found entity 1: Statuses File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/Statuses.v Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file gamelogic/p2ai.v
     Info (12023): Found entity 1: p2ai File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/p2ai.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file gamelogic/hitdetection_updated.v
@@ -888,10 +894,12 @@ Info (12021): Found 1 design units, including 1 entities, in source file vga/pla
     Info (12023): Found entity 1: Player_Renderer File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Player_Renderer.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file vga/picasso.v
     Info (12023): Found entity 1: Picasso File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Picasso.v Line: 2
-Warning (10236): Verilog HDL Implicit Net warning at GameplayControllerP1.v(46): created implicit net for "stun" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP1.v Line: 46
+Warning (10236): Verilog HDL Implicit Net warning at GameplayControllerP1.v(47): created implicit net for "stun" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP1.v Line: 47
 Info (12127): Elaborating entity "main" for the top level hierarchy
 Warning (10036): Verilog HDL or VHDL warning at main.v(96): object "player1_pos_y" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 96
 Warning (10036): Verilog HDL or VHDL warning at main.v(97): object "player2_pos_y" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 97
+Warning (10034): Output port "LEDR[7]" at main.v(26) has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 26
+Warning (10034): Output port "LEDR[2..0]" at main.v(26) has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 26
 Info (12128): Elaborating entity "Clock_Divider" for hierarchy "Clock_Divider:clk_div_inst" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 76
 Info (12128): Elaborating entity "Clock_Divider" for hierarchy "Clock_Divider:CLK_DIVA" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 80
 Info (12128): Elaborating entity "Clock_Divider" for hierarchy "Clock_Divider:OneSEC" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 84
@@ -900,27 +908,27 @@ Info (12128): Elaborating entity "Counter" for hierarchy "Counter:GameSecondsEla
 Info (12128): Elaborating entity "p2ai" for hierarchy "p2ai:p2ai_inst" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 132
 Info (12128): Elaborating entity "LFSR" for hierarchy "p2ai:p2ai_inst|LFSR:p2_action" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/p2ai.v Line: 27
 Info (12128): Elaborating entity "GameplayControllerP1" for hierarchy "GameplayControllerP1:player1" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 154
-Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(46): object "stun" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP1.v Line: 46
+Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(47): object "stun" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP1.v Line: 47
 Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(27): object "predicted_attack_flag" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP1.v Line: 27
 Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(28): object "predicted_is_directional_attack" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP1.v Line: 28
 Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(30): object "player2_attack_flag" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP1.v Line: 30
 Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(30): object "player2_is_directional_attack" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP1.v Line: 30
-Info (12128): Elaborating entity "HitDetection_updated" for hierarchy "GameplayControllerP1:player1|HitDetection_updated:hit_detec" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP1.v Line: 44
-Warning (10036): Verilog HDL or VHDL warning at HitDetection_updated.v(53): object "withinp1range" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/HitDetection_updated.v Line: 53
-Warning (10036): Verilog HDL or VHDL warning at HitDetection_updated.v(53): object "withinp2range" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/HitDetection_updated.v Line: 53
+Warning (10230): Verilog HDL assignment warning at GameplayControllerP1.v(91): truncated value with size 32 to match size of target (5) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP1.v Line: 91
+Info (12128): Elaborating entity "HitDetection_updated" for hierarchy "GameplayControllerP1:player1|HitDetection_updated:hit_detec" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP1.v Line: 45
+Warning (10036): Verilog HDL or VHDL warning at HitDetection_updated.v(54): object "withinp1range" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/HitDetection_updated.v Line: 54
+Warning (10036): Verilog HDL or VHDL warning at HitDetection_updated.v(54): object "withinp2range" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/HitDetection_updated.v Line: 54
 Info (12128): Elaborating entity "GameplayControllerP2" for hierarchy "GameplayControllerP2:player2" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 172
-Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP2.v(22): object "predicted_attack_flag" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP2.v Line: 22
-Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP2.v(23): object "predicted_is_directional_attack" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP2.v Line: 23
-Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP2.v(25): object "player1_attack_flag" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP2.v Line: 25
-Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP2.v(25): object "player1_is_directional_attack" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP2.v Line: 25
-Warning (10230): Verilog HDL assignment warning at GameplayControllerP2.v(83): truncated value with size 32 to match size of target (5) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP2.v Line: 83
-Info (12128): Elaborating entity "Statuses" for hierarchy "Statuses:status_bars" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 187
-Warning (10240): Verilog HDL Always Construct warning at Statuses.v(40): inferring latch(es) for variable "p2wins", which holds its previous value in one or more paths through the always construct File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/Statuses.v Line: 40
-Warning (10240): Verilog HDL Always Construct warning at Statuses.v(40): inferring latch(es) for variable "p1wins", which holds its previous value in one or more paths through the always construct File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/Statuses.v Line: 40
-Info (10041): Inferred latch for "p1wins" at Statuses.v(41) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/Statuses.v Line: 41
-Info (10041): Inferred latch for "p2wins" at Statuses.v(41) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/Statuses.v Line: 41
-Info (12128): Elaborating entity "Shift_Register" for hierarchy "Statuses:status_bars|Shift_Register:health_shift_p1" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/Statuses.v Line: 57
-Info (12128): Elaborating entity "Picasso" for hierarchy "Picasso:Game_Artist" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 208
+Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP2.v(21): object "predicted_attack_flag" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP2.v Line: 21
+Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP2.v(22): object "predicted_is_directional_attack" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP2.v Line: 22
+Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP2.v(24): object "player1_attack_flag" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP2.v Line: 24
+Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP2.v(24): object "player1_is_directional_attack" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP2.v Line: 24
+Info (12128): Elaborating entity "Statuses" for hierarchy "Statuses:status_bars" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 189
+Warning (10240): Verilog HDL Always Construct warning at Statuses.v(66): inferring latch(es) for variable "p2wins", which holds its previous value in one or more paths through the always construct File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/Statuses.v Line: 66
+Warning (10240): Verilog HDL Always Construct warning at Statuses.v(66): inferring latch(es) for variable "p1wins", which holds its previous value in one or more paths through the always construct File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/Statuses.v Line: 66
+Info (10041): Inferred latch for "p1wins" at Statuses.v(67) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/Statuses.v Line: 67
+Info (10041): Inferred latch for "p2wins" at Statuses.v(67) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/Statuses.v Line: 67
+Info (12128): Elaborating entity "Shift_Register" for hierarchy "Statuses:status_bars|Shift_Register:health_shift_p1" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/Statuses.v Line: 83
+Info (12128): Elaborating entity "Picasso" for hierarchy "Picasso:Game_Artist" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 210
 Info (12128): Elaborating entity "Vga_Driver" for hierarchy "Picasso:Game_Artist|Vga_Driver:driver" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Picasso.v Line: 38
 Warning (10034): Output port "r" at vga_driver.v(5) has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/vga_driver.v Line: 5
 Warning (10034): Output port "g" at vga_driver.v(6) has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/vga_driver.v Line: 6
@@ -935,8 +943,8 @@ Warning (10230): Verilog HDL assignment warning at Timer_Renderer.v(176): trunca
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "digit_rom" into its bus
 Info (12128): Elaborating entity "Status_renderer" for hierarchy "Picasso:Game_Artist|Status_renderer:status_renderer" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Picasso.v Line: 62
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "shape_rom" into its bus
-Info (12128): Elaborating entity "shieldto7seg" for hierarchy "shieldto7seg:kjjghj" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 225
-Info (12128): Elaborating entity "timeTo7seg" for hierarchy "timeTo7seg:timerDisplay" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 233
+Info (12128): Elaborating entity "shieldto7seg" for hierarchy "shieldto7seg:kjjghj" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 228
+Info (12128): Elaborating entity "timeTo7seg" for hierarchy "timeTo7seg:timerDisplay" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 236
 Warning (10230): Verilog HDL assignment warning at timeTo7seg.v(16): truncated value with size 12 to match size of target (6) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/timeTo7seg.v Line: 16
 Warning (10230): Verilog HDL assignment warning at timeTo7seg.v(17): truncated value with size 12 to match size of target (6) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/timeTo7seg.v Line: 17
 Warning (10230): Verilog HDL assignment warning at timeTo7seg.v(20): truncated value with size 6 to match size of target (4) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/timeTo7seg.v Line: 20
@@ -1035,7 +1043,9 @@ Warning (13039): The following bidirectional pins have no drivers
 Warning (13032): The following tri-state nodes are fed by constants
     Warning (13033): The pin "keypadGPIO[11]" is fed by GND File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "LEDR[3]" is stuck at GND File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 26
+    Warning (13410): Pin "LEDR[0]" is stuck at GND File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 26
+    Warning (13410): Pin "LEDR[1]" is stuck at GND File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 26
+    Warning (13410): Pin "LEDR[2]" is stuck at GND File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 26
     Warning (13410): Pin "LEDR[7]" is stuck at GND File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 26
     Warning (13410): Pin "VGA_BLANK_N" is stuck at VCC File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 32
     Warning (13410): Pin "VGA_SYNC_N" is stuck at GND File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 38
@@ -1053,15 +1063,15 @@ Warning (21074): Design contains 10 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SW[5]" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 29
     Warning (15610): No output dependent on input pin "SW[6]" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 29
     Warning (15610): No output dependent on input pin "SW[7]" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 29
-Info (21057): Implemented 1793 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 1750 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 18 input pins
     Info (21059): Implemented 81 output pins
     Info (21060): Implemented 36 bidirectional pins
-    Info (21061): Implemented 1658 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 89 warnings
-    Info: Peak virtual memory: 4848 megabytes
-    Info: Processing ended: Tue Jun 24 17:08:02 2025
-    Info: Elapsed time: 00:00:11
-    Info: Total CPU time (on all processors): 00:00:08
+    Info (21061): Implemented 1615 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 93 warnings
+    Info: Peak virtual memory: 4845 megabytes
+    Info: Processing ended: Tue Jun 24 22:45:14 2025
+    Info: Elapsed time: 00:00:12
+    Info: Total CPU time (on all processors): 00:00:11
 
 

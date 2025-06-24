@@ -5,12 +5,12 @@ module GameplayControllerP1(
     input in_right,
     input attack,
     input [9:0] player2_pos_x,
-	input [3:0] player2_state,
-	
-	input [2:0] shield1,
-	input [2:0] shield2,
-	input [2:0] health1,
-	input [2:0] health2,
+	 input [3:0] player2_state,
+	 
+	 input [2:0] shield1,
+	 input [2:0] shield2,
+	 input [2:0] health1,
+	 input [2:0] health2,
 
     input [9:0] screen_left_bound,
     input [9:0] screen_right_bound,
@@ -33,6 +33,7 @@ module GameplayControllerP1(
 //	wire [1:0] stunmode2;
 	 
 HitDetection_updated hit_detec(
+	.clk(logic_clk),
    .x1(player_pos_x),
    .x2(player2_pos_x),
    .state1(player_state),
@@ -86,7 +87,7 @@ assign stun = stunmode == 2'b10 | stunmode ==2'b01;
         end 
 		  else begin
 				player_state <= next_player_state;
-                player_pos_x <= tmp_result_x;
+            player_pos_x <= tmp_result_x;
 				frame_counter <= (player_state != next_player_state) ? 0 : frame_counter + 1;
         end
     end
@@ -99,17 +100,15 @@ assign stun = stunmode == 2'b10 | stunmode ==2'b01;
             S_FORWARD: begin
 					 if (stunmode == 2'b01)
 						  next_player_state = S_HITSTUN;
-					 else if (stunmode == 2'b10)
-						  next_player_state = S_BLOCKSTUN;
+                     else if (in_left && in_right) // handle simul left right
+                          next_player_state = S_IDLE;
 					 else if (attack && (in_left || in_right))
 						  next_player_state = S_DAttack_start;
 					 else if (attack && ~in_left && ~in_right)
 						  next_player_state = S_IAttack_start;
-                     else if (in_left && in_right) // handle simul left right
-                          next_player_state = S_IDLE;
 					 else if (in_left &&
 								player_pos_x > screen_left_bound + SPEED_BACKWARD) begin
-							tmp_result_x = player_pos_x - SPEED_BACKWARD;
+								tmp_result_x = player_pos_x - SPEED_BACKWARD;
 		    				next_player_state = S_BACKWARD;
 					 end else if (in_right &&
                                 player_pos_x < screen_right_bound - PLAYER_WIDTH - SPEED_FORWARD &&
@@ -125,40 +124,36 @@ assign stun = stunmode == 2'b10 | stunmode ==2'b01;
 						  next_player_state = S_HITSTUN;
 					 else if (stunmode == 2'b10)
 						  next_player_state = S_BLOCKSTUN;
+					 else if (in_left && in_right) // handle simul left right
+                          next_player_state = S_IDLE;
 					 else if (attack && (in_left || in_right))
 						  next_player_state = S_DAttack_start;
 					 else if (attack && ~in_left && ~in_right)
 						  next_player_state = S_IAttack_start;
-					 else if (in_left && in_right) // handle simul left right
-                          next_player_state = S_IDLE;
                 else if (in_right &&
 								 player_pos_x < screen_right_bound - PLAYER_WIDTH - SPEED_FORWARD &&
 								 player_pos_x < player2_pos_x - SPEED_BACKWARD - PLAYER_WIDTH) begin
 						tmp_result_x = player_pos_x + SPEED_FORWARD;
 						next_player_state = S_FORWARD;
 					 end else if (in_left &&
-								 player_pos_x > screen_left_bound + SPEED_BACKWARD) begin
-						  tmp_result_x = player_pos_x - SPEED_BACKWARD;
-						next_player_state = S_BACKWARD;
+								  player_pos_x > screen_left_bound + SPEED_BACKWARD) begin
+						    tmp_result_x = player_pos_x - SPEED_BACKWARD;
+						    next_player_state = S_BACKWARD;
 					 end else
-						  next_player_state = S_IDLE;
+						    next_player_state = S_IDLE;
 				end
 
             S_IDLE: begin
                 if (stunmode == 2'b01)
-                    next_player_state = S_HITSTUN;
-				else if (stunmode == 2'b10)
-                    next_player_state = S_BLOCKSTUN;
-						  
+					next_player_state = S_HITSTUN;
+                else if (in_left && in_right) // handle simul left right
+                    next_player_state = S_IDLE;
                 else if (attack && (in_left || in_right))
                     next_player_state = S_DAttack_start;
 						  
                 else if (attack && ~in_left && ~in_right)
                     next_player_state = S_IAttack_start;
-						  
-                else if (in_left && in_right) // handle simul left right
-                    next_player_state = S_IDLE;
-					  
+ 
                 else if (in_left && player_pos_x > screen_left_bound + SPEED_BACKWARD)
                     {tmp_result_x, next_player_state} = {player_pos_x - SPEED_BACKWARD, S_BACKWARD};
 						  
@@ -168,38 +163,38 @@ assign stun = stunmode == 2'b10 | stunmode ==2'b01;
             end
 
             S_IAttack_start: begin
-                if (frame_counter >= I_STARTUP_TIME - 2'd1)
+                if (frame_counter >= I_STARTUP_TIME - 1)
                     next_player_state = S_IAttack_active;
                 else
                     next_player_state = S_IAttack_start;
             end
 
             S_IAttack_active: begin
-				// 	 if (stunmode2 == 2'b01) next_player_state = S_IAttack_recovery;
-                // else 
-                if (frame_counter >= I_ACTIVE_TIME - 2'd1)
+				if (stunmode == 2'b01) next_player_state = S_HITSTUN;	//  if (stunmode2 == 2'b01) next_player_state = S_IAttack_recovery;
+                else if (frame_counter >= I_ACTIVE_TIME - 1'b1)
                     next_player_state = S_IAttack_recovery;
                 else
                     next_player_state = S_IAttack_active;
             end
 
             S_DAttack_start: begin
-                if (frame_counter >= D_STARTUP_TIME - 2'd2)
+                if (frame_counter >= D_STARTUP_TIME - 1'b1)
                     next_player_state = S_DAttack_active;
                 else
                     next_player_state = S_DAttack_start;
             end
 
             S_DAttack_active: begin
-                if (frame_counter >= D_ACTIVE_TIME - 2'd1)
+                if (stunmode == 2'b01) next_player_state = S_HITSTUN;
+                else if (frame_counter >= D_ACTIVE_TIME - 1'b1)
                     next_player_state = S_DAttack_recovery;
                 else
                     next_player_state = S_DAttack_active;
             end
 
             S_IAttack_recovery: begin
-			    if (stunmode == 2'b01) next_player_state = S_HITSTUN;
-                else if (frame_counter >= I_RECOVERY_TIME - 2'd1)
+				if (stunmode == 2'b01) next_player_state = S_HITSTUN;
+                else if (frame_counter >= I_RECOVERY_TIME - 1'b1)
                     next_player_state = S_IDLE;
                 else
                     next_player_state = S_IAttack_recovery;
@@ -207,12 +202,12 @@ assign stun = stunmode == 2'b10 | stunmode ==2'b01;
 
             S_DAttack_recovery: begin
                 if (stunmode == 2'b01) next_player_state = S_HITSTUN;
-                else 
-					if (frame_counter >= D_RECOVERY_TIME - 2'd1) begin
-                    if (attack && (in_left || in_right))
-                        next_player_state = S_DAttack_start;
-                    else
-                        next_player_state = S_IDLE;
+                else if (frame_counter >= D_RECOVERY_TIME - 1'b1) begin
+                    next_player_state = S_IDLE;
+                    // if (attack && (in_left || in_right))
+                    //     next_player_state = S_DAttack_start;
+                    // else
+                    //     next_player_state = S_IDLE;
                 end else
                     next_player_state = S_DAttack_recovery;
             end
@@ -246,7 +241,7 @@ assign stun = stunmode == 2'b10 | stunmode ==2'b01;
 				end
 				
 				default: begin
-						  next_player_state = S_IDLE;
+						next_player_state = S_IDLE;
 				end
         endcase
     end

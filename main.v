@@ -182,6 +182,8 @@ module main(
 		.p1_current_block(p1_shield),
 		.p2_current_health(p2_health),
 		.p2_current_block(p2_shield),
+//		.p1_block({LEDR[7], LEDR[6]}),
+//		.p2_block({LEDR[5], LEDR[4]}),
 		.p1wins(LEDR[9]),
 		.p2wins(LEDR[8])
 	);
@@ -208,14 +210,15 @@ module main(
 	);
 	
     // === Debug LEDs and OUTPUTS ===
-    assign LEDR[0] = p2_health[0];
-    assign LEDR[1] = p2_health[1];
-    assign LEDR[2] = p2_health[2];
-    assign LEDR[3] = 0;
-    assign LEDR[7] = 0;
-    assign LEDR[4] = p1_health[0];
-    assign LEDR[5] = p1_health[1];
-    assign LEDR[6] = p1_health[2];
+//    assign LEDR[0] = //p2_health[0];
+//    assign LEDR[1] = //p2_health[1];
+//    assign LEDR[2] = //p2_health[2];
+      assign LEDR[3] = stunmode1[0];
+	   assign LEDR[4] = stunmode1[1];//p1_health[0];
+	 // assign LEDR[7] = 0;
+	 
+    assign LEDR[5] = stunmode2[0];//p1_health[1];
+    assign LEDR[6] = stunmode2[1];//p1_health[2];
 
 	shieldto7seg kjjghj( 
 		.p1(p1_shield),

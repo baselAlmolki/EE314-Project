@@ -1,9 +1,13 @@
+// NOT THE ORIGINAL
+
 module Statuses(
-	input clk,
-	input reset,
-	input instun1, instun2,
-	input [1:0] p1_stunmode,
-   input [1:0] p2_stunmode,
+	input  clk,
+	input  reset,
+	input  p1CS, p2CS,
+	input  instun1, instun2,
+	input  [1:0] p1_stunmode,
+   input  [1:0] p2_stunmode,
+	output [1:0] p1_hurt, p2_hurt, p1_block, p2_block,
 	output p1_loose_health,
 	output p1_loose_block,
 	output p2_loose_health,
@@ -17,7 +21,33 @@ module Statuses(
 	output reg p1wins,p2wins
 );
 
-	wire [1:0] p1_hurt, p1_block, p2_hurt, p2_block;
+	localparam 
+		S_BACKWARD = 4'd2;
+
+	initial begin
+		le = 1'b1;
+		p1wins = 1'b0;
+		p2wins = 1'b0;
+		// p1_current_health = 3'b111;
+		// p2_current_health = 3'b111;
+		// p1_current_block  = 3'b111;
+		// p2_current_block  = 3'b111;
+	end
+
+	// always @(posedge clk or posedge reset) begin
+	// 	if (reset) begin
+	// 		le = 1'b1;
+	// 		p1wins = 1'b0;
+	// 		p2wins = 1'b0;
+	// 		p1_current_health = 3'b111;
+	// 		p2_current_health = 3'b111;
+	// 		p1_current_block  = 3'b111;
+	// 		p2_current_block  = 3'b111;
+	// 	end else if (S_)
+
+	// end
+
+//	wire [1:0] p1_hurt, p1_block, p2_hurt, p2_block;
 	reg le;
 	
 	assign p1_hurt  = {1'b1, (p1_stunmode == 2'b01 & ~instun1)};
@@ -25,11 +55,7 @@ module Statuses(
 	assign p2_hurt  = {1'b1, (p2_stunmode == 2'b01 & ~instun2)};
 	assign p2_block = {1'b1, (p2_stunmode == 2'b10)};
 
-	initial begin
-		le = 1'b1;
-		p1wins = 1'b0;
-		p2wins = 1'b0;
-	end
+
 	
 	always @(posedge clk or posedge reset) begin
 		if (reset) le<=1'b1;
