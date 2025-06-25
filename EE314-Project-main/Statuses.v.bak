@@ -1,0 +1,20 @@
+module Statuses(
+	input clk,
+	input [1:0] p1_stunmode,
+   input [1:0] p2_stunmode,
+	output loose_health,
+	output loose_block
+);
+
+wire hurt, block;
+
+assign hurt = {1'b1, (stunmode == 2'b01)};
+assign block = (stunmode == 2'b10);
+
+Shift_Register health_shift(
+	.serial_in(0),
+	.parallel_in(3'b111),
+	.shift_control(hurt), // 0 -> shift right, 1->shift left
+	.load_enable(), 
+	.clk(clk),
+	.OUT(loose_health))

@@ -1,0 +1,1087 @@
+Analysis & Synthesis report for main
+Tue Jun 24 08:07:49 2025
+Quartus Prime Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. User-Specified and Inferred Latches
+  9. Registers Removed During Synthesis
+ 10. General Register Statistics
+ 11. Inverted Register Statistics
+ 12. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 13. Parameter Settings for User Entity Instance: Clock_Divider:clk_div_inst
+ 14. Parameter Settings for User Entity Instance: Clock_Divider:CLK_DIVA
+ 15. Parameter Settings for User Entity Instance: Clock_Divider:OneSEC
+ 16. Parameter Settings for User Entity Instance: Clock_Divider:VGA_refresh
+ 17. Parameter Settings for User Entity Instance: Counter:GameSecondsElapsed
+ 18. Parameter Settings for User Entity Instance: p2ai:p2ai_inst
+ 19. Parameter Settings for User Entity Instance: GameplayControllerP1:player1
+ 20. Parameter Settings for User Entity Instance: GameplayControllerP2:player2
+ 21. Parameter Settings for User Entity Instance: Statuses:status_bars|Shift_Register:health_shift_p1
+ 22. Parameter Settings for User Entity Instance: Statuses:status_bars|Shift_Register:block_shift_p1
+ 23. Parameter Settings for User Entity Instance: Statuses:status_bars|Shift_Register:health_shift_p2
+ 24. Parameter Settings for User Entity Instance: Statuses:status_bars|Shift_Register:block_shift_p2
+ 25. Parameter Settings for Inferred Entity Instance: timeTo7seg:timerDisplay|lpm_divide:Div1
+ 26. Parameter Settings for Inferred Entity Instance: timeTo7seg:timerDisplay|lpm_divide:Div0
+ 27. Parameter Settings for Inferred Entity Instance: timeTo7seg:timerDisplay|lpm_divide:Div2
+ 28. Parameter Settings for Inferred Entity Instance: Picasso:Game_Artist|Timer_Renderer:timer_renderer|lpm_divide:Div0
+ 29. Parameter Settings for Inferred Entity Instance: Picasso:Game_Artist|Timer_Renderer:timer_renderer|lpm_divide:Mod0
+ 30. Port Connectivity Checks: "hexto7seg:ai_lfsr"
+ 31. Port Connectivity Checks: "Picasso:Game_Artist|Player_Renderer:game_renderer"
+ 32. Port Connectivity Checks: "Picasso:Game_Artist|Vga_Driver:driver"
+ 33. Port Connectivity Checks: "Picasso:Game_Artist"
+ 34. Port Connectivity Checks: "Statuses:status_bars|Shift_Register:block_shift_p2"
+ 35. Port Connectivity Checks: "Statuses:status_bars|Shift_Register:health_shift_p2"
+ 36. Port Connectivity Checks: "Statuses:status_bars|Shift_Register:block_shift_p1"
+ 37. Port Connectivity Checks: "Statuses:status_bars|Shift_Register:health_shift_p1"
+ 38. Port Connectivity Checks: "Statuses:status_bars"
+ 39. Port Connectivity Checks: "GameplayControllerP2:player2"
+ 40. Port Connectivity Checks: "GameplayControllerP1:player1"
+ 41. Port Connectivity Checks: "p2ai:p2ai_inst|LFSR:p2_action"
+ 42. Port Connectivity Checks: "Counter:GameSecondsElapsed"
+ 43. Post-Synthesis Netlist Statistics for Top Partition
+ 44. Elapsed Time Per Partition
+ 45. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2024  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                     ;
++---------------------------------+------------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Tue Jun 24 08:07:49 2025          ;
+; Quartus Prime Version           ; 23.1std.1 Build 993 05/14/2024 SC Lite Edition ;
+; Revision Name                   ; main                                           ;
+; Top-level Entity Name           ; main                                           ;
+; Family                          ; Cyclone V                                      ;
+; Logic utilization (in ALMs)     ; N/A                                            ;
+; Total registers                 ; 236                                            ;
+; Total pins                      ; 135                                            ;
+; Total virtual pins              ; 0                                              ;
+; Total block memory bits         ; 0                                              ;
+; Total DSP Blocks                ; 0                                              ;
+; Total HSSI RX PCSs              ; 0                                              ;
+; Total HSSI PMA RX Deserializers ; 0                                              ;
+; Total HSSI TX PCSs              ; 0                                              ;
+; Total HSSI PMA TX Serializers   ; 0                                              ;
+; Total PLLs                      ; 0                                              ;
+; Total DLLs                      ; 0                                              ;
++---------------------------------+------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 5CSEMA5F31C6       ;                    ;
+; Top-level entity name                                                           ; main               ; main               ;
+; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
+; Use smart compilation                                                           ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
+; Preserve fewer node names                                                       ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                                   ; Enable             ; Enable             ;
+; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Extract Verilog State Machines                                                  ; On                 ; On                 ;
+; Extract VHDL State Machines                                                     ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; On                 ; On                 ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Power-Up Don't Care                                                             ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Optimization Technique                                                          ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
+; Auto ROM Replacement                                                            ; On                 ; On                 ;
+; Auto RAM Replacement                                                            ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
+; Power Optimization During Synthesis                                             ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; Block Design Naming                                                             ; Auto               ; Auto               ;
+; SDC constraint protection                                                       ; Off                ; Off                ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                            ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 4           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processor 3            ;   0.0%      ;
+;     Processor 4            ;   0.0%      ;
++----------------------------+-------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                  ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                              ; Library ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------------+---------+
+; VGA/Status_renderer.v            ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Status_renderer.v            ;         ;
+; VGA/Timer_Renderer.v             ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Timer_Renderer.v             ;         ;
+; HelperFunctions/timeTo7seg.v     ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/timeTo7seg.v     ;         ;
+; HelperFunctions/Shift_Register.v ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/Shift_Register.v ;         ;
+; HelperFunctions/LFSR.v           ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/LFSR.v           ;         ;
+; HelperFunctions/hexto7seg.v      ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/hexto7seg.v      ;         ;
+; HelperFunctions/Counter.v        ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/Counter.v        ;         ;
+; HelperFunctions/Clock_Divider.v  ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/Clock_Divider.v  ;         ;
+; main.v                           ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v                           ;         ;
+; GameLogic/Statuses.v             ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/Statuses.v             ;         ;
+; GameLogic/p2ai.v                 ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/p2ai.v                 ;         ;
+; GameLogic/HitDetection_updated.v ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/HitDetection_updated.v ;         ;
+; GameLogic/GameplayControllerP2.v ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP2.v ;         ;
+; GameLogic/GameplayControllerP1.v ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP1.v ;         ;
+; VGA/vga_driver.v                 ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/vga_driver.v                 ;         ;
+; VGA/Player_Renderer.v            ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Player_Renderer.v            ;         ;
+; VGA/Picasso.v                    ; yes             ; User Verilog HDL File        ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Picasso.v                    ;         ;
+; lpm_divide.tdf                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/23.1std/quartus/libraries/megafunctions/lpm_divide.tdf                  ;         ;
+; abs_divider.inc                  ; yes             ; Megafunction                 ; c:/intelfpga_lite/23.1std/quartus/libraries/megafunctions/abs_divider.inc                 ;         ;
+; sign_div_unsign.inc              ; yes             ; Megafunction                 ; c:/intelfpga_lite/23.1std/quartus/libraries/megafunctions/sign_div_unsign.inc             ;         ;
+; aglobal231.inc                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/23.1std/quartus/libraries/megafunctions/aglobal231.inc                  ;         ;
+; db/lpm_divide_3am.tdf            ; yes             ; Auto-Generated Megafunction  ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/lpm_divide_3am.tdf            ;         ;
+; db/sign_div_unsign_9kh.tdf       ; yes             ; Auto-Generated Megafunction  ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/sign_div_unsign_9kh.tdf       ;         ;
+; db/alt_u_div_ose.tdf             ; yes             ; Auto-Generated Megafunction  ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/alt_u_div_ose.tdf             ;         ;
+; db/lpm_divide_ibm.tdf            ; yes             ; Auto-Generated Megafunction  ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/lpm_divide_ibm.tdf            ;         ;
+; db/sign_div_unsign_olh.tdf       ; yes             ; Auto-Generated Megafunction  ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/sign_div_unsign_olh.tdf       ;         ;
+; db/alt_u_div_mve.tdf             ; yes             ; Auto-Generated Megafunction  ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/alt_u_div_mve.tdf             ;         ;
+; db/lpm_divide_5am.tdf            ; yes             ; Auto-Generated Megafunction  ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/lpm_divide_5am.tdf            ;         ;
+; db/sign_div_unsign_bkh.tdf       ; yes             ; Auto-Generated Megafunction  ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/sign_div_unsign_bkh.tdf       ;         ;
+; db/alt_u_div_sse.tdf             ; yes             ; Auto-Generated Megafunction  ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/alt_u_div_sse.tdf             ;         ;
+; db/lpm_divide_82m.tdf            ; yes             ; Auto-Generated Megafunction  ; C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/lpm_divide_82m.tdf            ;         ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------------+---------+
+
+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimate of Logic utilization (ALMs needed) ; 806       ;
+;                                             ;           ;
+; Combinational ALUT usage for logic          ; 1317      ;
+;     -- 7 input functions                    ; 11        ;
+;     -- 6 input functions                    ; 283       ;
+;     -- 5 input functions                    ; 116       ;
+;     -- 4 input functions                    ; 150       ;
+;     -- <=3 input functions                  ; 757       ;
+;                                             ;           ;
+; Dedicated logic registers                   ; 236       ;
+;                                             ;           ;
+; I/O pins                                    ; 135       ;
+;                                             ;           ;
+; Total DSP Blocks                            ; 0         ;
+;                                             ;           ;
+; Maximum fan-out node                        ; logic_clk ;
+; Maximum fan-out                             ; 121       ;
+; Total fan-out                               ; 5644      ;
+; Average fan-out                             ; 3.04      ;
++---------------------------------------------+-----------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                                                   ;
++----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+--------------+
+; Compilation Hierarchy Node                   ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                     ; Entity Name          ; Library Name ;
++----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+--------------+
+; |main                                        ; 1317 (10)           ; 236 (0)                   ; 0                 ; 0          ; 135  ; 0            ; |main                                                                                                                                                   ; main                 ; work         ;
+;    |Clock_Divider:CLK_DIVA|                  ; 40 (40)             ; 33 (33)                   ; 0                 ; 0          ; 0    ; 0            ; |main|Clock_Divider:CLK_DIVA                                                                                                                            ; Clock_Divider        ; work         ;
+;    |Clock_Divider:OneSEC|                    ; 40 (40)             ; 33 (33)                   ; 0                 ; 0          ; 0    ; 0            ; |main|Clock_Divider:OneSEC                                                                                                                              ; Clock_Divider        ; work         ;
+;    |Clock_Divider:VGA_refresh|               ; 40 (40)             ; 33 (33)                   ; 0                 ; 0          ; 0    ; 0            ; |main|Clock_Divider:VGA_refresh                                                                                                                         ; Clock_Divider        ; work         ;
+;    |Clock_Divider:clk_div_inst|              ; 40 (40)             ; 33 (33)                   ; 0                 ; 0          ; 0    ; 0            ; |main|Clock_Divider:clk_div_inst                                                                                                                        ; Clock_Divider        ; work         ;
+;    |Counter:GameSecondsElapsed|              ; 12 (12)             ; 12 (12)                   ; 0                 ; 0          ; 0    ; 0            ; |main|Counter:GameSecondsElapsed                                                                                                                        ; Counter              ; work         ;
+;    |GameplayControllerP1:player1|            ; 223 (106)           ; 19 (19)                   ; 0                 ; 0          ; 0    ; 0            ; |main|GameplayControllerP1:player1                                                                                                                      ; GameplayControllerP1 ; work         ;
+;       |HitDetection_updated:hit_detec|       ; 117 (117)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|GameplayControllerP1:player1|HitDetection_updated:hit_detec                                                                                       ; HitDetection_updated ; work         ;
+;    |GameplayControllerP2:player2|            ; 122 (122)           ; 19 (19)                   ; 0                 ; 0          ; 0    ; 0            ; |main|GameplayControllerP2:player2                                                                                                                      ; GameplayControllerP2 ; work         ;
+;    |Picasso:Game_Artist|                     ; 544 (24)            ; 20 (0)                    ; 0                 ; 0          ; 0    ; 0            ; |main|Picasso:Game_Artist                                                                                                                               ; Picasso              ; work         ;
+;       |Player_Renderer:game_renderer|        ; 245 (245)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Picasso:Game_Artist|Player_Renderer:game_renderer                                                                                                 ; Player_Renderer      ; work         ;
+;       |Status_renderer:status_renderer|      ; 26 (26)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Picasso:Game_Artist|Status_renderer:status_renderer                                                                                               ; Status_renderer      ; work         ;
+;       |Timer_Renderer:timer_renderer|        ; 217 (119)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Picasso:Game_Artist|Timer_Renderer:timer_renderer                                                                                                 ; Timer_Renderer       ; work         ;
+;          |lpm_divide:Div0|                   ; 49 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Picasso:Game_Artist|Timer_Renderer:timer_renderer|lpm_divide:Div0                                                                                 ; lpm_divide           ; work         ;
+;             |lpm_divide_5am:auto_generated|  ; 49 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Picasso:Game_Artist|Timer_Renderer:timer_renderer|lpm_divide:Div0|lpm_divide_5am:auto_generated                                                   ; lpm_divide_5am       ; work         ;
+;                |sign_div_unsign_bkh:divider| ; 49 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Picasso:Game_Artist|Timer_Renderer:timer_renderer|lpm_divide:Div0|lpm_divide_5am:auto_generated|sign_div_unsign_bkh:divider                       ; sign_div_unsign_bkh  ; work         ;
+;                   |alt_u_div_sse:divider|    ; 49 (49)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Picasso:Game_Artist|Timer_Renderer:timer_renderer|lpm_divide:Div0|lpm_divide_5am:auto_generated|sign_div_unsign_bkh:divider|alt_u_div_sse:divider ; alt_u_div_sse        ; work         ;
+;          |lpm_divide:Mod0|                   ; 49 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Picasso:Game_Artist|Timer_Renderer:timer_renderer|lpm_divide:Mod0                                                                                 ; lpm_divide           ; work         ;
+;             |lpm_divide_82m:auto_generated|  ; 49 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Picasso:Game_Artist|Timer_Renderer:timer_renderer|lpm_divide:Mod0|lpm_divide_82m:auto_generated                                                   ; lpm_divide_82m       ; work         ;
+;                |sign_div_unsign_bkh:divider| ; 49 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Picasso:Game_Artist|Timer_Renderer:timer_renderer|lpm_divide:Mod0|lpm_divide_82m:auto_generated|sign_div_unsign_bkh:divider                       ; sign_div_unsign_bkh  ; work         ;
+;                   |alt_u_div_sse:divider|    ; 49 (49)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Picasso:Game_Artist|Timer_Renderer:timer_renderer|lpm_divide:Mod0|lpm_divide_82m:auto_generated|sign_div_unsign_bkh:divider|alt_u_div_sse:divider ; alt_u_div_sse        ; work         ;
+;       |Vga_Driver:driver|                    ; 32 (32)             ; 20 (20)                   ; 0                 ; 0          ; 0    ; 0            ; |main|Picasso:Game_Artist|Vga_Driver:driver                                                                                                             ; Vga_Driver           ; work         ;
+;    |Statuses:status_bars|                    ; 29 (13)             ; 17 (1)                    ; 0                 ; 0          ; 0    ; 0            ; |main|Statuses:status_bars                                                                                                                              ; Statuses             ; work         ;
+;       |Shift_Register:block_shift_p1|        ; 4 (4)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Statuses:status_bars|Shift_Register:block_shift_p1                                                                                                ; Shift_Register       ; work         ;
+;       |Shift_Register:block_shift_p2|        ; 4 (4)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Statuses:status_bars|Shift_Register:block_shift_p2                                                                                                ; Shift_Register       ; work         ;
+;       |Shift_Register:health_shift_p1|       ; 4 (4)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Statuses:status_bars|Shift_Register:health_shift_p1                                                                                               ; Shift_Register       ; work         ;
+;       |Shift_Register:health_shift_p2|       ; 4 (4)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |main|Statuses:status_bars|Shift_Register:health_shift_p2                                                                                               ; Shift_Register       ; work         ;
+;    |hexto7seg:hexy|                          ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|hexto7seg:hexy                                                                                                                                    ; hexto7seg            ; work         ;
+;    |hexto7seg:hexz|                          ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|hexto7seg:hexz                                                                                                                                    ; hexto7seg            ; work         ;
+;    |p2ai:p2ai_inst|                          ; 9 (0)               ; 17 (1)                    ; 0                 ; 0          ; 0    ; 0            ; |main|p2ai:p2ai_inst                                                                                                                                    ; p2ai                 ; work         ;
+;       |LFSR:p2_action|                       ; 9 (9)               ; 16 (16)                   ; 0                 ; 0          ; 0    ; 0            ; |main|p2ai:p2ai_inst|LFSR:p2_action                                                                                                                     ; LFSR                 ; work         ;
+;    |timeTo7seg:timerDisplay|                 ; 194 (10)            ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|timeTo7seg:timerDisplay                                                                                                                           ; timeTo7seg           ; work         ;
+;       |hexto7seg:timeconv1|                  ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|timeTo7seg:timerDisplay|hexto7seg:timeconv1                                                                                                       ; hexto7seg            ; work         ;
+;       |hexto7seg:timeconv2|                  ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|timeTo7seg:timerDisplay|hexto7seg:timeconv2                                                                                                       ; hexto7seg            ; work         ;
+;       |hexto7seg:timeconv3|                  ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|timeTo7seg:timerDisplay|hexto7seg:timeconv3                                                                                                       ; hexto7seg            ; work         ;
+;       |hexto7seg:timeconv4|                  ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|timeTo7seg:timerDisplay|hexto7seg:timeconv4                                                                                                       ; hexto7seg            ; work         ;
+;       |lpm_divide:Div0|                      ; 102 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|timeTo7seg:timerDisplay|lpm_divide:Div0                                                                                                           ; lpm_divide           ; work         ;
+;          |lpm_divide_ibm:auto_generated|     ; 102 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|timeTo7seg:timerDisplay|lpm_divide:Div0|lpm_divide_ibm:auto_generated                                                                             ; lpm_divide_ibm       ; work         ;
+;             |sign_div_unsign_olh:divider|    ; 102 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|timeTo7seg:timerDisplay|lpm_divide:Div0|lpm_divide_ibm:auto_generated|sign_div_unsign_olh:divider                                                 ; sign_div_unsign_olh  ; work         ;
+;                |alt_u_div_mve:divider|       ; 102 (102)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|timeTo7seg:timerDisplay|lpm_divide:Div0|lpm_divide_ibm:auto_generated|sign_div_unsign_olh:divider|alt_u_div_mve:divider                           ; alt_u_div_mve        ; work         ;
+;       |lpm_divide:Div1|                      ; 27 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|timeTo7seg:timerDisplay|lpm_divide:Div1                                                                                                           ; lpm_divide           ; work         ;
+;          |lpm_divide_3am:auto_generated|     ; 27 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|timeTo7seg:timerDisplay|lpm_divide:Div1|lpm_divide_3am:auto_generated                                                                             ; lpm_divide_3am       ; work         ;
+;             |sign_div_unsign_9kh:divider|    ; 27 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|timeTo7seg:timerDisplay|lpm_divide:Div1|lpm_divide_3am:auto_generated|sign_div_unsign_9kh:divider                                                 ; sign_div_unsign_9kh  ; work         ;
+;                |alt_u_div_ose:divider|       ; 27 (27)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|timeTo7seg:timerDisplay|lpm_divide:Div1|lpm_divide_3am:auto_generated|sign_div_unsign_9kh:divider|alt_u_div_ose:divider                           ; alt_u_div_ose        ; work         ;
+;       |lpm_divide:Div2|                      ; 27 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|timeTo7seg:timerDisplay|lpm_divide:Div2                                                                                                           ; lpm_divide           ; work         ;
+;          |lpm_divide_3am:auto_generated|     ; 27 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|timeTo7seg:timerDisplay|lpm_divide:Div2|lpm_divide_3am:auto_generated                                                                             ; lpm_divide_3am       ; work         ;
+;             |sign_div_unsign_9kh:divider|    ; 27 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|timeTo7seg:timerDisplay|lpm_divide:Div2|lpm_divide_3am:auto_generated|sign_div_unsign_9kh:divider                                                 ; sign_div_unsign_9kh  ; work         ;
+;                |alt_u_div_ose:divider|       ; 27 (27)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |main|timeTo7seg:timerDisplay|lpm_divide:Div2|lpm_divide_3am:auto_generated|sign_div_unsign_9kh:divider|alt_u_div_ose:divider                           ; alt_u_div_ose        ; work         ;
++----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-----------------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                       ;
++----------------------------------------------------+-----------------------------+------------------------+
+; Latch Name                                         ; Latch Enable Signal         ; Free of Timing Hazards ;
++----------------------------------------------------+-----------------------------+------------------------+
+; Statuses:status_bars|p2wins                        ; GND                         ; yes                    ;
+; Statuses:status_bars|p1wins                        ; Statuses:status_bars|Equal4 ; yes                    ;
+; Number of user-specified and inferred latches = 2  ;                             ;                        ;
++----------------------------------------------------+-----------------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                 ;
++---------------------------------------------------------------------------+----------------------------------------+
+; Register name                                                             ; Reason for Removal                     ;
++---------------------------------------------------------------------------+----------------------------------------+
+; Statuses:status_bars|Shift_Register:block_shift_p2|prev_shift_control[1]  ; Stuck at VCC due to stuck port data_in ;
+; Statuses:status_bars|Shift_Register:health_shift_p2|prev_shift_control[1] ; Stuck at VCC due to stuck port data_in ;
+; Statuses:status_bars|Shift_Register:block_shift_p1|prev_shift_control[1]  ; Stuck at VCC due to stuck port data_in ;
+; Statuses:status_bars|Shift_Register:health_shift_p1|prev_shift_control[1] ; Stuck at VCC due to stuck port data_in ;
+; Total Number of Removed Registers = 4                                     ;                                        ;
++---------------------------------------------------------------------------+----------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 236   ;
+; Number of registers using Synchronous Clear  ; 168   ;
+; Number of registers using Synchronous Load   ; 4     ;
+; Number of registers using Asynchronous Clear ; 40    ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 18    ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++--------------------------------------------------------+
+; Inverted Register Statistics                           ;
++----------------------------------------------+---------+
+; Inverted Register                            ; Fan out ;
++----------------------------------------------+---------+
+; GameplayControllerP1:player1|player_pos_x[3] ; 16      ;
+; GameplayControllerP1:player1|player_pos_x[1] ; 13      ;
+; GameplayControllerP2:player2|player_pos_x[2] ; 14      ;
+; GameplayControllerP2:player2|player_pos_x[0] ; 13      ;
+; GameplayControllerP2:player2|player_pos_x[1] ; 15      ;
+; GameplayControllerP2:player2|player_pos_x[9] ; 21      ;
+; GameplayControllerP2:player2|player_pos_x[5] ; 18      ;
+; GameplayControllerP2:player2|player_pos_x[4] ; 17      ;
+; Statuses:status_bars|le                      ; 16      ;
+; p2ai:p2ai_inst|le                            ; 16      ;
+; Total number of inverted registers = 10      ;         ;
++----------------------------------------------+---------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                 ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------+
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |main|Statuses:status_bars|Shift_Register:health_shift_p2|OUT[1] ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |main|Statuses:status_bars|Shift_Register:health_shift_p1|OUT[2] ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |main|Statuses:status_bars|Shift_Register:block_shift_p1|OUT[1]  ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |main|Statuses:status_bars|Shift_Register:block_shift_p2|OUT[1]  ;
+; 21:1               ; 7 bits    ; 98 LEs        ; 7 LEs                ; 91 LEs                 ; Yes        ; |main|GameplayControllerP1:player1|player_pos_x[8]               ;
+; 21:1               ; 4 bits    ; 56 LEs        ; 4 LEs                ; 52 LEs                 ; Yes        ; |main|GameplayControllerP2:player2|player_pos_x[3]               ;
+; 21:1               ; 2 bits    ; 28 LEs        ; 2 LEs                ; 26 LEs                 ; Yes        ; |main|GameplayControllerP1:player1|player_pos_x[1]               ;
+; 21:1               ; 5 bits    ; 70 LEs        ; 5 LEs                ; 65 LEs                 ; Yes        ; |main|GameplayControllerP2:player2|player_pos_x[1]               ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |main|Picasso:Game_Artist|b[4]                                   ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |main|Picasso:Game_Artist|b[6]                                   ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |main|Picasso:Game_Artist|Player_Renderer:game_renderer|g_reg    ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 9 LEs                ; 0 LEs                  ; No         ; |main|Picasso:Game_Artist|Player_Renderer:game_renderer|b[4]     ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |main|Picasso:Game_Artist|g[2]                                   ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main|Picasso:Game_Artist|r[0]                                   ;
+; 7:1                ; 8 bits    ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |main|Picasso:Game_Artist|b[3]                                   ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main|Picasso:Game_Artist|r[7]                                   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Clock_Divider:clk_div_inst ;
++----------------+--------+-----------------------------------------------+
+; Parameter Name ; Value  ; Type                                          ;
++----------------+--------+-----------------------------------------------+
+; DIV            ; 833333 ; Signed Integer                                ;
++----------------+--------+-----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Clock_Divider:CLK_DIVA ;
++----------------+-------+--------------------------------------------+
+; Parameter Name ; Value ; Type                                       ;
++----------------+-------+--------------------------------------------+
+; DIV            ; 40    ; Signed Integer                             ;
++----------------+-------+--------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Clock_Divider:OneSEC ;
++----------------+-------+------------------------------------------+
+; Parameter Name ; Value ; Type                                     ;
++----------------+-------+------------------------------------------+
+; DIV            ; 60    ; Signed Integer                           ;
++----------------+-------+------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Clock_Divider:VGA_refresh ;
++----------------+-------+-----------------------------------------------+
+; Parameter Name ; Value ; Type                                          ;
++----------------+-------+-----------------------------------------------+
+; DIV            ; 2     ; Signed Integer                                ;
++----------------+-------+-----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Counter:GameSecondsElapsed ;
++----------------+-------+------------------------------------------------+
+; Parameter Name ; Value ; Type                                           ;
++----------------+-------+------------------------------------------------+
+; W              ; 12    ; Signed Integer                                 ;
++----------------+-------+------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: p2ai:p2ai_inst ;
++----------------+-------+------------------------------------+
+; Parameter Name ; Value ; Type                               ;
++----------------+-------+------------------------------------+
+; SEED           ; 29242 ; Signed Integer                     ;
++----------------+-------+------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: GameplayControllerP1:player1 ;
++----------------+------------+---------------------------------------------+
+; Parameter Name ; Value      ; Type                                        ;
++----------------+------------+---------------------------------------------+
+; PLAYER_WIDTH   ; 0001000000 ; Unsigned Binary                             ;
+; SPEED_FORWARD  ; 0000000011 ; Unsigned Binary                             ;
+; SPEED_BACKWARD ; 0000000010 ; Unsigned Binary                             ;
++----------------+------------+---------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: GameplayControllerP2:player2 ;
++----------------+------------+---------------------------------------------+
+; Parameter Name ; Value      ; Type                                        ;
++----------------+------------+---------------------------------------------+
+; PLAYER_WIDTH   ; 0001000000 ; Unsigned Binary                             ;
+; SPEED_FORWARD  ; 0000000011 ; Unsigned Binary                             ;
+; SPEED_BACKWARD ; 0000000010 ; Unsigned Binary                             ;
++----------------+------------+---------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Statuses:status_bars|Shift_Register:health_shift_p1 ;
++----------------+-------+-------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                    ;
++----------------+-------+-------------------------------------------------------------------------+
+; W              ; 3     ; Signed Integer                                                          ;
++----------------+-------+-------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Statuses:status_bars|Shift_Register:block_shift_p1 ;
++----------------+-------+------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                   ;
++----------------+-------+------------------------------------------------------------------------+
+; W              ; 3     ; Signed Integer                                                         ;
++----------------+-------+------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Statuses:status_bars|Shift_Register:health_shift_p2 ;
++----------------+-------+-------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                    ;
++----------------+-------+-------------------------------------------------------------------------+
+; W              ; 3     ; Signed Integer                                                          ;
++----------------+-------+-------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Statuses:status_bars|Shift_Register:block_shift_p2 ;
++----------------+-------+------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                   ;
++----------------+-------+------------------------------------------------------------------------+
+; W              ; 3     ; Signed Integer                                                         ;
++----------------+-------+------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: timeTo7seg:timerDisplay|lpm_divide:Div1 ;
++------------------------+----------------+------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                           ;
++------------------------+----------------+------------------------------------------------+
+; LPM_WIDTHN             ; 6              ; Untyped                                        ;
+; LPM_WIDTHD             ; 4              ; Untyped                                        ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                        ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                        ;
+; LPM_PIPELINE           ; 0              ; Untyped                                        ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                        ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                        ;
+; CBXI_PARAMETER         ; lpm_divide_3am ; Untyped                                        ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                        ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                        ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                     ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                   ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                   ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                 ;
++------------------------+----------------+------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: timeTo7seg:timerDisplay|lpm_divide:Div0 ;
++------------------------+----------------+------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                           ;
++------------------------+----------------+------------------------------------------------+
+; LPM_WIDTHN             ; 12             ; Untyped                                        ;
+; LPM_WIDTHD             ; 6              ; Untyped                                        ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                        ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                        ;
+; LPM_PIPELINE           ; 0              ; Untyped                                        ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                        ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                        ;
+; CBXI_PARAMETER         ; lpm_divide_ibm ; Untyped                                        ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                        ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                        ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                     ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                   ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                   ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                 ;
++------------------------+----------------+------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: timeTo7seg:timerDisplay|lpm_divide:Div2 ;
++------------------------+----------------+------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                           ;
++------------------------+----------------+------------------------------------------------+
+; LPM_WIDTHN             ; 6              ; Untyped                                        ;
+; LPM_WIDTHD             ; 4              ; Untyped                                        ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                        ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                        ;
+; LPM_PIPELINE           ; 0              ; Untyped                                        ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                        ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                        ;
+; CBXI_PARAMETER         ; lpm_divide_3am ; Untyped                                        ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                        ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                        ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                     ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                   ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                   ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                 ;
++------------------------+----------------+------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: Picasso:Game_Artist|Timer_Renderer:timer_renderer|lpm_divide:Div0 ;
++------------------------+----------------+--------------------------------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                                                     ;
++------------------------+----------------+--------------------------------------------------------------------------+
+; LPM_WIDTHN             ; 8              ; Untyped                                                                  ;
+; LPM_WIDTHD             ; 4              ; Untyped                                                                  ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                                                  ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                                                  ;
+; LPM_PIPELINE           ; 0              ; Untyped                                                                  ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                                                  ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                                                  ;
+; CBXI_PARAMETER         ; lpm_divide_5am ; Untyped                                                                  ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                                                  ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                                                  ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                                               ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                                             ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                                             ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                                           ;
++------------------------+----------------+--------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: Picasso:Game_Artist|Timer_Renderer:timer_renderer|lpm_divide:Mod0 ;
++------------------------+----------------+--------------------------------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                                                     ;
++------------------------+----------------+--------------------------------------------------------------------------+
+; LPM_WIDTHN             ; 8              ; Untyped                                                                  ;
+; LPM_WIDTHD             ; 4              ; Untyped                                                                  ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                                                  ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                                                  ;
+; LPM_PIPELINE           ; 0              ; Untyped                                                                  ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                                                  ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                                                  ;
+; CBXI_PARAMETER         ; lpm_divide_82m ; Untyped                                                                  ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                                                  ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                                                  ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                                               ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                                             ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                                             ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                                           ;
++------------------------+----------------+--------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "hexto7seg:ai_lfsr"                                                                                         ;
++--------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                                                  ;
++--------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; hex[3] ; Input  ; Info     ; Stuck at GND                                                                                             ;
+; hexn   ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+----------------------------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Picasso:Game_Artist|Player_Renderer:game_renderer"                                                                                             ;
++---------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                                                                                      ;
++---------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; vga_clk ; Input ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
++---------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Picasso:Game_Artist|Vga_Driver:driver"                                                                   ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                                                  ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; r    ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
+; g    ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
+; b    ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------+
+; Port Connectivity Checks: "Picasso:Game_Artist"   ;
++-------+-------+----------+------------------------+
+; Port  ; Type  ; Severity ; Details                ;
++-------+-------+----------+------------------------+
+; reset ; Input ; Info     ; Explicitly unconnected ;
++-------+-------+----------+------------------------+
+
+
++--------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Statuses:status_bars|Shift_Register:block_shift_p2" ;
++------------------+-------+----------+------------------------------------------+
+; Port             ; Type  ; Severity ; Details                                  ;
++------------------+-------+----------+------------------------------------------+
+; serial_in        ; Input ; Info     ; Stuck at GND                             ;
+; parallel_in      ; Input ; Info     ; Stuck at VCC                             ;
+; shift_control[1] ; Input ; Info     ; Stuck at VCC                             ;
++------------------+-------+----------+------------------------------------------+
+
+
++---------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Statuses:status_bars|Shift_Register:health_shift_p2" ;
++------------------+-------+----------+-------------------------------------------+
+; Port             ; Type  ; Severity ; Details                                   ;
++------------------+-------+----------+-------------------------------------------+
+; serial_in        ; Input ; Info     ; Stuck at GND                              ;
+; parallel_in      ; Input ; Info     ; Stuck at VCC                              ;
+; shift_control[1] ; Input ; Info     ; Stuck at VCC                              ;
++------------------+-------+----------+-------------------------------------------+
+
+
++--------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Statuses:status_bars|Shift_Register:block_shift_p1" ;
++------------------+-------+----------+------------------------------------------+
+; Port             ; Type  ; Severity ; Details                                  ;
++------------------+-------+----------+------------------------------------------+
+; serial_in        ; Input ; Info     ; Stuck at GND                             ;
+; parallel_in      ; Input ; Info     ; Stuck at VCC                             ;
+; shift_control[1] ; Input ; Info     ; Stuck at VCC                             ;
++------------------+-------+----------+------------------------------------------+
+
+
++---------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Statuses:status_bars|Shift_Register:health_shift_p1" ;
++------------------+-------+----------+-------------------------------------------+
+; Port             ; Type  ; Severity ; Details                                   ;
++------------------+-------+----------+-------------------------------------------+
+; serial_in        ; Input ; Info     ; Stuck at GND                              ;
+; parallel_in      ; Input ; Info     ; Stuck at VCC                              ;
+; shift_control[1] ; Input ; Info     ; Stuck at VCC                              ;
++------------------+-------+----------+-------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Statuses:status_bars"                                                                                               ;
++-----------------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port            ; Type   ; Severity ; Details                                                                                                  ;
++-----------------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; p1_loose_health ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
+; p1_loose_block  ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
+; p2_loose_health ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
+; p2_loose_block  ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++-----------------+--------+----------+----------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "GameplayControllerP2:player2"                                                                                                                                                                           ;
++--------------------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port                     ; Type   ; Severity ; Details                                                                                                                                                                             ;
++--------------------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; screen_left_bound        ; Input  ; Warning  ; Input port expression (32 bits) is wider than the input port (10 bits) it drives.  The 22 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; screen_left_bound[9..0]  ; Input  ; Info     ; Stuck at GND                                                                                                                                                                        ;
+; screen_right_bound       ; Input  ; Warning  ; Input port expression (32 bits) is wider than the input port (10 bits) it drives.  The 22 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; screen_right_bound[6..0] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                        ;
+; screen_right_bound[9]    ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                        ;
+; screen_right_bound[8]    ; Input  ; Info     ; Stuck at GND                                                                                                                                                                        ;
+; screen_right_bound[7]    ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                        ;
+; move_flag                ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                                 ;
+; attack_flag              ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                                 ;
+; is_directional_attack    ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                                                            ;
++--------------------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "GameplayControllerP1:player1"                                                                                                                                                                           ;
++--------------------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port                     ; Type   ; Severity ; Details                                                                                                                                                                             ;
++--------------------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; screen_left_bound        ; Input  ; Warning  ; Input port expression (32 bits) is wider than the input port (10 bits) it drives.  The 22 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; screen_left_bound[9..0]  ; Input  ; Info     ; Stuck at GND                                                                                                                                                                        ;
+; screen_right_bound       ; Input  ; Warning  ; Input port expression (32 bits) is wider than the input port (10 bits) it drives.  The 22 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; screen_right_bound[6..0] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                        ;
+; screen_right_bound[9]    ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                        ;
+; screen_right_bound[8]    ; Input  ; Info     ; Stuck at GND                                                                                                                                                                        ;
+; screen_right_bound[7]    ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                        ;
+; move_flag                ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                                 ;
+; attack_flag              ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                                 ;
+; health1                  ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND.                                        ;
+; health2                  ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND.                                        ;
+; is_directional_attack    ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                                                            ;
++--------------------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "p2ai:p2ai_inst|LFSR:p2_action"                                                                                                                                                              ;
++--------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port         ; Type   ; Severity ; Details                                                                                                                                                                             ;
++--------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; seed         ; Input  ; Warning  ; Input port expression (32 bits) is wider than the input port (16 bits) it drives.  The 16 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; seed[14..12] ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                        ;
+; seed[5..3]   ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                        ;
+; seed[11..10] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                        ;
+; seed[8..6]   ; Input  ; Info     ; Stuck at GND                                                                                                                                                                        ;
+; seed[15]     ; Input  ; Info     ; Stuck at GND                                                                                                                                                                        ;
+; seed[9]      ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                        ;
+; seed[2]      ; Input  ; Info     ; Stuck at GND                                                                                                                                                                        ;
+; seed[1]      ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                        ;
+; seed[0]      ; Input  ; Info     ; Stuck at GND                                                                                                                                                                        ;
+; OUT[15..11]  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                                 ;
+; OUT[7..0]    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                                 ;
++--------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------+
+; Port Connectivity Checks: "Counter:GameSecondsElapsed" ;
++------------+-------+----------+------------------------+
+; Port       ; Type  ; Severity ; Details                ;
++------------+-------+----------+------------------------+
+; control[0] ; Input ; Info     ; Stuck at VCC           ;
++------------+-------+----------+------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 236                         ;
+;     CLR               ; 40                          ;
+;     ENA               ; 8                           ;
+;     ENA SCLR          ; 10                          ;
+;     SCLR              ; 158                         ;
+;     SLD               ; 4                           ;
+;     plain             ; 16                          ;
+; arriav_io_obuf        ; 36                          ;
+; arriav_lcell_comb     ; 1325                        ;
+;     arith             ; 440                         ;
+;         0 data inputs ; 37                          ;
+;         1 data inputs ; 290                         ;
+;         2 data inputs ; 24                          ;
+;         3 data inputs ; 66                          ;
+;         4 data inputs ; 23                          ;
+;     extend            ; 11                          ;
+;         7 data inputs ; 11                          ;
+;     normal            ; 847                         ;
+;         0 data inputs ; 2                           ;
+;         1 data inputs ; 6                           ;
+;         2 data inputs ; 177                         ;
+;         3 data inputs ; 136                         ;
+;         4 data inputs ; 127                         ;
+;         5 data inputs ; 116                         ;
+;         6 data inputs ; 283                         ;
+;     shared            ; 27                          ;
+;         0 data inputs ; 5                           ;
+;         1 data inputs ; 22                          ;
+; boundary_port         ; 135                         ;
+;                       ;                             ;
+; Max LUT depth         ; 21.20                       ;
+; Average LUT depth     ; 8.71                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:02     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
+    Info: Processing started: Tue Jun 24 08:07:38 2025
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off main -c main
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file vga/status_renderer.v
+    Info (12023): Found entity 1: Status_renderer File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Status_renderer.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file vga/timer_renderer.v
+    Info (12023): Found entity 1: Timer_Renderer File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Timer_Renderer.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file helperfunctions/timeto7seg.v
+    Info (12023): Found entity 1: timeTo7seg File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/timeTo7seg.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file helperfunctions/shift_register.v
+    Info (12023): Found entity 1: Shift_Register File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/Shift_Register.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file helperfunctions/shieldto7seg.v
+    Info (12023): Found entity 1: shieldto7seg File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/shieldto7seg.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file helperfunctions/lfsr.v
+    Info (12023): Found entity 1: LFSR File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/LFSR.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file helperfunctions/hexto7seg.v
+    Info (12023): Found entity 1: hexto7seg File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/hexto7seg.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file helperfunctions/counter.v
+    Info (12023): Found entity 1: Counter File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/Counter.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file helperfunctions/clock_divider.v
+    Info (12023): Found entity 1: Clock_Divider File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/Clock_Divider.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file main.v
+    Info (12023): Found entity 1: main File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 6
+Info (12021): Found 1 design units, including 1 entities, in source file gamelogic/statuses.v
+    Info (12023): Found entity 1: Statuses File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/Statuses.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file gamelogic/p2ai.v
+    Info (12023): Found entity 1: p2ai File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/p2ai.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file gamelogic/hitdetection_updated.v
+    Info (12023): Found entity 1: HitDetection_updated File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/HitDetection_updated.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file gamelogic/gameplaycontrollerp2.v
+    Info (12023): Found entity 1: GameplayControllerP2 File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP2.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file gamelogic/gameplaycontrollerp1.v
+    Info (12023): Found entity 1: GameplayControllerP1 File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP1.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file vga/vga_driver.v
+    Info (12023): Found entity 1: Vga_Driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/vga_driver.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file vga/player_renderer.v
+    Info (12023): Found entity 1: Player_Renderer File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Player_Renderer.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file vga/picasso.v
+    Info (12023): Found entity 1: Picasso File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Picasso.v Line: 2
+Warning (10236): Verilog HDL Implicit Net warning at GameplayControllerP1.v(46): created implicit net for "stun" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP1.v Line: 46
+Info (12127): Elaborating entity "main" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at main.v(96): object "player1_pos_y" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 96
+Warning (10036): Verilog HDL or VHDL warning at main.v(97): object "player2_pos_y" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 97
+Info (12128): Elaborating entity "Clock_Divider" for hierarchy "Clock_Divider:clk_div_inst" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 76
+Info (12128): Elaborating entity "Clock_Divider" for hierarchy "Clock_Divider:CLK_DIVA" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 80
+Info (12128): Elaborating entity "Clock_Divider" for hierarchy "Clock_Divider:OneSEC" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 84
+Info (12128): Elaborating entity "Clock_Divider" for hierarchy "Clock_Divider:VGA_refresh" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 88
+Info (12128): Elaborating entity "Counter" for hierarchy "Counter:GameSecondsElapsed" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 91
+Info (12128): Elaborating entity "p2ai" for hierarchy "p2ai:p2ai_inst" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 132
+Info (12128): Elaborating entity "LFSR" for hierarchy "p2ai:p2ai_inst|LFSR:p2_action" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/p2ai.v Line: 27
+Info (12128): Elaborating entity "GameplayControllerP1" for hierarchy "GameplayControllerP1:player1" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 154
+Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(46): object "stun" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP1.v Line: 46
+Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(27): object "predicted_attack_flag" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP1.v Line: 27
+Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(28): object "predicted_is_directional_attack" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP1.v Line: 28
+Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(30): object "player2_attack_flag" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP1.v Line: 30
+Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP1.v(30): object "player2_is_directional_attack" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP1.v Line: 30
+Warning (10230): Verilog HDL assignment warning at GameplayControllerP1.v(90): truncated value with size 32 to match size of target (5) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP1.v Line: 90
+Info (12128): Elaborating entity "HitDetection_updated" for hierarchy "GameplayControllerP1:player1|HitDetection_updated:hit_detec" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP1.v Line: 44
+Warning (10036): Verilog HDL or VHDL warning at HitDetection_updated.v(53): object "withinp1range" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/HitDetection_updated.v Line: 53
+Warning (10036): Verilog HDL or VHDL warning at HitDetection_updated.v(53): object "withinp2range" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/HitDetection_updated.v Line: 53
+Info (12128): Elaborating entity "GameplayControllerP2" for hierarchy "GameplayControllerP2:player2" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 172
+Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP2.v(21): object "predicted_attack_flag" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP2.v Line: 21
+Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP2.v(22): object "predicted_is_directional_attack" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP2.v Line: 22
+Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP2.v(24): object "player1_attack_flag" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP2.v Line: 24
+Warning (10036): Verilog HDL or VHDL warning at GameplayControllerP2.v(24): object "player1_is_directional_attack" assigned a value but never read File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/GameplayControllerP2.v Line: 24
+Info (12128): Elaborating entity "Statuses" for hierarchy "Statuses:status_bars" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 187
+Warning (10240): Verilog HDL Always Construct warning at Statuses.v(40): inferring latch(es) for variable "p2wins", which holds its previous value in one or more paths through the always construct File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/Statuses.v Line: 40
+Warning (10240): Verilog HDL Always Construct warning at Statuses.v(40): inferring latch(es) for variable "p1wins", which holds its previous value in one or more paths through the always construct File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/Statuses.v Line: 40
+Info (10041): Inferred latch for "p1wins" at Statuses.v(41) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/Statuses.v Line: 41
+Info (10041): Inferred latch for "p2wins" at Statuses.v(41) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/Statuses.v Line: 41
+Info (12128): Elaborating entity "Shift_Register" for hierarchy "Statuses:status_bars|Shift_Register:health_shift_p1" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/GameLogic/Statuses.v Line: 57
+Info (12128): Elaborating entity "Picasso" for hierarchy "Picasso:Game_Artist" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 208
+Info (12128): Elaborating entity "Vga_Driver" for hierarchy "Picasso:Game_Artist|Vga_Driver:driver" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Picasso.v Line: 38
+Warning (10034): Output port "r" at vga_driver.v(5) has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/vga_driver.v Line: 5
+Warning (10034): Output port "g" at vga_driver.v(6) has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/vga_driver.v Line: 6
+Warning (10034): Output port "b" at vga_driver.v(7) has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/vga_driver.v Line: 7
+Info (12128): Elaborating entity "Player_Renderer" for hierarchy "Picasso:Game_Artist|Player_Renderer:game_renderer" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Picasso.v Line: 46
+Info (12128): Elaborating entity "Timer_Renderer" for hierarchy "Picasso:Game_Artist|Timer_Renderer:timer_renderer" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Picasso.v Line: 53
+Warning (10230): Verilog HDL assignment warning at Timer_Renderer.v(22): truncated value with size 8 to match size of target (4) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Timer_Renderer.v Line: 22
+Warning (10230): Verilog HDL assignment warning at Timer_Renderer.v(23): truncated value with size 8 to match size of target (4) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Timer_Renderer.v Line: 23
+Warning (10230): Verilog HDL assignment warning at Timer_Renderer.v(174): truncated value with size 10 to match size of target (5) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Timer_Renderer.v Line: 174
+Warning (10230): Verilog HDL assignment warning at Timer_Renderer.v(175): truncated value with size 32 to match size of target (5) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Timer_Renderer.v Line: 175
+Warning (10230): Verilog HDL assignment warning at Timer_Renderer.v(176): truncated value with size 32 to match size of target (5) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Timer_Renderer.v Line: 176
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "digit_rom" into its bus
+Info (12128): Elaborating entity "Status_renderer" for hierarchy "Picasso:Game_Artist|Status_renderer:status_renderer" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Picasso.v Line: 62
+Warning (10230): Verilog HDL assignment warning at Status_renderer.v(194): truncated value with size 10 to match size of target (5) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Status_renderer.v Line: 194
+Warning (10230): Verilog HDL assignment warning at Status_renderer.v(195): truncated value with size 32 to match size of target (5) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Status_renderer.v Line: 195
+Warning (10230): Verilog HDL assignment warning at Status_renderer.v(196): truncated value with size 32 to match size of target (5) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Status_renderer.v Line: 196
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "shape_rom" into its bus
+Info (12128): Elaborating entity "timeTo7seg" for hierarchy "timeTo7seg:timerDisplay" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 233
+Warning (10230): Verilog HDL assignment warning at timeTo7seg.v(16): truncated value with size 12 to match size of target (6) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/timeTo7seg.v Line: 16
+Warning (10230): Verilog HDL assignment warning at timeTo7seg.v(17): truncated value with size 12 to match size of target (6) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/timeTo7seg.v Line: 17
+Warning (10230): Verilog HDL assignment warning at timeTo7seg.v(20): truncated value with size 6 to match size of target (4) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/timeTo7seg.v Line: 20
+Warning (10230): Verilog HDL assignment warning at timeTo7seg.v(21): truncated value with size 6 to match size of target (4) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/timeTo7seg.v Line: 21
+Warning (10230): Verilog HDL assignment warning at timeTo7seg.v(23): truncated value with size 6 to match size of target (4) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/timeTo7seg.v Line: 23
+Warning (10230): Verilog HDL assignment warning at timeTo7seg.v(24): truncated value with size 6 to match size of target (4) File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/timeTo7seg.v Line: 24
+Info (12128): Elaborating entity "hexto7seg" for hierarchy "timeTo7seg:timerDisplay|hexto7seg:timeconv1" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/timeTo7seg.v Line: 27
+Warning (19016): Clock multiplexers are found and protected
+    Warning (19017): Found clock multiplexer logic_clk File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 57
+Info (278001): Inferred 5 megafunctions from design logic
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "timeTo7seg:timerDisplay|Div1" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/timeTo7seg.v Line: 20
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "timeTo7seg:timerDisplay|Div0" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/timeTo7seg.v Line: 16
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "timeTo7seg:timerDisplay|Div2" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/timeTo7seg.v Line: 23
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Picasso:Game_Artist|Timer_Renderer:timer_renderer|Div0" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Timer_Renderer.v Line: 22
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Picasso:Game_Artist|Timer_Renderer:timer_renderer|Mod0" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Timer_Renderer.v Line: 23
+Info (12130): Elaborated megafunction instantiation "timeTo7seg:timerDisplay|lpm_divide:Div1" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/timeTo7seg.v Line: 20
+Info (12133): Instantiated megafunction "timeTo7seg:timerDisplay|lpm_divide:Div1" with the following parameter: File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/timeTo7seg.v Line: 20
+    Info (12134): Parameter "LPM_WIDTHN" = "6"
+    Info (12134): Parameter "LPM_WIDTHD" = "4"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_3am.tdf
+    Info (12023): Found entity 1: lpm_divide_3am File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/lpm_divide_3am.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_9kh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_9kh File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/sign_div_unsign_9kh.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_ose.tdf
+    Info (12023): Found entity 1: alt_u_div_ose File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/alt_u_div_ose.tdf Line: 23
+Info (12130): Elaborated megafunction instantiation "timeTo7seg:timerDisplay|lpm_divide:Div0" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/timeTo7seg.v Line: 16
+Info (12133): Instantiated megafunction "timeTo7seg:timerDisplay|lpm_divide:Div0" with the following parameter: File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/HelperFunctions/timeTo7seg.v Line: 16
+    Info (12134): Parameter "LPM_WIDTHN" = "12"
+    Info (12134): Parameter "LPM_WIDTHD" = "6"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_ibm.tdf
+    Info (12023): Found entity 1: lpm_divide_ibm File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/lpm_divide_ibm.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_olh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_olh File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/sign_div_unsign_olh.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_mve.tdf
+    Info (12023): Found entity 1: alt_u_div_mve File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/alt_u_div_mve.tdf Line: 23
+Info (12130): Elaborated megafunction instantiation "Picasso:Game_Artist|Timer_Renderer:timer_renderer|lpm_divide:Div0" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Timer_Renderer.v Line: 22
+Info (12133): Instantiated megafunction "Picasso:Game_Artist|Timer_Renderer:timer_renderer|lpm_divide:Div0" with the following parameter: File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Timer_Renderer.v Line: 22
+    Info (12134): Parameter "LPM_WIDTHN" = "8"
+    Info (12134): Parameter "LPM_WIDTHD" = "4"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_5am.tdf
+    Info (12023): Found entity 1: lpm_divide_5am File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/lpm_divide_5am.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_bkh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_bkh File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/sign_div_unsign_bkh.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_sse.tdf
+    Info (12023): Found entity 1: alt_u_div_sse File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/alt_u_div_sse.tdf Line: 23
+Info (12130): Elaborated megafunction instantiation "Picasso:Game_Artist|Timer_Renderer:timer_renderer|lpm_divide:Mod0" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Timer_Renderer.v Line: 23
+Info (12133): Instantiated megafunction "Picasso:Game_Artist|Timer_Renderer:timer_renderer|lpm_divide:Mod0" with the following parameter: File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/VGA/Timer_Renderer.v Line: 23
+    Info (12134): Parameter "LPM_WIDTHN" = "8"
+    Info (12134): Parameter "LPM_WIDTHD" = "4"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_82m.tdf
+    Info (12023): Found entity 1: lpm_divide_82m File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/db/lpm_divide_82m.tdf Line: 25
+Warning (12241): 7 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (13039): The following bidirectional pins have no drivers
+    Warning (13040): bidirectional pin "keypadGPIO[21]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[23]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[25]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[0]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[1]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[2]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[3]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[4]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[5]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[6]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[7]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[8]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[9]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[10]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[12]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[13]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[14]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[15]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[16]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[17]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[18]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[19]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[20]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[22]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[24]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[26]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[27]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[28]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[29]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[30]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[31]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[32]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[33]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[34]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+    Warning (13040): bidirectional pin "keypadGPIO[35]" has no driver File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+Warning (13032): The following tri-state nodes are fed by constants
+    Warning (13033): The pin "keypadGPIO[11]" is fed by GND File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 44
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "LEDR[3]" is stuck at GND File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 26
+    Warning (13410): Pin "LEDR[7]" is stuck at GND File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 26
+    Warning (13410): Pin "VGA_BLANK_N" is stuck at VCC File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 32
+    Warning (13410): Pin "VGA_SYNC_N" is stuck at GND File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 38
+Info (286030): Timing-Driven Synthesis is running
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 10 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "CLOCK2_50" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 9
+    Warning (15610): No output dependent on input pin "CLOCK3_50" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 10
+    Warning (15610): No output dependent on input pin "CLOCK4_50" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 11
+    Warning (15610): No output dependent on input pin "SW[0]" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 29
+    Warning (15610): No output dependent on input pin "SW[2]" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 29
+    Warning (15610): No output dependent on input pin "SW[3]" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 29
+    Warning (15610): No output dependent on input pin "SW[4]" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 29
+    Warning (15610): No output dependent on input pin "SW[5]" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 29
+    Warning (15610): No output dependent on input pin "SW[6]" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 29
+    Warning (15610): No output dependent on input pin "SW[7]" File: C:/Users/quant/OneDrive/Desktop/EE314/EE314-main-project/main.v Line: 29
+Info (21057): Implemented 1463 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 18 input pins
+    Info (21059): Implemented 81 output pins
+    Info (21060): Implemented 36 bidirectional pins
+    Info (21061): Implemented 1328 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 92 warnings
+    Info: Peak virtual memory: 4848 megabytes
+    Info: Processing ended: Tue Jun 24 08:07:49 2025
+    Info: Elapsed time: 00:00:11
+    Info: Total CPU time (on all processors): 00:00:08
+
+

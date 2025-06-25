@@ -1,0 +1,51 @@
+module Vga_Driver (
+    input clk,
+    input reset,
+    output [9:0] h_count,
+    output [9:0] v_count,
+    output hsync,
+    output vsync,
+    output display_area
+);
+
+
+    localparam H_VISIBLE_AREA = 10'd640;
+    localparam H_FRONT_PORCH  = 10'd16;
+    localparam H_SYNC_PULSE   = 10'd96;
+    localparam H_BACK_PORCH   = 10'd48;
+    localparam H_TOTAL        = 10'd800;
+
+    localparam V_VISIBLE_AREA = 10'd480;
+    localparam V_FRONT_PORCH  = 10'd10;
+    localparam V_SYNC_PULSE   = 10'd2;
+    localparam V_BACK_PORCH   = 10'd33;
+    localparam V_TOTAL        = 10'd525;
+
+    reg [9:0] h_count_reg = 1'b0;
+    reg [9:0] v_count_reg = 1'b0;
+
+    always @(posedge clk_25mhz or posedge reset) begin
+        if (reset) begin
+            h_count_reg <= 1'b0;
+            v_count_reg <= 1'b0;
+        end else begin
+            if (h_count_reg == H_TOTAL - 1'b1) begin
+                h_count_reg <= 1'b0;
+                v_count_reg <= (v_count_reg == V_TOTAL - 1'b1) ? 1'b0 : v_count_reg + 1'b1;
+            end else begin
+                h_count_reg <= h_count_reg + 1'b1;
+            end
+        end
+    end
+
+    assign h_count = h_count_reg;
+    assign v_count = v_count_reg;
+
+    assign hsync = ~((h_count_reg >= (H_VISIBLE_AREA + H_FRONT_PORCH)) &&
+                     (h_count_reg <  (H_VISIBLE_AREA + H_FRONT_PORCH + H_SYNC_PULSE)));
+    assign vsync = ~((v_count_reg >= (V_VISIBLE_AREA + V_FRONT_PORCH)) &&
+                     (v_count_reg <  (V_VISIBLE_AREA + V_FRONT_PORCH + V_SYNC_PULSE)));
+
+    assign display_area = (h_count_reg < H_VISIBLE_AREA) && (v_count_reg < V_VISIBLE_AREA);
+
+endmodule

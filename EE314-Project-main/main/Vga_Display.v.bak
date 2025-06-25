@@ -1,0 +1,75 @@
+module Vga_Display(
+    input clk,
+    input reset,
+    output reg [7:0] r, g, b,
+    output reg hsync, vsync
+);
+
+    // === CLOCK DIVIDER: 50MHz -> 25MHz ===
+    wire clk_25MHz;
+	 
+    Clock_Divider clk25MHz_gen(
+		  .clk(clk),
+        .clk_out(clk_25MHz));
+
+    // === VGA TIMING COUNTERS ===
+    reg [9:0] hor_count = 0;
+    reg [9:0] ver_count = 0;
+    wire visible;
+    wire [9:0] x = hor_count;
+    wire [9:0] y = ver_count;
+
+    always @(posedge clk_25MHz or posedge reset) begin
+        if (reset) begin
+            hor_count <= 0;
+            ver_count <= 0;
+        end else begin
+            if (hor_count == 799) begin
+                hor_count <= 0;
+                if (ver_count == 524) ver_count <= 0;
+                else ver_count <= ver_count + 1;
+            end else begin
+                hor_count <= hor_count + 1;
+            end
+        end
+    end
+
+    assign visible = (x < 640) && (y < 480);
+
+    always @(*) begin
+        hsync = ~((x >= 656) && (x < 752));
+        vsync = ~((y >= 490) && (y < 492));
+    end
+
+    // === SPRITE POSITIONING ===
+    localparam SPRITE_X = 288;  // Center horizontally (640 - 64) / 2
+    localparam SPRITE_Y = 120;  // Somewhat centered vertically
+
+    wire [5:0] sprite_x = x - SPRITE_X;  // relative X
+    wire [7:0] sprite_y = y - SPRITE_Y;  // relative Y
+    wire in_sprite_bounds = (x >= SPRITE_X && x < SPRITE_X + 64) &&
+                            (y >= SPRITE_Y && y < SPRITE_Y + 240);
+
+    // === EMBEDDED SPRITE ROM LOGIC ===
+    wire sprite_pixel;
+    assign sprite_pixel = (sprite_x >= 24 && sprite_x < 40 &&
+                           sprite_y >= 90 && sprite_y < 150) ? 1'b1 : 1'b0;
+
+    // === PIXEL COLOR OUTPUT ===
+    always @(*) begin
+        if (!visible) begin
+            {r, g, b} = 8'b0; // black (off screen)
+        end else if (in_sprite_bounds && sprite_pixel) begin
+            // Sprite color: reddish-magenta
+            r = 8'b111_000_00;
+            g = 8'b000_000_00;
+            b = 8'b000_000_11;
+        end else begin
+            // Background: greenish
+            r = 8'b000_111_00;
+            g = 8'b000_111_00;
+            b = 8'b000_000_00;
+        end
+    end
+
+endmodule

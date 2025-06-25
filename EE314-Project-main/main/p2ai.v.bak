@@ -1,0 +1,18 @@
+module p2ai (
+    input wire clk,
+    input [W-1:0] seed,
+    input wire reset,
+    output reg [W-1:0] p2_action
+);
+    // in case we add inputs in the future, I am keeping this part parameterized
+    // so for 3 inputs we need a 3bit LFSR
+    parameter W = 3; 
+    // LFSR for 3-bit random number generation
+    always @(posedge clk or reset) begin
+        if (reset)
+            p2_action <= seed; // Seed value (non-zero)
+        else
+            p2_action <= {p2_action[1:0], p2_action[2] ^ p2_action[1]}; // x^3 + x + 1
+    end
+
+endmodule

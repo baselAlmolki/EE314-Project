@@ -1,0 +1,13 @@
+module menu_display (
+    input wire clk,         // 25 MHz
+    input wire rst,         // active high
+	 input [2:0] state,
+    output wire hsync,
+    output wire vsync,
+    output wire [7:0] red,
+    output wire [7:0] green,
+    output wire [7:0] blue,
+    output wire sync,
+    output wire blank,
+    output wire clk_out
+);
